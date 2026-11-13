@@ -513,3 +513,11 @@ input[type=range]::-moz-range-thumb { width: 30px; height: 20px; border-radius: 
 .brand:hover .tgl .kn { transform: translateX(20px); }
 .nav .brand { padding-left: 8px; }
 :root[data-theme="dark"] .brand .tgl .t-off, body.dark-zone .brand .tgl .t-off { fill: #3a3a3f; }
+
+/* Precio a lo ancho, bajo el contrato de garantía */
+.offer.offer-one { grid-template-columns: 1fr; max-width: none; }
+.offer.offer-one .card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 8px 48px; align-items: start; }
+.offer.offer-one .card > .tag, .offer.offer-one .card > .price-claim, .offer.offer-one .card > p, .offer.offer-one .card > .price-chips { grid-column: 1; }
+.offer.offer-one .card > ul { grid-column: 2; grid-row: 1 / span 4; margin: 0; }
+.offer.offer-one .card > .btn { grid-column: 2; }
+@media (max-width: 860px) { .offer.offer-one .card { grid-template-columns: 1fr; } .offer.offer-one .card > ul, .offer.offer-one .card > .btn { grid-column: 1; grid-row: auto; } .offer.offer-one .card > ul { margin: 20px 0; } }

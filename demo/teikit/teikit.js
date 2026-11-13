@@ -161,11 +161,14 @@
   const chip = $('#openChip');
   if (chip) { chip.classList.toggle('closed', !status.open); chip.querySelector('span').textContent = `${status.text} · Todos los días, 12:30–15:30 y 19:00–23:00`; }
 
+  // Fotos de los locales publicadas en teikit.es (su web no indica de qué local es cada una)
+  const STORE_PHOTOS = ['local-04', 'local-08', 'local-12', 'local-06', 'local-16', 'local-02', 'local-10', 'local-19', 'local-03', 'local-13', 'local-07', 'local-15', 'local-05', 'local-17', 'local-01', 'local-11', 'local-18'];
+
   function renderStores(region) {
     $$('#regions button').forEach((b) => b.classList.toggle('on', b.dataset.r === region));
     $('#storeList').innerHTML = D.stores.filter((s) => s.region === region).map((s, i) => `
       <div class="store" style="animation-delay:${i * 0.04}s">
-        <span class="st ${status.open ? 'on' : ''}"><i></i>${status.text}</span>
+        <div class="ph"><img src="img/${STORE_PHOTOS[D.stores.indexOf(s) % STORE_PHOTOS.length]}.webp" alt="Local Teikit" loading="lazy" /><span class="st ${status.open ? 'on' : ''}"><i></i>${status.text}</span></div>
         <h3>Teikit ${esc(s.name)}</h3>
         <div class="addr">${esc(s.addr)} · ${esc(s.city)}</div>
         <div class="row"><a href="tel:${tel(s.phone)}">${icon('i-phone')} ${esc(s.phone.replace('+34 ', ''))}</a><a class="pri" href="${maps(s)}" target="_blank" rel="noopener">${icon('i-pin')} Cómo llegar</a></div>
@@ -260,6 +263,10 @@
   $('#drawerX').addEventListener('click', () => open(false));
   $('#drawerBg').addEventListener('click', () => open(false));
   addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+
+  /* ---------- Patrón de fondo, después de pintar la portada ---------- */
+  const pat = () => setTimeout(() => document.body.classList.add('pat'), 150);
+  if (document.readyState === 'complete') pat(); else addEventListener('load', pat);
 
   /* ---------- Init ---------- */
   renderMenu();

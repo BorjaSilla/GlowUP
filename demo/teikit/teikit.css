@@ -13,9 +13,12 @@
   --paper: #fffdf9;
   --beige: #e2ded6;            /* el fondo exacto de sus fotos de producto */
   --line: rgba(1, 30, 65, .09);
-  --salmon: #ff5f3a;
-  --salmon-2: #ff8a5c;
-  --salmon-ink: #c63d1c;
+  --amber: #ffa500;          /* el ámbar de los botones de teikit.es */
+  --amber-2: #ffbe3d;
+  --amber-ink: #8a5000;      /* ámbar oscuro para texto sobre claro */
+  --slate: #bacbd1;          /* gris azulado de 'Sushi masters desde 2012' */
+  --slate-ink: #45606e;
+  --off: #f7f8f8;            /* blanco roto del fondo con patrón */
   --green: #22a65a;
   --r-s: 14px;
   --r-m: 22px;
@@ -36,16 +39,18 @@ body {
   margin: 0;
   font-family: var(--sans);
   color: var(--ink);
-  background: var(--cream);
+  background: var(--off);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+/* El patrón de Teikit se pinta justo después de la portada (no retrasa la carga) */
+body.pat { background-image: url(img/pattern-navy.webp); background-size: 1400px auto; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
-:focus-visible { outline: 2px solid var(--salmon); outline-offset: 3px; border-radius: 8px; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 8px; }
 .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
@@ -90,7 +95,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .cart-btn svg { width: 20px; height: 20px; }
 .cart-btn .count {
   position: absolute; top: -2px; right: -2px; min-width: 19px; height: 19px; padding: 0 5px;
-  border-radius: 99px; background: var(--salmon); color: #fff; font-size: 11px; font-weight: 700;
+  border-radius: 99px; background: var(--amber); color: var(--navy); font-size: 11px; font-weight: 700;
   display: grid; place-items: center; transform: scale(0); transition: transform .35s var(--spring);
 }
 .cart-btn.has .count { transform: scale(1); }
@@ -115,11 +120,11 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0) scale(.98); }
 .btn svg { width: 18px; height: 18px; }
-.btn.salmon {
-  --bg: linear-gradient(180deg, var(--salmon-2), var(--salmon) 55%, #f04a22);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 1px 2px rgba(198,61,28,.4), 0 12px 28px -10px rgba(255,95,58,.75);
+.btn.amber {
+  --bg: linear-gradient(180deg, var(--amber-2), var(--amber) 60%, #f29800); --fg: var(--navy);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(138,80,0,.35), 0 12px 28px -10px rgba(255,165,0,.7);
 }
-.btn.salmon:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 1px 2px rgba(198,61,28,.4), 0 18px 36px -10px rgba(255,95,58,.85); }
+.btn.amber:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(138,80,0,.35), 0 18px 36px -10px rgba(255,165,0,.8); }
 .btn.ghost { --bg: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.28); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .btn.light { --bg: #fff; --fg: var(--ink); box-shadow: var(--shadow-s); }
 .btn.sm { height: 40px; padding: 0 16px; font-size: 14px; }
@@ -178,7 +183,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
   width: 100%; height: 50px; padding: 0 16px 0 44px; border-radius: 16px; border: 0;
   background: rgba(255,255,255,.95); color: var(--ink); font: 500 15px var(--sans); outline: none;
 }
-.loc-input svg { position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; color: var(--salmon); }
+.loc-input svg { position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; color: var(--amber-ink); }
 .loc-results { margin-top: 8px; display: grid; gap: 6px; max-height: 0; overflow: hidden; transition: max-height .5s var(--ease); }
 .loc-results.open { max-height: 260px; }
 .loc-results a {
@@ -214,7 +219,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 /* ---------- Section headings ---------- */
 .sec { padding: clamp(72px, 10vw, 128px) 0 0; }
 .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
-.kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--salmon-ink); letter-spacing: .02em; text-transform: uppercase; margin-bottom: 12px; }
+.kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--slate-ink); letter-spacing: .02em; text-transform: uppercase; margin-bottom: 12px; }
 .kicker::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
 .h2 {
   margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase;
@@ -245,7 +250,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .hero-dish h3 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
 .hero-dish p { margin: 4px 0 12px; font-size: 13.5px; color: var(--ink-2); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .badge { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 99px; font-size: 12px; font-weight: 600; background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-.badge.hot { background: var(--salmon-ink); color: #fff; }
+.badge.hot { background: var(--amber); color: var(--navy); }
 .badge.new { background: var(--navy); color: #fff; }
 .badge.veg { background: #e5f5ea; color: #16733d; }
 .hero-dish .badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
@@ -314,11 +319,12 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .band {
   margin-top: clamp(72px, 10vw, 128px); padding: clamp(64px, 8vw, 104px) 0; background: var(--navy); color: #fff;
   border-radius: var(--r-l); width: calc(100% - 20px); margin-left: auto; margin-right: auto; overflow: hidden; position: relative;
+  background-image: url(img/pattern-white.webp); background-size: 1400px auto;
 }
-.band::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 70%; height: 120%; background: radial-gradient(closest-side, rgba(255,95,58,.22), transparent); pointer-events: none; }
+.band::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 70%; height: 120%; background: radial-gradient(closest-side, rgba(255,165,0,.18), transparent); pointer-events: none; }
 .band .h2 { color: #fff; }
 .band .sub { color: rgba(255,255,255,.72); }
-.band .kicker { color: var(--salmon-2); }
+.band .kicker { color: var(--slate); }
 .packs { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; }
 .pack {
   position: relative; border-radius: var(--r-m); overflow: hidden; background: var(--beige); color: var(--ink);
@@ -342,11 +348,11 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .story .intro { grid-row: span 2; background: var(--navy); color: #fff; display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; padding: 0; }
 .story .intro .txt { padding: 32px; }
 .story .intro .txt p { color: rgba(255,255,255,.78); font-size: 17px; max-width: 460px; }
-.story .intro img { width: 100%; height: 260px; object-fit: cover; }
+.story .intro img { width: 100%; height: 320px; object-fit: cover; object-position: 50% 30%; }
 .story .intro h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(40px, 4.4vw, 60px); line-height: .9; margin: 0 0 14px; }
 .values { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .value { border-radius: var(--r-m); background: var(--paper); box-shadow: var(--shadow-s); padding: 24px; }
-.value .num { font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1; color: var(--salmon); }
+.value .num { font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1; color: var(--slate); -webkit-text-stroke: 0; }
 .value h3 { margin: 10px 0 6px; font-size: 18px; letter-spacing: -.02em; }
 .value p { margin: 0; font-size: 14px; color: var(--ink-2); }
 @media (max-width: 920px) { .story { grid-template-columns: 1fr; } .story .intro { min-height: 0; } }
@@ -372,7 +378,13 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .regions button.on { background: var(--navy); color: #fff; }
 .regions button.on span { background: rgba(255,255,255,.16); color: #fff; }
 .store-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; align-content: start; }
-.store { padding: 20px; border-radius: var(--r-m); background: var(--paper); box-shadow: var(--shadow-s); display: flex; flex-direction: column; gap: 4px; animation: rise .5s var(--ease) both; }
+.store { padding: 0 0 18px; overflow: hidden; border-radius: var(--r-m); background: var(--paper); box-shadow: var(--shadow-s); display: flex; flex-direction: column; gap: 4px; animation: rise .5s var(--ease) both; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.store:hover { transform: translateY(-3px); box-shadow: var(--shadow-m); }
+.store .ph { position: relative; aspect-ratio: 16 / 11; overflow: hidden; margin-bottom: 12px; background: var(--navy); }
+.store .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.store:hover .ph img { transform: scale(1.05); }
+.store .ph .st { position: absolute; left: 12px; top: 12px; margin: 0; background: rgba(255,253,249,.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.store > h3, .store > .addr, .store > .row { margin-left: 18px; margin-right: 18px; }
 .store h3 { margin: 0; font-size: 17px; letter-spacing: -.02em; }
 .store .addr { font-size: 14px; color: var(--ink-2); }
 .store .row { display: flex; gap: 6px; margin-top: 12px; }
@@ -384,6 +396,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .store .st { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 99px; font-size: 12px; font-weight: 600; background: var(--cream); color: var(--ink-2); margin-bottom: 8px; }
 .store .st i { width: 7px; height: 7px; border-radius: 50%; background: #f5a524; }
 .store .st.on { background: #e5f5ea; color: #16733d; }
+.store .ph .st.on { background: rgba(229,245,234,.94); }
 .store .st.on i { background: var(--green); }
 
 /* Fotos de los locales */
@@ -414,7 +427,7 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 /* ---------- Services ---------- */
 .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .svc { padding: 24px; border-radius: var(--r-m); background: var(--paper); box-shadow: var(--shadow-s); }
-.svc .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--cream); color: var(--salmon); margin-bottom: 18px; }
+.svc .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--cream); color: var(--navy); margin-bottom: 18px; }
 .svc .ico svg { width: 22px; height: 22px; }
 .svc h3 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.02em; }
 .svc p { margin: 0; font-size: 14px; color: var(--ink-2); }
@@ -480,12 +493,12 @@ body.cart-open .drawer-bg { opacity: 1; pointer-events: auto; }
 .sg .add { width: 28px; height: 28px; padding: 0; justify-content: center; }
 .sg .add svg { width: 14px; height: 14px; }
 .drawer .dinfo { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink-2); margin-bottom: 12px; padding: 10px 12px; border-radius: 12px; background: var(--cream); }
-.drawer .dinfo svg { width: 18px; height: 18px; color: var(--salmon-ink); flex: none; }
+.drawer .dinfo svg { width: 18px; height: 18px; color: var(--amber-ink); flex: none; }
 .drawer footer { padding: 16px 20px 20px; border-top: 1px solid var(--line); }
 .drawer .tot { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 4px; }
 .drawer .tot.big { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin: 8px 0 14px; }
 .drawer .free { height: 6px; border-radius: 99px; background: var(--cream); overflow: hidden; margin: 6px 0 4px; }
-.drawer .free i { display: block; height: 100%; background: linear-gradient(90deg, var(--salmon-2), var(--salmon)); border-radius: 99px; transition: width .6s var(--ease); }
+.drawer .free i { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-2), var(--amber)); border-radius: 99px; transition: width .6s var(--ease); }
 .drawer .free-txt { font-size: 12.5px; color: var(--ink-2); }
 .drawer footer .btn { width: 100%; }
 .drawer .empty-cart { text-align: center; padding: 40px 10px; color: var(--ink-2); }
@@ -504,3 +517,13 @@ body.cart-open .drawer-bg { opacity: 1; pointer-events: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .rv { opacity: 1; transform: none; filter: none; }
 }
+
+/* Servicios con fotos reales de Teikit */
+.svc.ph-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.svc.ph-card .im { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--navy); }
+.svc.ph-card .im img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.svc.ph-card:hover .im img { transform: scale(1.05); }
+.svc.ph-card .im .ico { position: absolute; left: 14px; bottom: -22px; margin: 0; background: var(--amber); color: var(--navy); box-shadow: 0 8px 18px -8px rgba(138,80,0,.6); }
+.svc.ph-card .tx { padding: 34px 22px 22px; }
+/* Las fotos de la sección de locales, ahora más altas y con las mejores fachadas */
+.loc-photos .lp img { object-position: 50% 40%; }
