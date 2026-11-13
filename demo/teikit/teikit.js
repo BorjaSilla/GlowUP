@@ -33,7 +33,7 @@
   const railIds = ['salmon-crush', 'kioto', 'paris', 'nikkei-poke', 'vieira', 'tuna-tartufata', 'moulin-rouge', 'velvet'];
   $('#rail').innerHTML = railIds.map((id, i) => {
     const it = byId[id];
-    return `<article class="hero-dish rv" style="--d:${i * 0.05}s">
+    return `<article class="hero-dish rv" data-open="${id}" style="--d:${i * 0.05}s">
       <img src="${it.img}" alt="${esc(it.name)}" loading="lazy" />
       <div class="badges">${badges(it)}</div>
       <div class="body">
@@ -52,7 +52,7 @@
   let filter = 'all', query = '';
   $('#tabs').innerHTML = cats.map((c, i) => `<button role="tab" class="${i ? '' : 'on'}" data-cat="${c.key}">${c.short}</button>`).join('');
 
-  const dish = (it) => `<article class="dish">
+  const dish = (it) => `<article class="dish" data-open="${it.id}" tabindex="0" aria-label="Ver ${esc(it.name)}">
       <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy" width="112" height="112" /><div class="tags">${badges(it)}</div></div>
       <div class="info">
         <h4>${esc(it.name)}</h4>
@@ -123,7 +123,7 @@
   $('#packList').innerHTML = packIds.map((id, i) => {
     const it = byId[id];
     const per = it.pieces ? `${(it.price / it.pieces).toLocaleString('es-ES', { maximumFractionDigits: 2 })} € / pieza` : 'Pack combinable';
-    return `<article class="pack ${i === 0 ? 'big' : ''} rv" style="--d:${i * 0.08}s">
+    return `<article class="pack ${i === 0 ? 'big' : ''} rv" data-open="${id}" style="--d:${i * 0.08}s">
       <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy" /></div>
       <div class="body">
         <h3>${esc(it.name)}</h3>
@@ -201,7 +201,9 @@
   /* ---------- Carrito (demo: el pago real sigue en el sistema actual de Teikit) ---------- */
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem('tk_cart') || '{}'); } catch (e) {}
-  const save = () => { try { localStorage.setItem('tk_cart', JSON.stringify(cart)); } catch (e) {} };
+  let notes = {};
+  try { notes = JSON.parse(localStorage.getItem('tk_notes') || '{}'); } catch (e) {}
+  const save = () => { try { localStorage.setItem('tk_cart', JSON.stringify(cart)); localStorage.setItem('tk_notes', JSON.stringify(notes)); } catch (e) {} };
   const count = () => Object.values(cart).reduce((a, b) => a + b, 0);
   const total = () => Object.entries(cart).reduce((a, [id, q]) => a + (byId[id] ? byId[id].price * q : 0), 0);
 
@@ -223,7 +225,7 @@
     if (!picks.length) return '';
     return `<div class="sugg"><div class="sugg-h"><b>Completa tu pedido</b><span>Lo que más se pide junto a tus rolls</span></div><div class="sugg-g">${picks.map((id) => {
       const it = byId[id];
-      return `<div class="sg"><img src="${it.img}" alt="" /><b>${esc(it.name)}</b><div class="r"><span>${eur(it.price)}</span><button class="add" data-add="${id}" aria-label="Añadir ${esc(it.name)}">${icon('i-plus')}</button></div></div>`;
+      return `<div class="sg" data-open="${id}"><img src="${it.img}" alt="" /><b>${esc(it.name)}</b><div class="r"><span>${eur(it.price)}</span><button class="add" data-add="${id}" aria-label="Añadir ${esc(it.name)}">${icon('i-plus')}</button></div></div>`;
     }).join('')}</div></div>`;
   }
 
@@ -237,7 +239,7 @@
     $('#sub').textContent = eur(t); $('#tot').textContent = eur(t);
     $('#lines').innerHTML = n ? Object.entries(cart).map(([id, q]) => {
       const it = byId[id];
-      return `<div class="line"><img src="${it.img}" alt="" /><div><b>${esc(it.name)}</b><span>${eur(it.price * q)}</span></div>
+      return `<div class="line"><img src="${it.img}" alt="" data-open="${id}" /><div data-open="${id}"><b>${esc(it.name)}</b><span>${eur(it.price * q)}</span>${notes[id] ? `<em class="note">“${esc(notes[id])}”</em>` : ''}</div>
         <div class="qty"><button data-dec="${id}" aria-label="Quitar uno">−</button><output>${q}</output><button data-inc="${id}" aria-label="Añadir uno">+</button></div></div>`;
     }).join('') + suggestions() : `<div class="empty-cart">Tu pedido está vacío.<br />Empieza por un <a href="#favoritos" style="text-decoration:underline">best seller</a>.</div>`;
     $('#drawerCount').textContent = n ? `${n} ${n === 1 ? 'producto' : 'productos'}` : '';
@@ -257,7 +259,7 @@
       const id = add.dataset.add; cart[id] = (cart[id] || 0) + 1; save(); renderCart(); toast(byId[id]);
       const cb = $('#cartBtn'); cb.classList.remove('bump'); void cb.offsetWidth; cb.classList.add('bump');
     } else if (inc) { cart[inc.dataset.inc]++; save(); renderCart(); }
-    else if (dec) { const id = dec.dataset.dec; if (--cart[id] <= 0) delete cart[id]; save(); renderCart(); }
+    else if (dec) { const id = dec.dataset.dec; if (--cart[id] <= 0) { delete cart[id]; delete notes[id]; } save(); renderCart(); }
   });
 
   const open = (o) => { document.body.classList.toggle('cart-open', o); $('#drawer').setAttribute('aria-hidden', !o); renderCart(); };
@@ -265,7 +267,135 @@
   $('#barOpen').addEventListener('click', () => open(true));
   $('#drawerX').addEventListener('click', () => open(false));
   $('#drawerBg').addEventListener('click', () => open(false));
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !document.body.classList.contains('pm-open')) open(false); });
+
+
+  /* ---------- Ficha de plato ---------- */
+  const pm = $('#pm'), pmBg = $('#pmBg');
+  const catTitle = Object.fromEntries(D.cats.map((c) => [c.key, c.title]));
+  let pmId = null, pmQty = 1, lastFocus = null, pmList = [], pushed = false;
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  // "Lleva": trocea la descripción en ingredientes (comas y el último "y")
+  function ingredients(it) {
+    if (!it.desc || it.cat === 'BEBIDAS' || it.cat === 'MENÚS MEDIODÍA' || it.id === 'roll-n-mix') return [];
+    let d = it.desc.replace(/^PACK COMBINABLE\.\s*/i, '').replace(/^¡[^!]+!\s*/, '').replace(/\.\s*$/, '');
+    if (d.includes('. ')) d = d.split('. ')[0];
+    const parts = d.split(/,\s*/).flatMap((x, i, arr) => (i === arr.length - 1 ? x.split(/\s+y\s+/) : [x])).map((x) => x.trim()).filter((x) => x.length > 1 && x.length < 60);
+    return parts.length >= 2 ? parts.map(cap) : [];
+  }
+  // "Combina bien con": un entrante, un postre y una bebida; si ya es de esas categorías, best sellers
+  function pairings(it) {
+    const pool = it.cat === 'ROLLS' || it.cat === 'PACKS' || it.cat === 'POKE BOWLS' || it.cat === 'TARTARS' || it.cat === 'LIMITED EDITION' || it.cat === 'MAKIS & NIGIRIS'
+      ? [['chicken-gyozas', 'edamame-trufado'], ['mochi-mango', 'cheesecake-oreo'], ['kirin', 'sapporo']]
+      : [['salmon-crush', 'kioto'], ['paris', 'nikkei-poke'], ['kirin', 'coca-cola']];
+    return pool.map((opts) => opts.find((x) => byId[x] && x !== it.id && !cart[x]) || opts[0]).filter((x) => x !== it.id).slice(0, 3);
+  }
+  // Lista para anterior/siguiente: los platos visibles en la carta, o toda la carta
+  const visibleIds = () => { const v = $$('#menu [data-open]').map((e) => e.dataset.open); return v.length ? v : D.items.map((i) => i.id); };
+
+  // Platos combinables: cuántos rolls se eligen y de cuántas piezas
+  const CHOOSE = { 'roll-n-mix': [2, '4 piezas de cada'], 'swinger-mix': [2, '8 piezas de cada'], 'twist-mix': [1, '4 piezas'], 'solo-mix': [1, '4 piezas'], 'menu-roll-n-mix': [1, '8 piezas'] };
+  const ROLL_OPTS = D.items.filter((i) => i.cat === 'ROLLS' && i.id !== 'roll-n-mix');
+  const DEFAULT_PICKS = ['kioto', 'salmon-crush'];
+  const picksText = () => $$('#pmPick select').map((s) => byId[s.value].name).join(' + ');
+
+  function fillPm(id) {
+    const it = byId[id]; if (!it) return;
+    pmId = id; pmQty = 1;
+    $('#pmImg').src = it.img; $('#pmImg').alt = it.name;
+    $('#pmBadges').innerHTML = badges(it);
+    $('#pmCat').textContent = [catTitle[it.cat], it.pieces ? `${it.pieces} piezas` : ''].filter(Boolean).join(' · ');
+    $('#pmTitle').textContent = it.name;
+    $('#pmPrice').textContent = eur(it.price);
+    $('#pmPer').textContent = it.pieces > 1 ? `${(it.price / it.pieces).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € por pieza` : '';
+    $('#pmDesc').textContent = it.desc || 'Bien fría, para acompañar tus rolls.';
+    $('#pmDesc').hidden = false;
+    const ing = ingredients(it);
+    $('#pmIngBlk').hidden = !ing.length;
+    $('#pmIng').innerHTML = ing.map((x) => `<span>${esc(x)}</span>`).join('');
+    if (ing.length) $('#pmDesc').hidden = it.desc.length < 140;  // si ya hay chips, la descripción corta sobra
+    $('#pmNote').value = (notes[id] || '').replace(/^Rolls: [^·]+(· )?/, '');
+    const ch = CHOOSE[id];
+    $('#pmPickBlk').hidden = !ch;
+    if (ch) {
+      $('#pmPickTitle').textContent = ch[0] > 1 ? `Elige tus ${ch[0]} rolls · ${ch[1]}` : `Elige tu roll · ${ch[1]}`;
+      $('#pmPick').innerHTML = Array.from({ length: ch[0] }, (_, k) => `<label><span>${ch[0] > 1 ? `Roll ${k + 1}` : 'Roll'}</span><select>${ROLL_OPTS.map((r) => `<option value="${r.id}"${r.id === DEFAULT_PICKS[k] ? ' selected' : ''}>${esc(r.name)}</option>`).join('')}</select></label>`).join('');
+    }
+    const pairs = pairings(it);
+    $('#pmPairBlk').hidden = !pairs.length;
+    $('#pmPair').innerHTML = pairs.map((x) => { const p = byId[x]; return `<div class="pp" data-open="${x}"><img src="${p.img}" alt="" /><div><b>${esc(p.name)}</b><span>${eur(p.price)}</span></div><button class="add" data-add="${x}" aria-label="Añadir ${esc(p.name)}">${icon('i-plus')}</button></div>`; }).join('');
+    pmList = visibleIds(); const k = pmList.indexOf(id);
+    $('#pmPrev').hidden = k <= 0; $('#pmNext').hidden = k < 0 || k >= pmList.length - 1;
+    $('#pmBody').scrollTop = 0;
+    updPm(); syncAdded();
+  }
+  function updPm() { const it = byId[pmId]; $('#pmQty').textContent = pmQty; $('#pmTotal').textContent = eur(it.price * pmQty); $('#pmDec').disabled = pmQty <= 1; }
+
+  function openPm(id, push = true) {
+    if (!byId[id]) return;
+    if (!document.body.classList.contains('pm-open')) lastFocus = document.activeElement;
+    fillPm(id);
+    document.body.classList.add('pm-open'); pm.setAttribute('aria-hidden', 'false');
+    pm.style.transform = '';
+    if (push) { try { if (location.hash.startsWith('#plato-')) history.replaceState({ pm: id }, '', '#plato-' + id); else { history.pushState({ pm: id }, '', '#plato-' + id); pushed = true; } } catch (e) {} }
+    setTimeout(() => $('#pmX').focus({ preventScroll: true }), 50);
+  }
+  function closePm(fromPop = false) {
+    if (!document.body.classList.contains('pm-open')) return;
+    if (pmId && cart[pmId] && !CHOOSE[pmId]) { const n = $('#pmNote').value.trim(); if (n) notes[pmId] = n; else delete notes[pmId]; save(); renderCart(); }
+    document.body.classList.remove('pm-open'); pm.setAttribute('aria-hidden', 'true'); pmId = null;
+    // Si abrimos nosotros la entrada del historial, atrás; si se llegó con un enlace, solo limpiamos la dirección
+    if (!fromPop && location.hash.startsWith('#plato-')) { try { if (pushed) history.back(); else history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+    pushed = false;
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  addEventListener('popstate', () => { if (location.hash.startsWith('#plato-')) openPm(location.hash.slice(7), false); else closePm(true); });
+
+  // Abrir: clic en cualquier plato (menos en sus botones) o Enter con el foco en la tarjeta
+  document.addEventListener('click', (e) => {
+    const o = e.target.closest('[data-open]');
+    if (!o || e.target.closest('[data-add],[data-inc],[data-dec],button,a')) return;
+    if (document.body.classList.contains('cart-open') && !pm.contains(o)) open(false);
+    openPm(o.dataset.open, !document.body.classList.contains('pm-open'));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (document.body.classList.contains('pm-open')) {
+      if (e.key === 'Escape') closePm();
+      if (e.key === 'ArrowRight' && !$('#pmNext').hidden && e.target.tagName !== 'TEXTAREA') $('#pmNext').click();
+      if (e.key === 'ArrowLeft' && !$('#pmPrev').hidden && e.target.tagName !== 'TEXTAREA') $('#pmPrev').click();
+      if (e.key === 'Tab') { const f = $$('button:not([hidden]):not([disabled]), a, textarea', pm).filter((x) => x.offsetParent); if (!f.length) return; const a = f[0], z = f[f.length - 1]; if (e.shiftKey && document.activeElement === a) { z.focus(); e.preventDefault(); } else if (!e.shiftKey && document.activeElement === z) { a.focus(); e.preventDefault(); } }
+    } else if (e.key === 'Enter' && e.target.matches && e.target.matches('.dish[data-open]')) openPm(e.target.dataset.open);
+  });
+  $('#pmX').addEventListener('click', () => closePm());
+  pmBg.addEventListener('click', () => closePm());
+  $('#pmInc').addEventListener('click', () => { pmQty = Math.min(20, pmQty + 1); updPm(); });
+  $('#pmDec').addEventListener('click', () => { pmQty = Math.max(1, pmQty - 1); updPm(); });
+  $('#pmPrev').addEventListener('click', () => { const k = pmList.indexOf(pmId); if (k > 0) { fillPm(pmList[k - 1]); try { history.replaceState({ pm: pmId }, '', '#plato-' + pmId); } catch (e) {} } });
+  $('#pmNext').addEventListener('click', () => { const k = pmList.indexOf(pmId); if (k < pmList.length - 1) { fillPm(pmList[k + 1]); try { history.replaceState({ pm: pmId }, '', '#plato-' + pmId); } catch (e) {} } });
+  $('#pmAdd').addEventListener('click', () => {
+    const id = pmId, it = byId[id];
+    cart[id] = (cart[id] || 0) + pmQty;
+    const free = $('#pmNote').value.trim();
+    const n = [CHOOSE[id] ? `Rolls: ${picksText()}` : '', free].filter(Boolean).join(' · ');
+    if (n) notes[id] = n;
+    save(); renderCart(); toast(it);
+    const cb = $('#cartBtn'); cb.classList.remove('bump'); void cb.offsetWidth; cb.classList.add('bump');
+    closePm();
+  });
+  $('#pmShare').addEventListener('click', async () => {
+    const it = byId[pmId], url = location.href.split('#')[0] + '#plato-' + pmId;
+    try { if (navigator.share) { await navigator.share({ title: `${it.name} · Teikit`, text: it.desc, url }); return; } await navigator.clipboard.writeText(url); } catch (e) { return; }
+    const t = $('#toast'); t.querySelector('img').src = it.img; t.querySelector('span').textContent = 'Enlace copiado';
+    t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 1600);
+  });
+  // Móvil: arrastrar la hoja hacia abajo para cerrarla
+  (() => {
+    let y0 = null, dy = 0;
+    const start = (e) => { if ($('#pmBody').scrollTop > 0 && !e.target.closest('#pmGrab, .pm-media')) return; y0 = e.touches[0].clientY; dy = 0; pm.style.transition = 'none'; };
+    const move = (e) => { if (y0 === null) return; dy = Math.max(0, e.touches[0].clientY - y0); if (dy > 0) pm.style.transform = `translateY(${dy}px)`; };
+    const end = () => { if (y0 === null) return; pm.style.transition = ''; if (dy > 110) closePm(); else pm.style.transform = ''; y0 = null; };
+    pm.addEventListener('touchstart', start, { passive: true }); pm.addEventListener('touchmove', move, { passive: true }); pm.addEventListener('touchend', end);
+  })();
 
   /* ---------- Patrón de fondo, después de pintar la portada ---------- */
   const pat = () => setTimeout(() => document.body.classList.add('pat'), 150);
@@ -277,4 +407,5 @@
   observe();
   // Los elementos del hero entran al cargar
   requestAnimationFrame(() => $$('.hero .rv').forEach((el) => el.classList.add('in')));
+  if (location.hash.startsWith('#plato-')) setTimeout(() => openPm(location.hash.slice(7), false), 300);
 })();

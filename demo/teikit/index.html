@@ -280,6 +280,37 @@
 </aside>
 <div class="toast" id="toast"><img alt="" /><span></span></div>
 
+<!-- Ficha de plato -->
+<div class="pm-bg" id="pmBg"></div>
+<section class="pm" id="pm" role="dialog" aria-modal="true" aria-labelledby="pmTitle" aria-hidden="true">
+  <div class="pm-grab" id="pmGrab" aria-hidden="true"><i></i></div>
+  <button class="pm-x" id="pmX" aria-label="Cerrar"><svg><use href="#i-x"/></svg></button>
+  <div class="pm-media">
+    <img id="pmImg" alt="" />
+    <div class="pm-badges" id="pmBadges"></div>
+    <button class="pm-nav prev" id="pmPrev" aria-label="Plato anterior"><svg><use href="#i-left"/></svg></button>
+    <button class="pm-nav next" id="pmNext" aria-label="Plato siguiente"><svg><use href="#i-right"/></svg></button>
+  </div>
+  <div class="pm-body" id="pmBody">
+    <div class="pm-cat" id="pmCat"></div>
+    <h2 id="pmTitle"></h2>
+    <div class="pm-price"><b id="pmPrice"></b><span id="pmPer"></span></div>
+    <p class="pm-desc" id="pmDesc"></p>
+    <div class="pm-blk" id="pmIngBlk"><h3>Lleva</h3><div class="pm-ing" id="pmIng"></div></div>
+    <div class="pm-blk" id="pmPickBlk" hidden><h3 id="pmPickTitle">Elige tus rolls</h3><div class="pm-pick" id="pmPick"></div></div>
+    <div class="pm-blk"><label class="pm-note"><span>¿Alguna indicación para cocina?</span><textarea id="pmNote" rows="2" maxlength="120" placeholder="Ej.: sin cebolla, salsa aparte…"></textarea></label></div>
+    <div class="pm-blk" id="pmPairBlk"><h3>Combina bien con</h3><div class="pm-pair" id="pmPair"></div></div>
+    <div class="pm-meta">
+      <a href="https://teikit.es/home/carta-alergenos-teikit.pdf" target="_blank" rel="noopener"><svg><use href="#i-leaf"/></svg> Alérgenos</a>
+      <button id="pmShare"><svg><use href="#i-arrow"/></svg> Compartir plato</button>
+    </div>
+  </div>
+  <footer class="pm-foot">
+    <div class="qty pm-qty"><button id="pmDec" aria-label="Uno menos">−</button><output id="pmQty">1</output><button id="pmInc" aria-label="Uno más">+</button></div>
+    <button class="btn amber lg pm-add" id="pmAdd">Añadir · <span id="pmTotal"></span></button>
+  </footer>
+</section>
+
 <script src="data/menu.js"></script>
 <script src="teikit.js"></script>
 </body>
