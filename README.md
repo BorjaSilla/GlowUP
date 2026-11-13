@@ -42,5 +42,5 @@ La carta (79 platos), los locales (26) y las fotos se extraen de la web actual c
 
 - Email/WhatsApp real de contacto en `window.GLOW` (`index.html`, `para/teikit/index.html`).
 - Conectar el formulario a un backend (p. ej. Supabase + Resend).
-- Validar precio de la landing (1.900 €). La propuesta no muestra precio (se da en la llamada).
+- Precio: no se publica (ni en la landing ni en la propuesta). Se da cerrado y por escrito tras una llamada de 20 min.
 - Garantía: si la conversión no sube, seguimos trabajando gratis (no hay devolución).
