@@ -202,10 +202,17 @@
       data[f.closest('.step').dataset.key] = inp.value.trim();
       if (cur + 1 < steps.length - 1) return show(cur + 1);
       // Último paso: resumen + envío
-      const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
+      const labels = { web: 'Web', plataforma: 'Plataforma', freno: 'Lo que más me frena', email: 'Email' };
+      const body = 'Hola, quiero mi glow up.\n' + Object.entries(data).map(([k, v]) => `${labels[k] || k}: ${v}`).join('\n');
       try { localStorage.setItem('glow_lead', JSON.stringify(data)); } catch (err) {}
       const send = $('[data-send]', q);
-      if (send) { if (CFG.email) send.href = `mailto:${CFG.email}?subject=${encodeURIComponent('Quiero mi glow up')}&body=${encodeURIComponent(body)}`; else send.hidden = true; }
+      if (send) {
+        if (CFG.whatsapp) {
+          send.href = `https://wa.me/${CFG.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(body)}`; send.target = '_blank'; send.rel = 'noopener';
+          send.textContent = 'Enviar por WhatsApp';
+        } else if (CFG.email) send.href = `mailto:${CFG.email}?subject=${encodeURIComponent('Quiero mi glow up')}&body=${encodeURIComponent(body)}`;
+        else send.hidden = true;
+      }
       show(steps.length - 1);
     }));
     show(0);
@@ -229,6 +236,7 @@
     $('.x', w).addEventListener('click', () => { dismissed = true; w.classList.remove('show'); try { sessionStorage.setItem('glow_w', '1'); } catch (e) {} });
     $('form', w).addEventListener('submit', (e) => {
       e.preventDefault(); const v = $('input', w).value.trim();
+      if (CFG.whatsapp) window.open(`https://wa.me/${CFG.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent('Hola, quiero ver cómo quedaría mi web: ' + v)}`, '_blank', 'noopener');
       dispatchEvent(new CustomEvent('glow:url', { detail: v }));
       const target = $('#empieza'); if (target) target.scrollIntoView({ behavior: 'smooth' });
       dismissed = true; w.classList.remove('show');

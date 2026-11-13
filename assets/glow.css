@@ -484,3 +484,17 @@ input[type=range]::-moz-range-thumb { width: 30px; height: 20px; border-radius: 
   .ba-bar .seg { margin-left: auto; }
   .ba-frame { padding: 8px; border-radius: 24px; }
 }
+
+/* ---------- WhatsApp como CTA ---------- */
+.btn.wa { --bg: linear-gradient(180deg, #4ade80, #22c55e 55%, #16a34a); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 2px rgba(22,163,74,.4), 0 12px 28px -10px rgba(34,197,94,.75); }
+.btn.wa svg { width: 18px; height: 18px; }
+.wa-card { max-width: 760px; margin: 0 auto; text-align: center; border-radius: 34px; padding: clamp(32px, 5vw, 56px); background: radial-gradient(80% 90% at 50% 0%, rgba(37,211,102,.12), transparent 60%), var(--card); box-shadow: 0 0 0 1px var(--line), var(--shadow-m); }
+.wa-card .wa-ic { width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 20px; display: grid; place-items: center; color: #fff; background: linear-gradient(180deg, #4ade80, #16a34a); box-shadow: 0 16px 30px -12px rgba(34,197,94,.8); }
+.wa-card .wa-ic svg { width: 34px; height: 34px; }
+.wa-card .lead { max-width: 520px; margin: 14px auto 28px; }
+.wa-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
+.wa-steps span { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 6px; border-radius: 999px; background: var(--bg-2); font-size: 13.5px; color: var(--ink-2); }
+.wa-steps b { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #0a0a0b; color: #fff; font-size: 12px; }
+/* Móvil con scroll dentro del comparador de la landing */
+.m-phone { padding: 18px 0 6px; text-align: center; }
+.m-phone .phones-hint { margin-top: 12px; }

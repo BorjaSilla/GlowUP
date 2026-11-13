@@ -63,13 +63,30 @@
     </article>`;
 
   const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  // Banners de categoría: las fotos panorámicas de la carta de Teikit
+  const CAT_META = {
+    'LIMITED EDITION': { img: 'limited_edition', tag: 'Solo por tiempo limitado' },
+    'ROLLS': { img: 'rolls', tag: '8 piezas por roll. Combina dos con el Roll´n´Mix' },
+    'PACKS': { img: 'packs', tag: 'Para compartir… o no' },
+    'POKE BOWLS': { img: 'poke_bowls', tag: 'Bowls completos sobre base de arroz' },
+    'ENTRANTES': { img: 'entrantes', tag: 'Gyozas, baos y algo para picar' },
+    'TARTARS': { img: 'tartars', tag: 'Pescado marinado sobre base de arroz' },
+    'MAKIS & NIGIRIS': { img: 'makis_and_nigiris', tag: 'Los clásicos, bien hechos' },
+    'MENÚS MEDIODÍA': { img: 'menus_mediodia', tag: '' },
+    'POSTRES': { img: 'postres', tag: 'Mochis y tartas para cerrar' },
+    'BEBIDAS': { img: 'bebidas', tag: 'Cervezas japonesas, agua y refrescos' },
+  };
+
   function renderMenu() {
     const q = norm(query.trim());
     const html = cats.map((c) => {
       const list = D.items.filter((i) => i.cat === c.key && (filter === 'all' || i.tags.includes(filter)) && (!q || norm(i.name + ' ' + i.desc).includes(q)));
       if (!list.length) return '';
-      const note = c.key === 'MENÚS MEDIODÍA' ? `<p class="cat-note">${esc(D.note)}</p>` : '';
-      return `<div class="cat-block" id="cat-${c.key.replace(/\W+/g, '-')}" data-key="${c.key}"><h3>${c.title} <small>${list.length} ${list.length === 1 ? 'plato' : 'platos'}</small></h3>${note}<div class="grid">${list.map(dish).join('')}</div></div>`;
+      const meta = CAT_META[c.key] || {};
+      const tag = c.key === 'MENÚS MEDIODÍA' ? D.note : meta.tag || '';
+      return `<div class="cat-block" id="cat-${c.key.replace(/\W+/g, '-')}" data-key="${c.key}">
+        <header class="cat-banner"><img src="img/cat-${meta.img}.webp" alt="" loading="lazy" /><div class="cb-txt"><h3>${c.title}</h3><p>${esc(tag)}</p></div><span class="cb-n">${list.length} ${list.length === 1 ? 'plato' : 'platos'}</span></header>
+        <div class="grid">${list.map(dish).join('')}</div></div>`;
     }).join('');
     $('#menu').innerHTML = html || `<div class="empty">No encontramos nada con “${esc(query)}”. Prueba con salmón, atún o trufa.</div>`;
     syncAdded();

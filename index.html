@@ -15,9 +15,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/glow.css" />
+  <link rel="stylesheet" href="assets/proposal.css" />
   <script>
     /* Configuración de contacto. TODO: poner el email/WhatsApp real de GlowUp. */
-    window.GLOW = { email: '', whatsapp: '' };
+    window.GLOW = { email: '', whatsapp: '34683491655' };
   </script>
 </head>
 <body>
@@ -42,7 +43,7 @@
     <a href="#precio">Garantía</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a class="btn glow sm" href="#empieza">Quiero mi glow up</a>
+  <a class="btn glow sm" href="#empieza" data-contact="Hola, quiero mi glow up. Mi web es: ">Quiero mi glow up</a>
 </nav>
 
 <main id="top">
@@ -53,7 +54,7 @@
       <h1 class="display rv" style="--d:.08s">Primero ves tu web nueva.<br /><span class="muted" style="color:var(--ink-3)">Luego decides.</span></h1>
       <p class="lead rv" style="--d:.16s">Rediseñamos tu tienda online con tus productos, tus fotos y tu marca, y te la enviamos funcionando en un enlace privado. Si te convence, la lanzamos. Y si no mejora tus ventas, seguimos trabajando gratis hasta que lo haga.</p>
       <div class="ctas rv" style="--d:.24s">
-        <a class="btn glow lg" href="#empieza">Quiero mi glow up</a>
+        <a class="btn glow lg" href="#empieza" data-contact="Hola, quiero mi glow up. Mi web es: ">Quiero mi glow up</a>
         <a class="btn lg" href="para/teikit/">Ver un ejemplo real</a>
       </div>
       <div class="proof rv" style="--d:.3s">
@@ -95,11 +96,16 @@
           <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
           <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
         </div>
-        <div class="ba m" data-ba-view="m" hidden tabindex="0" role="slider" aria-label="Comparar antes y después en móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-          <img src="assets/shots/teikit-before-m.webp" alt="Web actual de Teikit en móvil" />
-          <img class="after" src="assets/shots/teikit-after-m.webp" alt="Rediseño de Teikit en móvil" />
-          <span class="lbl l">Antes</span><span class="lbl r">Después</span>
-          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+        <div class="m-phone" data-ba-view="m" hidden>
+          <div class="ps-legend"><span><i></i>Antes</span><span class="hot">Después<i></i></span></div>
+          <div class="phone-frame ps-frame"><div class="scr ps-scroll" data-ps-scroll>
+            <div class="tba ps-tba" tabindex="0" role="slider" aria-label="Comparar antes y después en móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="assets/shots/teikit/m-home-after.webp" alt="Rediseño de Teikit en móvil" loading="lazy" draggable="false" />
+              <div class="bf"><img src="assets/shots/teikit/m-home-before.webp" alt="Web actual de Teikit en móvil" loading="lazy" draggable="false" /></div>
+              <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza</span></div>
+            </div>
+          </div></div>
+          <p class="phones-hint">Desplázate dentro del móvil para verla entera</p>
         </div>
       </div>
     </div>
@@ -204,7 +210,7 @@
           <div class="stat tnum" data-out-mirror="extra" style="margin-top:18px">+0 €</div>
           <p style="margin-top:6px">más al mes con el mismo tráfico</p>
           <p class="delta">Son <b data-out-mirror="extraOrders">+0</b> pedidos al mes y <b data-out-mirror="extraYear">+0 €</b> al año. Pasarías de <b data-out-mirror="orders">0</b> pedidos con un <b data-out-mirror="conv">0 %</b> a una conversión del <b data-out-mirror="newconv">0 %</b>.</p>
-          <a class="btn light" href="#empieza" style="margin-top:24px">Quiero verlo en mi web</a>
+          <a class="btn light" href="#empieza" data-contact="Hola, quiero mi glow up. Mi web es: " style="margin-top:24px">Quiero verlo en mi web</a>
         </div>
       </div>
     </div>
@@ -313,8 +319,8 @@
         <div class="card rv">
           <span class="tag brand">Glow Up completo</span>
           <h3 class="price-claim">Precio cerrado y por escrito antes de empezar.</h3>
-          <p class="muted" style="margin:0">Lo vemos en 20 minutos con tus números: lo que hay que hacer en tu tienda y lo que puede valer. Sin sorpresas ni letra pequeña.</p>
-          <div class="price-chips"><span>20 minutos</span><span>Con tus números</span><span>Sin compromiso</span><span>Pago en 2 plazos</span></div>
+          <p class="muted" style="margin:0">Lo vemos por WhatsApp con tus números: lo que hay que hacer en tu tienda y lo que puede valer. Sin sorpresas ni letra pequeña.</p>
+          <div class="price-chips"><span>Por WhatsApp</span><span>Con tus números</span><span>Sin compromiso</span><span>Pago en 2 plazos</span></div>
           <ul>
             <li><svg><use href="#check"/></svg>Rediseño completo: portada, catálogo, ficha y carrito</li>
             <li><svg><use href="#check"/></svg>Migración a tu dominio y conexión con tu tienda o sistema de pedidos</li>
@@ -322,7 +328,7 @@
             <li><svg><use href="#check"/></svg>Medición de 60 días contra tu punto de partida</li>
             <li><svg><use href="#check"/></svg>Todo es tuyo: código, diseño y accesos. Sin permanencia</li>
           </ul>
-          <a class="btn glow lg" href="#empieza" style="width:100%">Quiero mi glow up</a>
+          <a class="btn glow lg" href="#empieza" data-contact="Hola, quiero mi glow up. Mi web es: " style="width:100%">Quiero mi glow up</a>
         </div>
         <div class="card guar rv" style="--d:.08s">
           <div class="seal"><span>Garantía<br />firmada</span></div>
@@ -341,7 +347,7 @@
       <div class="faq">
         <details class="rv"><summary>¿De verdad hacéis la web antes de que pague? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Sí. Es la forma más honesta que conocemos de vender diseño: en lugar de explicarte lo que haríamos, lo hacemos y te lo enseñamos funcionando. Si no te convence, no pasa nada.</div></details>
         <details class="rv"><summary>¿Qué pasa si no me gusta? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Nada. No hay compromiso ni letra pequeña. Si te gusta la idea pero quieres cambios, los vemos juntos antes de lanzar.</div></details>
-        <details class="rv"><summary>¿Cuánto cuesta? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Depende de la tienda y de lo que haya que mover, así que no damos una cifra a ciegas. Primero ves tu web nueva, gratis. Si te interesa, en una llamada de 20 minutos lo vemos con tus números y te pasamos un precio cerrado y por escrito, en 2 plazos.</div></details>
+        <details class="rv"><summary>¿Cuánto cuesta? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Depende de la tienda y de lo que haya que mover, así que no damos una cifra a ciegas. Primero ves tu web nueva, gratis. Si te interesa, lo vemos por WhatsApp con tus números y te pasamos un precio cerrado y por escrito, en 2 plazos.</div></details>
         <details class="rv"><summary>¿Cuánto tarda el lanzamiento? <i><svg><use href="#plus"/></svg></i></summary><div class="a">La demo, unas 72 horas. Desde que dices “adelante” hasta tenerla en tu dominio, entre 2 y 3 semanas según la plataforma.</div></details>
         <details class="rv"><summary>¿Con qué plataformas trabajáis? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Shopify, WooCommerce, PrestaShop, Wix y webs a medida. Si tienes un sistema de pedidos propio, como un restaurante, lo conectamos tal cual.</div></details>
         <details class="rv"><summary>¿Cómo medís que ha mejorado? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Fijamos contigo la línea base antes de lanzar (conversión, ticket medio y velocidad) con tus propios datos. A los 30 y 60 días comparamos contra esa línea. Lo dejamos por escrito.</div></details>
@@ -350,43 +356,15 @@
     </div>
   </section>
 
-  <!-- QUIZ -->
+  <!-- CONTACTO: WhatsApp como único CTA -->
   <section class="sec" id="empieza">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h2 rv">Pide tu glow up en 30 segundos.</h2>
-        <p class="lead rv" style="--d:.08s">Cuatro preguntas y te mandamos tu web nueva en unos días.</p>
-      </div>
-      <div class="quiz rv" data-quiz>
-        <div class="prog"><i></i></div>
-        <div class="step" data-key="web">
-          <h3>¿Cuál es tu web?</h3>
-          <p class="hint">La dirección de tu tienda o restaurante.</p>
-          <form><input name="web" type="text" inputmode="url" autocomplete="url" required placeholder="mitienda.com" /><div class="nav-q"><span></span><button class="btn glow" type="submit">Siguiente <svg><use href="#arrow"/></svg></button></div></form>
-        </div>
-        <div class="step" data-key="plataforma" hidden>
-          <h3>¿En qué está hecha?</h3>
-          <p class="hint">Si no lo sabes, no pasa nada.</p>
-          <div class="opts"><button class="opt">Shopify</button><button class="opt">WooCommerce</button><button class="opt">PrestaShop</button><button class="opt">Wix o Squarespace</button><button class="opt">Otra / no lo sé</button></div>
-          <div class="nav-q"><button class="link-arrow" data-back>← Atrás</button></div>
-        </div>
-        <div class="step" data-key="freno" hidden>
-          <h3>¿Qué crees que más te frena?</h3>
-          <p class="hint">Elige la que más se parezca.</p>
-          <div class="opts"><button class="opt">Tengo visitas pero pocas ventas</button><button class="opt">La web se ve anticuada</button><button class="opt">Va lenta en el móvil</button><button class="opt">Quiero cambiar de plataforma</button><button class="opt">Otra cosa</button></div>
-          <div class="nav-q"><button class="link-arrow" data-back>← Atrás</button></div>
-        </div>
-        <div class="step" data-key="email" hidden>
-          <h3>¿Dónde te enviamos tu glow up?</h3>
-          <p class="hint">Solo para mandarte el enlace. Nada de spam.</p>
-          <form><input name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /><div class="nav-q"><button class="link-arrow" type="button" data-back>← Atrás</button><button class="btn glow" type="submit">Pedir mi glow up</button></div></form>
-        </div>
-        <div class="step done" hidden>
-          <img class="mark" src="assets/logo.svg" alt="" />
-          <h3>¡Hecho! Nos ponemos con tu web.</h3>
-          <p class="hint">En unos días te llegará un enlace con tu glow up.</p>
-          <a class="btn glow" data-send href="#">Enviar solicitud por email</a>
-        </div>
+      <div class="wa-card rv">
+        <span class="wa-ic"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Zm0 17.3c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A7.8 7.8 0 1 1 12 19.8Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-.9-1-1.2-1.6-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.3Z"/></svg></span>
+        <h2 class="h2">Pide tu glow up por WhatsApp.</h2>
+        <p class="lead">Mándanos tu web y te preparamos la demo, gratis y sin compromiso. Te contestamos nosotros, no un comercial.</p>
+        <a class="btn wa lg" href="https://wa.me/34683491655" data-contact="Hola, quiero mi glow up. Mi web es: " target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Zm0 17.3c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A7.8 7.8 0 1 1 12 19.8Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-.9-1-1.2-1.6-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.3Z"/></svg> Escribir por WhatsApp</a>
+        <div class="wa-steps"><span><b>1</b> Nos mandas tu web</span><span><b>2</b> Te enviamos tu demo en unos días</span><span><b>3</b> Si te convence, la lanzamos</span></div>
       </div>
     </div>
   </section>
@@ -400,12 +378,12 @@
   <div class="grid">
     <div>
       <h2>Tu web nueva<br />ya podría existir.</h2>
-      <a class="btn glow lg" href="#empieza">Quiero mi glow up</a>
+      <a class="btn glow lg" href="#empieza" data-contact="Hola, quiero mi glow up. Mi web es: ">Quiero mi glow up</a>
       <div class="brand" style="margin-top:36px;color:#a1a1a6"><img class="mark" src="assets/logo.svg" alt="" style="width:30px;height:30px" /> <span class="word">glow<i>up</i></span></div>
     </div>
     <div><h3>GlowUp</h3><ul><li><a href="#como">Cómo funciona</a></li><li><a href="#ejemplo">Ejemplo</a></li><li><a href="#precio">Precio y garantía</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div><h3>Glow ups</h3><ul><li><a href="para/teikit/">Propuesta Teikit</a></li><li><a href="demo/teikit/">Demo Teikit</a></li><li><a href="marca/">Marca</a></li></ul></div>
-    <div><h3>Empieza</h3><ul><li><a href="#empieza">Pide tu demo</a></li><li><a href="#precio">Garantía</a></li></ul></div>
+    <div><h3>Empieza</h3><ul><li><a href="#empieza">Pide tu demo por WhatsApp</a></li><li><a href="#precio">Garantía</a></li></ul></div>
   </div>
   <div class="bottom"><span>© <span data-year></span> GlowUp · Webs que se ven y que venden</span><span>Hecho con cariño en España</span></div>
 </footer>
@@ -417,5 +395,6 @@
 </aside>
 
 <script src="assets/glow.js"></script>
+<script src="assets/proposal.js"></script>
 </body>
 </html>

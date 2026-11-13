@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="../../assets/proposal.css" />
   <script>
     /* TODO: email y WhatsApp reales de GlowUp: los botones "Hablemos" usan estos datos. */
-    window.GLOW = { email: '', whatsapp: '' };
+    window.GLOW = { email: '', whatsapp: '34683491655' };
   </script>
 </head>
 <body class="px-page">
@@ -51,7 +51,7 @@
     <a href="#web">La web</a>
     <a href="#numeros">Números</a>
   </div>
-  <a class="btn glow sm" href="#hablemos">Hablemos</a>
+  <a class="btn wa sm" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> Hablemos</a>
 </nav>
 
 <main>
@@ -130,6 +130,7 @@
             <div class="one"><span class="lbl">Hoy</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-before.webp" alt="Portada actual en móvil" loading="lazy" /></div></div></div>
             <div class="one"><span class="lbl hot">Propuesta</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-after.webp" alt="Portada propuesta en móvil" loading="lazy" /></div></div></div>
           </div>
+          <p class="phones-hint">Desliza dentro de cada móvil para recorrerlo</p>
         </div>
       </div>
 
@@ -173,8 +174,8 @@
 
       <p class="prelim rv"><svg width="16" height="16" style="flex:none;color:var(--ink-3)"><use href="#spark"/></svg><span><b>Versión preliminar.</b> Es la dirección que tomaríamos con vosotros. El pago sigue en vuestro sistema actual.</span></p>
       <div class="reply rv">
-        <p>¿Qué os parece?<span>Por WhatsApp o en una llamada. Os respondemos nosotros, no un comercial.</span></p>
-        <div><a class="btn wa sm" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> WhatsApp</a><a class="btn glow sm" href="#hablemos" data-contact="Teikit: agendar una llamada">Agendar una llamada</a></div>
+        <p>¿Qué os parece?<span>Escribidnos por WhatsApp. Os respondemos nosotros, no un comercial.</span></p>
+        <div><a class="btn wa" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> Escribir por WhatsApp</a></div>
       </div>
     </div>
   </section>
@@ -311,14 +312,14 @@
     <div class="wrap">
       <div class="steps-card rv">
         <h2 class="h2" style="font-size:clamp(28px,3.2vw,40px)">Sabemos que esto es un poco raro.</h2>
-        <p class="muted" style="max-width:600px;margin:12px auto 0">Alguien a quien no conocéis os ha rediseñado la web sin que se lo pidáis. Así que lo hacemos fácil: escribidnos o elegid un hueco y nos conocemos.</p>
+        <p class="muted" style="max-width:600px;margin:12px auto 0">Alguien a quien no conocéis os ha rediseñado la web sin que se lo pidáis. Así que lo hacemos fácil: escribidnos por WhatsApp y nos conocemos.</p>
         <div class="steps">
-          <div class="step-i"><div class="ic"><svg><use href="#chat"/></svg><sup>1</sup></div><b>Nos escribís</b><p>Por WhatsApp, por email o en una llamada.</p></div>
+          <div class="step-i"><div class="ic"><svg><use href="#chat"/></svg><sup>1</sup></div><b>Nos escribís</b><p>Por WhatsApp. Os contestamos nosotros, no un comercial.</p></div>
           <div class="step-i"><div class="ic"><svg><use href="#users"/></svg><sup>2</sup></div><b>Nos conocemos</b><p>Nos contáis cómo funciona Teikit y vemos si encaja.</p></div>
           <div class="step-i"><div class="ic"><svg><use href="#doc"/></svg><sup>3</sup></div><b>Contrato y precio</b><p>Precio cerrado y garantía por escrito. Sin permanencias.</p></div>
           <div class="step-i"><div class="ic"><svg><use href="#rocket"/></svg><sup>4</sup></div><b>Lanzamos</b><p>En unas tres semanas, en teikit.es y sin cortes.</p></div>
         </div>
-        <div class="ctas"><a class="btn glow" href="#numeros" data-contact="Teikit: agendar una llamada"><svg><use href="#cal"/></svg> Agendar una llamada</a><a class="btn wa" href="#numeros" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> Escribir por WhatsApp</a></div>
+        <div class="ctas"><a class="btn wa lg" href="#numeros" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> Escribir por WhatsApp</a></div>
       </div>
     </div>
   </section>
@@ -329,7 +330,7 @@
       <div class="sec-head">
         <span class="ey rv"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>Números</span></span>
         <h2 class="h2 rv">Ahora, con vuestros números.</h2>
-        <p class="lead rv" style="--d:.08s">Moved las visitas, el ticket y la conversión. Es un ejemplo: en la llamada lo hacemos con vuestros datos.</p>
+        <p class="lead rv" style="--d:.08s">Moved las visitas, el ticket y la conversión. Es un ejemplo: cuando hablemos, lo hacemos con vuestros datos.</p>
       </div>
       <div class="calc2 rv" data-calc2>
         <div class="grid4">
@@ -344,7 +345,7 @@
         </div>
         <div class="big-res"><small>Con las mismas visitas</small><b data-o="diff"></b></div>
         <div class="tiles2"><div><b data-o="lift"></b><span>de pedidos</span></div><div><b data-o="cpa"></b><span>de coste por pedido en anuncios</span></div></div>
-        <p class="fine">Ejemplo orientativo con un ticket medio de 28 €. Lo que firmamos por contrato es que sube; en la llamada lo calculamos con vuestros datos.</p>
+        <p class="fine">Ejemplo orientativo con un ticket medio de 28 €. Lo que firmamos por contrato es que sube; cuando hablemos, lo calculamos con vuestros datos.</p>
       </div>
     </div>
   </section>
@@ -359,7 +360,7 @@
     <div>
       <h2>¿Lo hablamos, Teikit?</h2>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn glow lg" href="#hablemos" data-contact="Teikit: agendar una llamada">Agendar una llamada</a>
+        <a class="btn wa lg" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> Escribir por WhatsApp</a>
         <a class="btn light lg" href="../../demo/teikit/" target="_blank" rel="noopener">Probar la web nueva <svg><use href="#ext"/></svg></a>
       </div>
     </div>

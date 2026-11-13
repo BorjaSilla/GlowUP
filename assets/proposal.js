@@ -41,9 +41,22 @@
   tbas.forEach((ba) => {
     let drag = false;
     const set = (x) => { const r = ba.getBoundingClientRect(); ba.style.setProperty('--pos', Math.min(100, Math.max(0, ((x - r.left) / r.width) * 100)) + '%'); };
-    ba.addEventListener('pointerdown', (e) => { drag = true; ba.classList.add('touched'); ba.setPointerCapture(e.pointerId); set(e.clientX); });
-    ba.addEventListener('pointermove', (e) => drag && set(e.clientX));
-    ba.addEventListener('pointerup', () => { drag = false; });
+    let sx = 0, sy = 0, pending = false;
+    ba.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse') { drag = true; ba.classList.add('touched'); ba.setPointerCapture(e.pointerId); set(e.clientX); return; }
+      pending = true; sx = e.clientX; sy = e.clientY; // táctil: esperamos a saber si es horizontal o vertical
+    });
+    ba.addEventListener('pointermove', (e) => {
+      if (pending) {
+        const dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
+        if (dx > 8 && dx > dy) { pending = false; drag = true; ba.classList.add('touched'); try { ba.setPointerCapture(e.pointerId); } catch (_) {} }
+        else if (dy > 8) pending = false; // es scroll: lo dejamos al navegador
+      }
+      if (drag) set(e.clientX);
+    });
+    const end = () => { drag = false; pending = false; };
+    ba.addEventListener('pointerup', end); ba.addEventListener('pointercancel', end);
+    ba.addEventListener('click', (e) => { if (e.pointerType !== 'mouse' && !drag) { ba.classList.add('touched'); set(e.clientX); } });
     ba.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       const cur = parseFloat(ba.style.getPropertyValue('--pos')) || 50;
@@ -105,6 +118,16 @@
     place();
   }
 
+  /* ---------- Otros móviles con scroll (p. ej. la landing): el tirador sigue al scroll interno ---------- */
+  $$('[data-ps-scroll]').forEach((sc) => {
+    if (sc.closest('[data-phone-show]')) return;
+    const place = () => { const ba = $('.ps-tba', sc); if (!ba || !sc.clientHeight) return; ba.style.setProperty('--ky', Math.min(ba.offsetHeight - 40, Math.max(40, sc.scrollTop + sc.clientHeight * 0.5)) + 'px'); };
+    sc.addEventListener('scroll', place, { passive: true });
+    $$('img', sc).forEach((i) => i.addEventListener('load', place));
+    if ('ResizeObserver' in window) new ResizeObserver(place).observe(sc);
+    place();
+  });
+
   /* ---------- Vista móvil / escritorio ---------- */
   $$('[data-view-switch]').forEach((seg) => {
     const list = $('[data-tba-list]');
@@ -118,12 +141,25 @@
     set(innerWidth <= 700 ? 'm' : 'd');
   });
 
-  /* ---------- Móviles que se desplazan solos ---------- */
+  /* ---------- Móviles de ejemplo: se pueden desplazar y, si nadie los toca, se desplazan solos ---------- */
   $$('.phones').forEach((ph) => {
-    const fit = () => $$('.scr', ph).forEach((s) => { const img = $('img', s); if (img.naturalHeight) img.style.setProperty('--dy', -(img.getBoundingClientRect().height - s.clientHeight) + 'px'); });
-    $$('img', ph).forEach((i) => i.complete ? fit() : i.addEventListener('load', fit));
-    addEventListener('resize', fit);
-    if (!reduce) new IntersectionObserver(([e]) => ph.classList.toggle('play', e.isIntersecting), { threshold: 0.3 }).observe(ph);
+    const scrs = $$('.scr', ph);
+    let auto = !reduce, vis = false, t0 = 0, last = 0;
+    const stop = () => { auto = false; ph.classList.add('manual'); };
+    scrs.forEach((s) => ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach((ev) => s.addEventListener(ev, stop, { passive: true })));
+    new IntersectionObserver(([en]) => { vis = en.isIntersecting; }, { threshold: 0.3 }).observe(ph);
+    // Vaivén suave: baja despacio y vuelve arriba, sincronizado en los dos móviles
+    const loop = (now) => {
+      if (auto && vis) {
+        if (!t0) t0 = now;
+        const T = 26000, k = ((now - t0) % (2 * T)) / T, p = k < 1 ? k : 2 - k;
+        const ease = p < 0.06 ? 0 : p > 0.94 ? 1 : (p - 0.06) / 0.88;
+        const sm = ease * ease * (3 - 2 * ease);
+        scrs.forEach((s) => { s.scrollTop = sm * (s.scrollHeight - s.clientHeight); });
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
   });
 
   /* ---------- Carrera de carga ---------- */
