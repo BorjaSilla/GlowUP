@@ -462,6 +462,11 @@ input[type=range]::-moz-range-thumb { width: 30px; height: 20px; border-radius: 
 @media (max-width: 900px) { .timeline { grid-template-columns: 1fr 1fr; } .tl::after { display: none; } }
 @media (max-width: 520px) { .timeline { grid-template-columns: 1fr; } }
 
+/* Pestañas del comparador */
+.seg-tabs { overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+.seg-tabs::-webkit-scrollbar { display: none; }
+.seg-tabs button { flex: none; }
+
 /* ---------- Ajustes móviles ---------- */
 .display, .h2, .h3, .words { text-wrap: balance; }
 @media (max-width: 700px) {

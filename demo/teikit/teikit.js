@@ -53,12 +53,12 @@
   $('#tabs').innerHTML = cats.map((c, i) => `<button role="tab" class="${i ? '' : 'on'}" data-cat="${c.key}">${c.short}</button>`).join('');
 
   const dish = (it) => `<article class="dish">
-      <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy" width="112" height="112" /></div>
+      <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy" width="112" height="112" /><div class="tags">${badges(it)}</div></div>
       <div class="info">
         <h4>${esc(it.name)}</h4>
         ${it.pieces ? `<span class="pcs">${it.pieces} piezas</span>` : ''}
         <p>${esc(it.desc)}</p>
-        <div class="foot"><span class="price">${eur(it.price)}</span><div class="tags">${badges(it)}</div><button class="add" data-add="${it.id}" aria-label="Añadir ${esc(it.name)}">${icon('i-plus')}</button></div>
+        <div class="foot"><span class="price">${eur(it.price)}</span><button class="add" data-add="${it.id}" aria-label="Añadir ${esc(it.name)}">${icon('i-plus')}</button></div>
       </div>
     </article>`;
 

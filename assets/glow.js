@@ -110,9 +110,26 @@
       $$('button', seg).forEach((x) => x.classList.toggle('on', x === b));
       $$('[data-ba-view]').forEach((v) => { v.hidden = v.dataset.baView !== b.dataset.view; });
     };
-    seg.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) pick(b); });
+    let auto = null;
+    const stop = () => { clearInterval(auto); auto = null; };
+    seg.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { stop(); pick(b); } });
     // En móvil enseñamos primero la comparativa móvil
     if (innerWidth < 700) { const m = $('button[data-view="m"]', seg); if (m) pick(m); }
+    // Pase automático entre comparativas hasta que alguien toque algo
+    const ms = +seg.dataset.auto;
+    if (ms && !reduce && innerWidth >= 700) {
+      const frame = seg.closest('.ba-frame') || seg.parentElement;
+      frame.addEventListener('pointerdown', stop);
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting && auto === null && !frame.dataset.stopped) {
+          auto = setInterval(() => {
+            const bs = $$('button', seg); const i = bs.findIndex((x) => x.classList.contains('on'));
+            const next = bs[(i + 1) % bs.length]; if (next.dataset.view === 'm') { pick(bs[0]); } else pick(next);
+          }, ms);
+        } else if (!e.isIntersecting) stop();
+      }, { threshold: 0.5 }).observe(frame);
+      frame.addEventListener('pointerdown', () => { frame.dataset.stopped = 1; }, { once: true });
+    }
   });
 
   /* ---------- Contadores y anillos ---------- */

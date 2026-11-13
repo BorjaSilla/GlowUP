@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>GlowUp · Tu web nueva, antes de pagar</title>
-  <meta name="description" content="Rediseñamos tu tienda online y te la enviamos funcionando antes de que pagues nada. Si te convence, la lanzamos. Si no mejora tus ventas, no pagas." />
+  <meta name="description" content="Rediseñamos tu tienda online y te la enviamos funcionando antes de que pagues nada. Si te convence, la lanzamos. Y si no mejora tus ventas, seguimos trabajando gratis." />
   <meta property="og:title" content="GlowUp · Tu web nueva, antes de pagar" />
   <meta property="og:description" content="Te enseñamos tu nueva web funcionando antes de empezar. Con garantía de mejora." />
   <meta property="og:image" content="/assets/shots/og.png" />
@@ -51,7 +51,7 @@
     <div class="wrap">
       <span class="pill rv"><span class="in"><svg class="spark"><use href="#spark"/></svg> GlowUp</span><span class="out">Tu web nueva, antes de pagar</span></span>
       <h1 class="display rv" style="--d:.08s">Primero ves tu web nueva.<br /><span class="muted" style="color:var(--ink-3)">Luego decides.</span></h1>
-      <p class="lead rv" style="--d:.16s">Rediseñamos tu tienda online con tus productos, tus fotos y tu marca, y te la enviamos funcionando en un enlace privado. Si te convence, la lanzamos. Si no mejora tus ventas, no pagas.</p>
+      <p class="lead rv" style="--d:.16s">Rediseñamos tu tienda online con tus productos, tus fotos y tu marca, y te la enviamos funcionando en un enlace privado. Si te convence, la lanzamos. Y si no mejora tus ventas, seguimos trabajando gratis hasta que lo haga.</p>
       <div class="ctas rv" style="--d:.24s">
         <a class="btn glow lg" href="#empieza">Quiero mi glow up</a>
         <a class="btn lg" href="para/teikit/">Ver un ejemplo real</a>
@@ -67,15 +67,33 @@
       <div class="ba-frame rv" style="--d:.38s">
         <div class="ba-bar">
           <i></i><i></i><i></i>
-          <span class="url"><svg><use href="#lock"/></svg> teikit.es · antes y después</span>
-          <div class="seg" data-ba-switch><button class="on" data-view="d">Escritorio</button><button data-view="m">Móvil</button></div>
+          <span class="url"><svg><use href="#lock"/></svg> teikit.es</span>
+          <div class="seg seg-tabs" data-ba-switch data-auto="6000"><button class="on" data-view="d">Portada</button><button data-view="carta">Carta</button><button data-view="pedido">Pedido</button><button data-view="locales">Locales</button><button data-view="m">Móvil</button></div>
         </div>
-        <div class="ba" data-ba-view="d" tabindex="0" role="slider" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-          <img src="assets/shots/teikit-before.webp" alt="Web actual de Teikit" />
-          <img class="after" src="assets/shots/teikit-after.webp" alt="Rediseño de Teikit por GlowUp" />
+        <div class="ba" data-ba-view="d" tabindex="0" role="slider" aria-label="Comparar la portada antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit-before.webp" alt="Portada actual de Teikit" />
+          <img class="after" src="assets/shots/teikit-after.webp" alt="Portada rediseñada por GlowUp" />
           <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
           <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
           <span class="hint">Arrastra para comparar</span>
+        </div>
+        <div class="ba" data-ba-view="carta" hidden tabindex="0" role="slider" aria-label="Comparar la carta antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit/carta-before-fold.webp" alt="Carta actual de Teikit" loading="lazy" />
+          <img class="after" src="assets/shots/teikit/carta-after-fold.webp" alt="Carta rediseñada" loading="lazy" />
+          <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+        </div>
+        <div class="ba" data-ba-view="pedido" hidden tabindex="0" role="slider" aria-label="Comparar el pedido antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit/pedido-before.webp" alt="Pedido actual de Teikit" loading="lazy" />
+          <img class="after" src="assets/shots/teikit/pedido-after.webp" alt="Pedido rediseñado" loading="lazy" />
+          <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+        </div>
+        <div class="ba" data-ba-view="locales" hidden tabindex="0" role="slider" aria-label="Comparar los locales antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit/locales-before.webp" alt="Locales actuales de Teikit" loading="lazy" />
+          <img class="after" src="assets/shots/teikit/locales-after.webp" alt="Locales rediseñados" loading="lazy" />
+          <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
         </div>
         <div class="ba m" data-ba-view="m" hidden tabindex="0" role="slider" aria-label="Comparar antes y después en móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
           <img src="assets/shots/teikit-before-m.webp" alt="Web actual de Teikit en móvil" />
@@ -243,7 +261,7 @@
           <div class="txt">
             <div class="num"><i>4</i> Lanzamos y medimos</div>
             <h3>Si te gusta, la lanzamos. Y la medimos.</h3>
-            <p>Migramos, conectamos tu sistema de pedidos o tu tienda y medimos 60 días contra tu punto de partida. Si no mejora, no pagas.</p>
+            <p>Migramos, conectamos tu sistema de pedidos o tu tienda y medimos contra tu punto de partida. Si no mejora, seguimos trabajando gratis.</p>
           </div>
           <div class="vis">
             <div class="chart">
@@ -306,9 +324,9 @@
           <a class="btn glow lg" href="#empieza" style="width:100%">Quiero mi glow up</a>
         </div>
         <div class="card guar rv" style="--d:.08s">
-          <div class="seal"><span>Garantía<br />60 días</span></div>
-          <h3 class="h3" style="margin:26px 0 12px">Si no mejora, no pagas.</h3>
-          <p>Antes de lanzar fijamos por escrito tu conversión de partida. Si a los 60 días no ha mejorado, te devolvemos lo que hayas pagado. Así de simple, y por contrato.</p>
+          <div class="seal"><span>Garantía<br />firmada</span></div>
+          <h3 class="h3" style="margin:26px 0 12px">Si la conversión no sube, seguimos trabajando gratis.</h3>
+          <p>Antes de empezar dejamos por escrito qué indicador movemos y cómo se mide, con los datos de tu tienda. Si no se mueve, seguimos sin cobrar hasta que lo haga. El riesgo lo asumimos nosotros.</p>
           <p style="margin-top:auto;padding-top:24px;font-size:13.5px;color:#8e8e93">Y antes de todo eso, ya habrás visto tu web nueva funcionando. Gratis.</p>
         </div>
       </div>
