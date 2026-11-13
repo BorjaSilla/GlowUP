@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>GlowUp · Tu web nueva, antes de pagar</title>
+  <meta name="description" content="Rediseñamos tu tienda online y te la enviamos funcionando antes de que pagues nada. Si te convence, la lanzamos. Si no mejora tus ventas, no pagas." />
+  <meta property="og:title" content="GlowUp · Tu web nueva, antes de pagar" />
+  <meta property="og:description" content="Te enseñamos tu nueva web funcionando antes de empezar. Con garantía de mejora." />
+  <meta property="og:image" content="/assets/shots/og.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('glow_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/glow.css" />
+  <script>
+    /* Configuración de contacto. TODO: poner el email/WhatsApp real de GlowUp. */
+    window.GLOW = { email: '', whatsapp: '' };
+  </script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb066"/><stop offset="1" stop-color="#ff5a1f"/></linearGradient></defs>
+  <symbol id="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.7 5.6 2.9 7.8 8.5 8.5-5.6.7-7.8 2.9-8.5 8.5-.7-5.6-2.9-7.8-8.5-8.5 5.6-.7 7.8-2.9 8.5-8.5Z"/><circle cx="19.5" cy="19.5" r="2.5"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="drag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5M15 7l5 5-5 5"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Principal">
+  <a class="brand" href="#top" aria-label="GlowUp, inicio"><img class="mark" src="assets/logo.svg" alt="" width="44" height="44" /></a>
+  <div class="links">
+    <a href="#como">Cómo funciona</a>
+    <a href="#ejemplo">Ejemplo</a>
+    <a href="#precio">Precio</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a class="btn glow sm" href="#empieza">Quiero mi glow up</a>
+</nav>
+
+<main id="top">
+  <!-- HERO -->
+  <header class="hero" data-hero>
+    <div class="wrap">
+      <span class="pill rv"><span class="in"><svg class="spark"><use href="#spark"/></svg> GlowUp</span><span class="out">Tu web nueva, antes de pagar</span></span>
+      <h1 class="display rv" style="--d:.08s">Primero ves tu web nueva.<br /><span class="muted" style="color:var(--ink-3)">Luego decides.</span></h1>
+      <p class="lead rv" style="--d:.16s">Rediseñamos tu tienda online con tus productos, tus fotos y tu marca, y te la enviamos funcionando en un enlace privado. Si te convence, la lanzamos. Si no mejora tus ventas, no pagas.</p>
+      <div class="ctas rv" style="--d:.24s">
+        <a class="btn glow lg" href="#empieza">Quiero mi glow up</a>
+        <a class="btn lg" href="para/teikit/">Ver un ejemplo real</a>
+      </div>
+      <div class="proof rv" style="--d:.3s">
+        <span><svg><use href="#check"/></svg> Demo en 72 horas</span>
+        <span><svg><use href="#check"/></svg> Sin compromiso</span>
+        <span><svg><use href="#check"/></svg> Garantía de mejora por contrato</span>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="ba-frame rv" style="--d:.38s">
+        <div class="ba-bar">
+          <i></i><i></i><i></i>
+          <span class="url"><svg><use href="#lock"/></svg> teikit.es · antes y después</span>
+          <div class="seg" data-ba-switch><button class="on" data-view="d">Escritorio</button><button data-view="m">Móvil</button></div>
+        </div>
+        <div class="ba" data-ba-view="d" tabindex="0" role="slider" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit-before.webp" alt="Web actual de Teikit" />
+          <img class="after" src="assets/shots/teikit-after.webp" alt="Rediseño de Teikit por GlowUp" />
+          <span class="lbl l">Antes</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Después</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+          <span class="hint">Arrastra para comparar</span>
+        </div>
+        <div class="ba m" data-ba-view="m" hidden tabindex="0" role="slider" aria-label="Comparar antes y después en móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="assets/shots/teikit-before-m.webp" alt="Web actual de Teikit en móvil" />
+          <img class="after" src="assets/shots/teikit-after-m.webp" alt="Rediseño de Teikit en móvil" />
+          <span class="lbl l">Antes</span><span class="lbl r">Después</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PLATAFORMAS -->
+  <section style="padding-top:56px">
+    <p class="center muted rv" style="font-size:14px;margin:0 0 18px">Trabajamos con la web que ya tienes</p>
+    <div class="marquee rv">
+      <div class="track">
+        <span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">PrestaShop</span><span class="tag">Wix</span><span class="tag">Squarespace</span><span class="tag">Magento</span><span class="tag brand">Restaurantes con pedido online</span><span class="tag">Moda</span><span class="tag">Cosmética</span><span class="tag">Alimentación</span><span class="tag">Hogar</span><span class="tag">Mascotas</span><span class="tag brand">Marcas DTC</span>
+        <span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">PrestaShop</span><span class="tag">Wix</span><span class="tag">Squarespace</span><span class="tag">Magento</span><span class="tag brand">Restaurantes con pedido online</span><span class="tag">Moda</span><span class="tag">Cosmética</span><span class="tag">Alimentación</span><span class="tag">Hogar</span><span class="tag">Mascotas</span><span class="tag brand">Marcas DTC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFIESTO -->
+  <section class="sec">
+    <div class="wrap">
+      <p class="words" data-words>Esto no va de prometerte nada. <em>Te enseñamos el resultado antes de empezar:</em> tu web nueva, funcionando, con tu catálogo y tus fotos. Tú solo decides si la quieres.</p>
+    </div>
+  </section>
+
+  <!-- ZONA OSCURA: QUÉ HACEMOS -->
+  <section class="sec dz" data-dark id="que">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h2 rv">Mismo tráfico.<br />Más ventas.</h2>
+        <p class="lead rv" style="--d:.08s">Cada cambio tiene un trabajo: que quien entra, compre. Y que vuelva.</p>
+      </div>
+
+      <div class="tabs rv" data-tabs="svc">
+        <button class="on" data-tab="audit">Auditoría</button>
+        <button data-tab="design">Rediseño</button>
+        <button data-tab="speed">Velocidad</button>
+        <button data-tab="measure">Medición</button>
+      </div>
+
+      <div class="bento">
+        <div class="bx b-8 rv">
+          <div data-pane-group="svc" data-pane="audit">
+            <p>Revisamos tu web como lo haría un cliente con prisa: desde el móvil, con datos lentos y sin saber dónde está nada. Cada fricción que encontramos queda apuntada con su impacto estimado.</p>
+            <div class="chips"><span>Velocidad real en móvil</span><span>Embudo hasta el pago</span><span>Claridad de la oferta</span><span>Confianza y reseñas</span></div>
+          </div>
+          <div data-pane-group="svc" data-pane="design" hidden>
+            <p>Rediseñamos las páginas que mueven la venta: portada, catálogo, ficha de producto y carrito. Con tu marca y tus fotos, sin plantillas, y pensado primero para el móvil.</p>
+            <div class="chips"><span>Portada que vende en 5 segundos</span><span>Catálogo filtrable</span><span>Carrito sin fricción</span><span>Upsells inteligentes</span></div>
+          </div>
+          <div data-pane-group="svc" data-pane="speed" hidden>
+            <p>Una web lenta pierde pedidos antes de que se vean. Optimizamos imágenes, vídeo, fuentes y scripts para que la primera pantalla cargue en menos de 2 segundos.</p>
+            <div class="chips"><span>Imágenes en WebP</span><span>Vídeo comprimido</span><span>Carga diferida</span><span>Core Web Vitals en verde</span></div>
+          </div>
+          <div data-pane-group="svc" data-pane="measure" hidden>
+            <p>Antes de tocar nada fijamos tu punto de partida. Después medimos 60 días la conversión, el ticket medio y la velocidad contra esa línea base. Sin humo.</p>
+            <div class="chips"><span>Línea base firmada</span><span>Panel de métricas</span><span>Informe a 30 y 60 días</span><span>Ajustes tras lanzar</span></div>
+          </div>
+          <a class="link-arrow" href="#ejemplo" style="color:#a1a1a6">Ver un caso real <svg><use href="#arrow"/></svg></a>
+        </div>
+
+        <div class="bx b-4 warm rv" style="--d:.06s">
+          <h3>Rendimiento en móvil · Lighthouse</h3>
+          <p style="font-size:13.5px">Web de Teikit, antes y después del glow up.</p>
+          <div class="rings">
+            <div>
+              <div class="ring" data-score="67"><svg viewBox="0 0 112 112"><circle class="bg" cx="56" cy="56" r="46"/><circle class="fg bad" cx="56" cy="56" r="46"/></svg><b data-count="67">0</b></div>
+              <div class="ring-lbl">Antes</div>
+            </div>
+            <span class="vs">→</span>
+            <div>
+              <div class="ring" data-score="99"><svg viewBox="0 0 112 112"><circle class="bg" cx="56" cy="56" r="46"/><circle class="fg" cx="56" cy="56" r="46"/></svg><b data-count="99">0</b></div>
+              <div class="ring-lbl">Después</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bx b-4 rv">
+          <h3>Así suena una web que convierte</h3>
+          <p style="font-size:13.5px">Ilustración: notificaciones de pedidos de una tienda.</p>
+          <div class="feed" data-feed='[["Pedido #2041","64,90 € · 2 artículos"],["Pedido #2042","118,00 € · 3 artículos"],["Pedido #2043","39,95 € · 1 artículo"],["Pedido #2044","82,40 € · 2 artículos"],["Pedido #2045","27,50 € · 1 artículo"]]'></div>
+        </div>
+
+        <div class="bx b-8 gold rv" style="--d:.06s">
+          <h3>Carga de la primera pantalla (LCP) en móvil</h3>
+          <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-end;margin-top:14px">
+            <div><div class="stat tnum" style="color:#ff6b5b"><span data-count="6.7" data-dec="1">0</span><small> s</small></div><p style="font-size:13.5px">Antes · teikit.es</p></div>
+            <div><div class="stat tnum grad-text"><span data-count="1.7" data-dec="1">0</span><small style="-webkit-text-fill-color:#a1a1a6"> s</small></div><p style="font-size:13.5px">Después · glow up</p></div>
+            <p style="max-width:300px;font-size:14px">Google recomienda menos de 2,5 s. Cada segundo de más es gente que se va antes de ver la carta.</p>
+          </div>
+        </div>
+
+        <div class="bx b-6 rv" data-calc>
+          <h3>Calcula lo que te estás dejando</h3>
+          <div class="calc">
+            <label><span class="row"><span>Visitas al mes</span><b data-out="visits"></b></span><input type="range" name="visits" min="1000" max="100000" step="1000" value="20000" /></label>
+            <label><span class="row"><span>Conversión actual</span><b data-out="conv"></b></span><input type="range" name="conv" min="0.3" max="5" step="0.1" value="1.5" /></label>
+            <label><span class="row"><span>Ticket medio</span><b data-out="ticket"></b></span><input type="range" name="ticket" min="10" max="200" step="1" value="45" /></label>
+            <label><span class="row"><span>Mejora de conversión</span><b data-out="lift"></b></span><input type="range" name="lift" min="5" max="60" step="5" value="25" /></label>
+          </div>
+        </div>
+        <div class="bx b-6 warm rv result" style="--d:.06s" data-calc-result>
+          <h3><span class="dot o" style="display:inline-block;margin-right:8px"></span>Lo que podrías ganar</h3>
+          <div class="stat tnum" data-out-mirror="extra" style="margin-top:18px">+0 €</div>
+          <p style="margin-top:6px">más al mes con el mismo tráfico</p>
+          <p class="delta">Son <b data-out-mirror="extraOrders">+0</b> pedidos al mes y <b data-out-mirror="extraYear">+0 €</b> al año. Pasarías de <b data-out-mirror="orders">0</b> pedidos con un <b data-out-mirror="conv">0 %</b> a una conversión del <b data-out-mirror="newconv">0 %</b>.</p>
+          <a class="btn light" href="#empieza" style="margin-top:24px">Quiero verlo en mi web</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="sec" id="como">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">Cómo funciona</span>
+        <h2 class="h2 rv">Del enlace a las ventas,<br />en cuatro pasos.</h2>
+      </div>
+      <div class="stack">
+        <article class="stack-card" style="--i:0">
+          <div class="txt">
+            <div class="num"><i>1</i> Analizamos</div>
+            <h3>Estudiamos tu web sin pedirte nada.</h3>
+            <p>Medimos velocidad, estructura, versión móvil y cada paso hasta el pago. Ni accesos, ni reuniones, ni formularios eternos.</p>
+          </div>
+          <div class="vis">
+            <div class="mini">
+              <div class="r"><span class="fav">⚡</span>Rendimiento móvil<span class="sc mid">67</span></div>
+              <div class="r"><span class="fav">⏱</span>Carga de la carta (LCP)<span class="sc bad">7,4 s</span></div>
+              <div class="r on"><span class="fav">▶</span>Vídeo de portada<span class="sc bad">12 MB</span></div>
+              <div class="r"><span class="fav">◎</span>Precios visibles en portada<span class="sc bad">No</span></div>
+              <div class="r"><span class="fav">★</span>Reseñas en portada<span class="sc bad">No</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="stack-card" style="--i:1">
+          <div class="txt">
+            <div class="num"><i>2</i> Rediseñamos</div>
+            <h3>Hacemos tu nueva web. Entera.</h3>
+            <p>Con tu catálogo real, tus fotos y tu marca. No es un mockup: es una web que funciona y que puedes probar desde el móvil.</p>
+          </div>
+          <div class="vis" style="padding:0">
+            <img src="assets/shots/teikit-after.webp" alt="Rediseño de Teikit" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top" />
+          </div>
+        </article>
+        <article class="stack-card" style="--i:2">
+          <div class="txt">
+            <div class="num"><i>3</i> Te la enviamos</div>
+            <h3>Te llega un enlace con tu glow up.</h3>
+            <p>Tu web nueva, la comparativa antes/después, lo que hemos mejorado y un precio cerrado. Lo miras cuando quieras.</p>
+          </div>
+          <div class="vis">
+            <div class="mail">
+              <div class="h"><b>Tu web ya tiene su glow up ✦</b><span>De: GlowUp · Para: Teikit</span></div>
+              <div class="b">Hola, equipo de Teikit. Hemos rediseñado <b>teikit.es</b> con vuestra carta y vuestros 26 locales. Ya funciona: podéis probarla desde el móvil.<br /><a class="btn glow sm" href="para/teikit/">Ver mi nueva web</a></div>
+            </div>
+          </div>
+        </article>
+        <article class="stack-card" style="--i:3">
+          <div class="txt">
+            <div class="num"><i>4</i> Lanzamos y medimos</div>
+            <h3>Si te gusta, la lanzamos. Y la medimos.</h3>
+            <p>Migramos, conectamos tu sistema de pedidos o tu tienda y medimos 60 días contra tu punto de partida. Si no mejora, no pagas.</p>
+          </div>
+          <div class="vis">
+            <div class="chart">
+              <div class="bars"><i style="--h:38%"></i><i style="--h:42%"></i><i style="--h:36%"></i><i style="--h:40%"></i><i class="up" style="--h:58%"></i><i class="up" style="--h:66%"></i><i class="up" style="--h:72%"></i><i class="up" style="--h:84%"></i></div>
+              <div class="lg"><span>Antes del lanzamiento</span><span>60 días después</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EJEMPLO -->
+  <section class="sec" id="ejemplo">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">Primer glow up</span>
+        <h2 class="h2 rv">Teikit, antes y después.</h2>
+        <p class="lead rv" style="--d:.08s">Cadena de sushi de autor con 26 locales y pedido online propio. Esta es la propuesta que les hemos preparado.</p>
+      </div>
+      <article class="case rv">
+        <div class="shot"><img src="assets/shots/teikit-after.webp" alt="Nueva portada de Teikit" loading="lazy" /><span class="tag brand lbl" style="background:#fff">Restaurante · Pedido online</span></div>
+        <div class="body">
+          <h3 class="h3">Una carta que se pide sola.</h3>
+          <p class="muted" style="margin:0">Buscador de local en la portada, 79 platos con foto y precio, carrito persistente y una primera pantalla que carga casi 4 veces más rápido.</p>
+          <div class="kpis">
+            <div class="kpi"><b class="tnum">67 → 99</b><span>Rendimiento móvil</span></div>
+            <div class="kpi"><b class="tnum">6,7 → 1,7 s</b><span>Carga de la portada</span></div>
+            <div class="kpi"><b class="tnum">15,5 → 1,8 MB</b><span>Peso de la portada</span></div>
+            <div class="kpi"><b class="tnum">0 → 79</b><span>Platos con precio en portada</span></div>
+          </div>
+          <div class="ctas">
+            <a class="btn glow" href="para/teikit/">Ver la propuesta</a>
+            <a class="btn glass" href="demo/teikit/" target="_blank" rel="noopener">Abrir la web <svg><use href="#ext"/></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PRECIO -->
+  <section class="sec" id="precio">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">Precio</span>
+        <h2 class="h2 rv">Un precio cerrado.<br />Una garantía firmada.</h2>
+      </div>
+      <div class="offer">
+        <div class="card rv">
+          <span class="tag brand">Glow Up completo</span>
+          <div class="price tnum">1.900 €<small> + IVA · en 2 plazos</small></div>
+          <p class="muted" style="margin:0">Pagas el primer plazo cuando decides lanzar. El segundo, cuando la web está en marcha.</p>
+          <ul>
+            <li><svg><use href="#check"/></svg>Rediseño completo: portada, catálogo, ficha y carrito</li>
+            <li><svg><use href="#check"/></svg>Migración a tu dominio y conexión con tu tienda o sistema de pedidos</li>
+            <li><svg><use href="#check"/></svg>Optimización de velocidad y Core Web Vitals</li>
+            <li><svg><use href="#check"/></svg>Medición de 60 días contra tu punto de partida</li>
+            <li><svg><use href="#check"/></svg>Todo es tuyo: código, diseño y accesos. Sin permanencia</li>
+          </ul>
+          <a class="btn glow lg" href="#empieza" style="width:100%">Quiero mi glow up</a>
+        </div>
+        <div class="card guar rv" style="--d:.08s">
+          <div class="seal"><span>Garantía<br />60 días</span></div>
+          <h3 class="h3" style="margin:26px 0 12px">Si no mejora, no pagas.</h3>
+          <p>Antes de lanzar fijamos por escrito tu conversión de partida. Si a los 60 días no ha mejorado, te devolvemos lo que hayas pagado. Así de simple, y por contrato.</p>
+          <p style="margin-top:auto;padding-top:24px;font-size:13.5px;color:#8e8e93">Y antes de todo eso, ya habrás visto tu web nueva funcionando. Gratis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2 rv">Lo que más nos preguntan.</h2></div>
+      <div class="faq">
+        <details class="rv"><summary>¿De verdad hacéis la web antes de que pague? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Sí. Es la forma más honesta que conocemos de vender diseño: en lugar de explicarte lo que haríamos, lo hacemos y te lo enseñamos funcionando. Si no te convence, no pasa nada.</div></details>
+        <details class="rv"><summary>¿Qué pasa si no me gusta? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Nada. No hay compromiso ni letra pequeña. Si te gusta la idea pero quieres cambios, los vemos juntos antes de lanzar.</div></details>
+        <details class="rv"><summary>¿Cuánto tarda el lanzamiento? <i><svg><use href="#plus"/></svg></i></summary><div class="a">La demo, unas 72 horas. Desde que dices “adelante” hasta tenerla en tu dominio, entre 2 y 3 semanas según la plataforma.</div></details>
+        <details class="rv"><summary>¿Con qué plataformas trabajáis? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Shopify, WooCommerce, PrestaShop, Wix y webs a medida. Si tienes un sistema de pedidos propio, como un restaurante, lo conectamos tal cual.</div></details>
+        <details class="rv"><summary>¿Cómo medís que ha mejorado? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Fijamos contigo la línea base antes de lanzar (conversión, ticket medio y velocidad) con tus propios datos. A los 30 y 60 días comparamos contra esa línea. Lo dejamos por escrito.</div></details>
+        <details class="rv"><summary>¿Y después del lanzamiento? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Seguimos 60 días midiendo y ajustando. Todo es tuyo y no hay permanencia. Si quieres seguir con nosotros para nuevas páginas o campañas, te lo proponemos con números delante.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="sec" id="empieza">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h2 rv">Pide tu glow up en 30 segundos.</h2>
+        <p class="lead rv" style="--d:.08s">Cuatro preguntas y te mandamos tu web nueva en unos días.</p>
+      </div>
+      <div class="quiz rv" data-quiz>
+        <div class="prog"><i></i></div>
+        <div class="step" data-key="web">
+          <h3>¿Cuál es tu web?</h3>
+          <p class="hint">La dirección de tu tienda o restaurante.</p>
+          <form><input name="web" type="text" inputmode="url" autocomplete="url" required placeholder="mitienda.com" /><div class="nav-q"><span></span><button class="btn glow" type="submit">Siguiente <svg><use href="#arrow"/></svg></button></div></form>
+        </div>
+        <div class="step" data-key="plataforma" hidden>
+          <h3>¿En qué está hecha?</h3>
+          <p class="hint">Si no lo sabes, no pasa nada.</p>
+          <div class="opts"><button class="opt">Shopify</button><button class="opt">WooCommerce</button><button class="opt">PrestaShop</button><button class="opt">Wix o Squarespace</button><button class="opt">Otra / no lo sé</button></div>
+          <div class="nav-q"><button class="link-arrow" data-back>← Atrás</button></div>
+        </div>
+        <div class="step" data-key="freno" hidden>
+          <h3>¿Qué crees que más te frena?</h3>
+          <p class="hint">Elige la que más se parezca.</p>
+          <div class="opts"><button class="opt">Tengo visitas pero pocas ventas</button><button class="opt">La web se ve anticuada</button><button class="opt">Va lenta en el móvil</button><button class="opt">Quiero cambiar de plataforma</button><button class="opt">Otra cosa</button></div>
+          <div class="nav-q"><button class="link-arrow" data-back>← Atrás</button></div>
+        </div>
+        <div class="step" data-key="email" hidden>
+          <h3>¿Dónde te enviamos tu glow up?</h3>
+          <p class="hint">Solo para mandarte el enlace. Nada de spam.</p>
+          <form><input name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /><div class="nav-q"><button class="link-arrow" type="button" data-back>← Atrás</button><button class="btn glow" type="submit">Pedir mi glow up</button></div></form>
+        </div>
+        <div class="step done" hidden>
+          <img class="mark" src="assets/logo.svg" alt="" />
+          <h3>¡Hecho! Nos ponemos con tu web.</h3>
+          <p class="hint">En unos días te llegará un enlace con tu glow up.</p>
+          <a class="btn glow" data-send href="#">Enviar solicitud por email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="top">
+    <span class="tag"><span class="dot"></span> Aceptando nuevos proyectos</span>
+    <button class="toggle" data-theme-toggle><span class="sw"></span> Modo oscuro</button>
+  </div>
+  <div class="grid">
+    <div>
+      <h2>Tu web nueva<br />ya podría existir.</h2>
+      <a class="btn glow lg" href="#empieza">Quiero mi glow up</a>
+      <div class="brand" style="margin-top:36px;color:#a1a1a6"><img class="mark" src="assets/logo.svg" alt="" style="width:30px;height:30px" /> <span class="word">glow<i>up</i></span></div>
+    </div>
+    <div><h3>GlowUp</h3><ul><li><a href="#como">Cómo funciona</a></li><li><a href="#ejemplo">Ejemplo</a></li><li><a href="#precio">Precio</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h3>Glow ups</h3><ul><li><a href="para/teikit/">Propuesta Teikit</a></li><li><a href="demo/teikit/">Demo Teikit</a></li></ul></div>
+    <div><h3>Empieza</h3><ul><li><a href="#empieza">Pide tu demo</a></li><li><a href="#precio">Garantía</a></li></ul></div>
+  </div>
+  <div class="bottom"><span>© <span data-year></span> GlowUp · Webs que se ven y que venden</span><span>Hecho con cariño en España</span></div>
+</footer>
+
+<aside class="widget" aria-label="Pide tu demo">
+  <div class="who"><img class="mark" src="assets/logo.svg" alt="" /><div><b>Estudio GlowUp</b><span><i class="dot"></i> En línea</span></div><button class="x" aria-label="Cerrar"><svg><use href="#x"/></svg></button></div>
+  <div class="bubble" data-msg="¿Quieres ver cómo quedaría tu web? Pega tu dirección y te preparamos la demo, gratis."></div>
+  <form><input type="text" inputmode="url" placeholder="mitienda.com" aria-label="Tu web" required /><button class="btn glow" type="submit">Enviar</button></form>
+</aside>
+
+<script src="assets/glow.js"></script>
+</body>
+</html>

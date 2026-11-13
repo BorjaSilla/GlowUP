@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Teikit · Vuestro glow up</title>
+  <meta name="description" content="Propuesta de rediseño de teikit.es preparada por GlowUp: la nueva web funcionando, lo que hemos mejorado y cómo lanzarla." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="Teikit, vuestra web ya tiene su glow up" />
+  <meta property="og:description" content="La nueva teikit.es, funcionando. Antes y después, mejoras medidas y propuesta." />
+  <meta property="og:image" content="/assets/shots/teikit-after.webp" />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('glow_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/glow.css" />
+  <script>
+    /* TODO: email/WhatsApp real de GlowUp para que los botones de respuesta lleguen a alguien. */
+    window.GLOW = { email: '', whatsapp: '' };
+  </script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb066"/><stop offset="1" stop-color="#ff5a1f"/></linearGradient></defs>
+  <symbol id="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.7 5.6 2.9 7.8 8.5 8.5-5.6.7-7.8 2.9-8.5 8.5-.7-5.6-2.9-7.8-8.5-8.5 5.6-.7 7.8-2.9 8.5-8.5Z"/><circle cx="19.5" cy="19.5" r="2.5"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="drag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5M15 7l5 5-5 5"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Principal">
+  <a class="brand" href="../../" aria-label="GlowUp"><img class="mark" src="../../assets/logo.svg" alt="" width="44" height="44" /></a>
+  <span class="chip-on hide-m"><span class="dot o"></span> Propuesta para Teikit</span>
+  <div class="links">
+    <a href="#cambios">Qué cambia</a>
+    <a href="#numeros">Números</a>
+    <a href="#propuesta">Propuesta</a>
+  </div>
+  <a class="btn glow sm" href="#lanzar">La quiero</a>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <header class="hero" data-hero>
+    <div class="wrap">
+      <span class="pill rv"><span class="in"><svg class="spark"><use href="#spark"/></svg> Para Teikit</span><span class="out">Preparado el 13 de noviembre de 2026</span></span>
+      <h1 class="display rv" style="--d:.08s">Teikit, vuestra web<br />ya tiene su <span class="grad-text">glow up</span>.</h1>
+      <p class="lead rv" style="--d:.16s">Hemos rediseñado teikit.es con vuestra carta real, vuestras fotos y vuestros 26 locales. No es un boceto: funciona, y podéis probarla ahora mismo desde el móvil.</p>
+      <div class="ctas rv" style="--d:.24s">
+        <a class="btn glow lg" href="../../demo/teikit/" target="_blank" rel="noopener">Abrir mi nueva web <svg><use href="#ext"/></svg></a>
+        <a class="btn lg" href="#cambios">Ver qué hemos cambiado</a>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="ba-frame rv" style="--d:.34s">
+        <div class="ba-bar">
+          <i></i><i></i><i></i>
+          <span class="url"><svg><use href="#lock"/></svg> teikit.es</span>
+          <div class="seg" data-ba-switch><button class="on" data-view="d">Escritorio</button><button data-view="m">Móvil</button></div>
+        </div>
+        <div class="ba" data-ba-view="d" tabindex="0" role="slider" aria-label="Comparar la web actual con la nueva" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="../../assets/shots/teikit-before.webp" alt="Web actual de Teikit" />
+          <img class="after" src="../../assets/shots/teikit-after.webp" alt="Nueva web de Teikit" />
+          <span class="lbl l">Hoy</span><span class="lbl r"><svg width="12" height="12"><use href="#spark"/></svg> Vuestro glow up</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+          <span class="hint">Arrastra para comparar</span>
+        </div>
+        <div class="ba m" data-ba-view="m" hidden tabindex="0" role="slider" aria-label="Comparar en móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img src="../../assets/shots/teikit-before-m.webp" alt="Web actual de Teikit en móvil" />
+          <img class="after" src="../../assets/shots/teikit-after-m.webp" alt="Nueva web de Teikit en móvil" />
+          <span class="lbl l">Hoy</span><span class="lbl r">Glow up</span>
+          <div class="handle"><span class="knob"><svg><use href="#drag"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NÚMEROS -->
+  <section class="sec" id="numeros" style="padding-top:clamp(72px,9vw,120px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">Medido, no prometido</span>
+        <h2 class="h2 rv">Más rápida, más clara,<br />más fácil de pedir.</h2>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-t rv"><div class="lbl">Rendimiento en móvil</div><div class="from">67 / 100</div><div class="to"><span data-count="99">0</span><span style="font-size:.5em;color:var(--ink-3)"> / 100</span></div><div class="nt">Puntuación Lighthouse de Google</div></div>
+        <div class="kpi-t rv" style="--d:.05s"><div class="lbl">Carga de la portada (LCP)</div><div class="from">6,7 s</div><div class="to"><span data-count="1.7" data-dec="1">0</span> s</div><div class="nt">Google pide menos de 2,5 s</div></div>
+        <div class="kpi-t rv" style="--d:.1s"><div class="lbl">Peso de la portada</div><div class="from">15,5 MB</div><div class="to"><span data-count="1.8" data-dec="1">0</span> MB</div><div class="nt">El vídeo pasa de 12 MB a 1,3 MB</div></div>
+        <div class="kpi-t rv" style="--d:.15s"><div class="lbl">Accesibilidad</div><div class="from">85 / 100</div><div class="to"><span data-count="99">0</span><span style="font-size:.5em;color:var(--ink-3)"> / 100</span></div><div class="nt">Contraste, estructura y etiquetas</div></div>
+      </div>
+      <p class="src rv">Medido con Google Lighthouse 12 (perfil móvil) sobre teikit.es/home y sobre la nueva web, el 13/11/2026.</p>
+    </div>
+  </section>
+
+  <!-- MANIFIESTO -->
+  <section class="sec">
+    <div class="wrap">
+      <p class="words" data-words>Vuestra comida entra por los ojos. Hoy la web la esconde: <em>la portada no enseña ni un precio,</em> la carta pesa más de 7 MB y encontrar vuestro local más cercano exige un formulario.</p>
+    </div>
+  </section>
+
+  <!-- HALLAZGOS -->
+  <section class="sec dz" data-dark id="cambios">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h2 rv">Lo que hemos encontrado.<br />Y cómo lo hemos resuelto.</h2>
+        <p class="lead rv" style="--d:.08s">Seis fricciones que hoy os cuestan pedidos, ordenadas por impacto.</p>
+      </div>
+      <div class="finds">
+        <article class="bx find rv">
+          <span class="sev">Impacto alto</span>
+          <h3>La portada no dice qué sois ni qué pedir.</h3>
+          <p>Un vídeo a pantalla completa y un único botón “Ver carta”. En móvil, además, el aviso de cookies tapa media pantalla.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Titular, propuesta de valor y un buscador de local en la primera pantalla. Dos botones claros: pedir y ver packs.</span></div>
+        </article>
+        <article class="bx find rv" style="--d:.05s">
+          <span class="sev">Impacto alto</span>
+          <h3>15,5 MB para cargar la portada.</h3>
+          <p>El vídeo de cabecera pesa 12 MB y la primera pantalla tarda 6,7 s en aparecer en un móvil. Mucha gente se va antes.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Vídeo comprimido a 1,3 MB que se carga después, con imagen instantánea. La portada entera pesa ahora 1,8 MB.</span></div>
+        </article>
+        <article class="bx find rv">
+          <span class="sev">Impacto alto</span>
+          <h3>Los best sellers son solo fotos.</h3>
+          <p>Ocho imágenes sin nombre, sin precio y sin botón. El cliente tiene que adivinar qué es cada plato.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Tarjetas con nombre, descripción, precio y “Añadir”. El plato va al pedido sin salir de la portada.</span></div>
+        </article>
+        <article class="bx find rv" style="--d:.05s">
+          <span class="sev">Impacto alto</span>
+          <h3>Una carta de 7,2 MB y una única lista.</h3>
+          <p>79 platos en una página larga que tarda 7,4 s en móvil, con 24 MB de fotos sin optimizar detrás.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Fotos en WebP (de 24 MB a 1,5 MB), pestañas que siguen el scroll, filtros (veggie, picante, best sellers) y buscador.</span></div>
+        </article>
+        <article class="bx find rv">
+          <span class="sev mid">Impacto medio</span>
+          <h3>Las reseñas están escondidas.</h3>
+          <p>Tenéis opiniones geniales, pero viven en “Nosotros”, donde casi nadie llega antes de pedir.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Vuestras reseñas reales en la portada, junto a los cuatro valores de la casa: sabor, cantidad, calidad e innovación.</span></div>
+        </article>
+        <article class="bx find rv" style="--d:.05s">
+          <span class="sev mid">Impacto medio</span>
+          <h3>26 locales detrás de un formulario.</h3>
+          <p>Para saber dónde está vuestro Teikit hay que introducir una dirección completa antes de ver nada.</p>
+          <div class="fix"><svg><use href="#check"/></svg><span>Locales por ciudad con llamada y “Cómo llegar” en un toque, y un buscador instantáneo en la portada.</span></div>
+        </article>
+      </div>
+
+      <!-- Calculadora -->
+      <div class="bento" style="margin-top:12px">
+        <div class="bx b-6 rv" data-calc>
+          <h3>¿Cuánto vale un poco más de conversión?</h3>
+          <p style="font-size:13.5px">Mueve los valores con vuestros datos. Es una estimación orientativa.</p>
+          <div class="calc">
+            <label><span class="row"><span>Visitas a la web al mes</span><b data-out="visits"></b></span><input type="range" name="visits" min="5000" max="200000" step="5000" value="60000" /></label>
+            <label><span class="row"><span>Conversión a pedido</span><b data-out="conv"></b></span><input type="range" name="conv" min="0.5" max="10" step="0.1" value="4" /></label>
+            <label><span class="row"><span>Ticket medio</span><b data-out="ticket"></b></span><input type="range" name="ticket" min="10" max="80" step="1" value="30" /></label>
+            <label><span class="row"><span>Mejora de conversión</span><b data-out="lift"></b></span><input type="range" name="lift" min="5" max="50" step="5" value="15" /></label>
+          </div>
+        </div>
+        <div class="bx b-6 warm rv result" style="--d:.06s">
+          <h3><span class="dot o" style="display:inline-block;margin-right:8px"></span>Con el mismo tráfico</h3>
+          <div class="stat tnum" data-out-mirror="extra" style="margin-top:18px">+0 €</div>
+          <p style="margin-top:6px">más al mes en pedidos online</p>
+          <p class="delta"><b data-out-mirror="extraOrders">+0</b> pedidos al mes y <b data-out-mirror="extraYear">+0 €</b> al año. De <b data-out-mirror="orders">0</b> pedidos con un <b data-out-mirror="conv">0 %</b> a una conversión del <b data-out-mirror="newconv">0 %</b>.</p>
+          <p style="font-size:13px;margin-top:18px;color:#8e8e93">La cifra real la fijamos juntos con vuestros datos antes de lanzar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ INCLUYE LA NUEVA WEB -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">La nueva teikit.es</span>
+        <h2 class="h2 rv">Todo lo que ya tenéis,<br />pero pensado para pedir.</h2>
+      </div>
+      <article class="case rv">
+        <div class="shot"><img src="../../assets/shots/teikit-after.webp" alt="Nueva portada de Teikit" loading="lazy" /></div>
+        <div class="body">
+          <h3 class="h3">Vuestra marca, intacta. Vuestra carta, al frente.</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px;color:var(--ink-2);font-size:15px">
+            <li style="display:flex;gap:10px"><svg width="18" height="18" style="color:var(--brand);flex:none;margin-top:2px"><use href="#check"/></svg>Mismo logo, mismo navy y misma tipografía condensada, con más aire.</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" style="color:var(--brand);flex:none;margin-top:2px"><use href="#check"/></svg>Los 79 platos de la carta actual, con sus fotos, precios y piezas.</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" style="color:var(--brand);flex:none;margin-top:2px"><use href="#check"/></svg>Pedido flotante con sugerencia de entrante.</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" style="color:var(--brand);flex:none;margin-top:2px"><use href="#check"/></svg>Packs para compartir con precio por pieza.</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" style="color:var(--brand);flex:none;margin-top:2px"><use href="#check"/></svg>El pago sigue en vuestro sistema actual: no cambiáis nada por dentro.</li>
+          </ul>
+          <div class="ctas"><a class="btn glow" href="../../demo/teikit/" target="_blank" rel="noopener">Probar la nueva web <svg><use href="#ext"/></svg></a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">Si decís que sí</span>
+        <h2 class="h2 rv">En tres semanas, en teikit.es.</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl rv"><div class="when">Día 1</div><h3>Llamada de 20 minutos</h3><p>Repasamos la web juntos y anotamos los cambios que queráis.</p></div>
+        <div class="tl rv" style="--d:.05s"><div class="when">Semana 1–2</div><h3>Conexión y ajustes</h3><p>Conectamos el pedido con vuestro sistema actual, revisamos SEO y redirecciones.</p></div>
+        <div class="tl rv" style="--d:.1s"><div class="when">Semana 3</div><h3>Lanzamiento</h3><p>Publicamos en teikit.es sin cortes de servicio, en el horario que elijáis.</p></div>
+        <div class="tl rv" style="--d:.15s"><div class="when">Días 1–60</div><h3>Medición</h3><p>Comparamos pedidos y conversión con la línea base. Ajustamos lo que haga falta.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="sec" id="propuesta">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow rv">La propuesta</span>
+        <h2 class="h2 rv">Un precio cerrado.<br />Y si no mejora, no pagáis.</h2>
+      </div>
+      <div class="offer">
+        <div class="card rv">
+          <span class="tag brand">Glow Up Teikit</span>
+          <div class="price tnum">1.900 €<small> + IVA · en 2 plazos</small></div>
+          <p class="muted" style="margin:0">Primer plazo al decidir lanzar; segundo, con la web ya en marcha.</p>
+          <ul>
+            <li><svg><use href="#check"/></svg>La web que acabáis de ver, con vuestros ajustes</li>
+            <li><svg><use href="#check"/></svg>Conexión con vuestro sistema de pedidos y locales</li>
+            <li><svg><use href="#check"/></svg>SEO conservado: URLs, redirecciones y datos estructurados</li>
+            <li><svg><use href="#check"/></svg>60 días de medición y ajustes tras el lanzamiento</li>
+            <li><svg><use href="#check"/></svg>Todo es vuestro: código, diseño y accesos</li>
+          </ul>
+          <a class="btn glow lg" href="#lanzar" style="width:100%">Quiero lanzarla</a>
+        </div>
+        <div class="card guar rv" style="--d:.08s">
+          <div class="seal"><span>Garantía<br />60 días</span></div>
+          <h3 class="h3" style="margin:26px 0 12px">Si la conversión no mejora, os devolvemos el dinero.</h3>
+          <p>Antes de lanzar fijamos por escrito vuestra conversión de partida con vuestros datos. Si a los 60 días no ha mejorado, os devolvemos lo pagado. Por contrato.</p>
+          <p style="margin-top:auto;padding-top:24px;font-size:13.5px;color:#8e8e93">Propuesta válida durante 30 días.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2 rv">Preguntas razonables.</h2></div>
+      <div class="faq">
+        <details class="rv"><summary>¿Tenemos que cambiar el sistema de pedidos? <i><svg><use href="#plus"/></svg></i></summary><div class="a">No. La nueva web es la “cara” de la tienda: el pago y la gestión de pedidos siguen en vuestro sistema actual. Vuestro equipo no tiene que aprender nada nuevo.</div></details>
+        <details class="rv"><summary>¿Perderemos posicionamiento en Google? <i><svg><use href="#plus"/></svg></i></summary><div class="a">No. Mantenemos las URLs que ya posicionan, configuramos redirecciones y añadimos datos estructurados de restaurante y carta. Una web más rápida, además, suele posicionar mejor.</div></details>
+        <details class="rv"><summary>¿Podemos cambiar cosas del diseño? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Claro. Lo que habéis visto es nuestra propuesta; en la llamada inicial apuntamos todo lo que queráis ajustar antes de lanzar.</div></details>
+        <details class="rv"><summary>¿Las fotos y los textos son los vuestros? <i><svg><use href="#plus"/></svg></i></summary><div class="a">Son los vuestros, sacados de teikit.es. Solo los hemos optimizado para que pesen menos y se vean igual de bien.</div></details>
+        <details class="rv"><summary>¿Y si al final no nos convence? <i><svg><use href="#plus"/></svg></i></summary><div class="a">No pasa nada. Esta propuesta no os compromete a nada; la retiramos cuando nos lo digáis.</div></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="lanzar">
+  <div class="top">
+    <span class="tag"><span class="dot"></span> Propuesta preparada para Teikit</span>
+    <button class="toggle" data-theme-toggle><span class="sw"></span> Modo oscuro</button>
+  </div>
+  <div class="grid">
+    <div>
+      <h2>¿La lanzamos?</h2>
+      <p style="color:#a1a1a6;max-width:440px;margin:0 0 24px">Respondednos y os proponemos una llamada de 20 minutos para repasarla juntos.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn glow lg" href="../../#empieza" data-contact="Teikit: queremos hablar de nuestro glow up">Sí, quiero hablarlo</a>
+        <a class="btn light lg" href="../../demo/teikit/" target="_blank" rel="noopener">Ver la web otra vez</a>
+      </div>
+    </div>
+    <div><h3>Esta propuesta</h3><ul><li><a href="#cambios">Qué cambia</a></li><li><a href="#numeros">Números</a></li><li><a href="#propuesta">Precio y garantía</a></li></ul></div>
+    <div><h3>La nueva web</h3><ul><li><a href="../../demo/teikit/#carta">Carta</a></li><li><a href="../../demo/teikit/#packs">Packs</a></li><li><a href="../../demo/teikit/#locales">Locales</a></li></ul></div>
+    <div><h3>GlowUp</h3><ul><li><a href="../../">Quiénes somos</a></li><li><a href="../../#como">Cómo trabajamos</a></li></ul></div>
+  </div>
+  <div class="bottom"><span>© <span data-year></span> GlowUp · Fotografías y contenidos de Teikit, usados solo para esta propuesta.</span><span class="brand" style="font-size:15px;color:#a1a1a6"><img class="mark" src="../../assets/logo.svg" alt="" style="width:24px;height:24px" /> glow<i style="font-style:normal;color:var(--brand)">up</i></span></div>
+</footer>
+
+<script src="../../assets/glow.js"></script>
+</body>
+</html>

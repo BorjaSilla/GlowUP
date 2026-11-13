@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Teikit · Cocina de culturas con base japonesa (vista previa GlowUp)</title>
+  <meta name="description" content="Vista previa del rediseño de teikit.es preparada por GlowUp. Rolls de autor, poke bowls y packs para compartir. 26 locales y delivery propio." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#011e41" />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="media/hero-poster.webp" />
+  <link rel="stylesheet" href="teikit.css" />
+</head>
+<body>
+
+<!-- Sprite de iconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 735.91 126.75"><path d="m645.59,124.05V29.85s-60.68,0-60.68,0V4.63h151v25.220h-60.68s0,94.2,0,94.2h-29.63Z"/><path d="m60.68,124.05V30.28s-60.68-.42-60.68-.42V4.63h151v25.22l-60.68.08v94.11h-29.63Z"/><path d="m162.29,124.05V4.63h141.65v25.89h-111.84s0,21.55,0,21.55l86.32-3.050v25.28s-86.32-4.34-86.32-4.34v26.77s114.31,0,114.31,0v27.31h-144.12Z"/><path d="m325.46,124.05V4.630h29.81v119.42h-29.81Z"/><path d="m522,92.69l-6.53,6.03c-2.54,2.34-5.24,3.43-8.49,3.43-1.97,0-3.59-.4-4.96-1.23-1.86-1.13-4.020-2.91-6.42-5.3l-35.69-38.29c16.97-13.56,36.05-24.21,56.8-31.7l5.61-2.03-8.65-23.6-5.52,1.92c-38.96,13.57-73.29,38.13-102.27,73.1V4.63s-28.39,0-28.39,0v119.41s24.01,0,24.01,0l1.75-2.71c5.71-8.83,12.28-17.85,19.55-26.81,5.8-7.16,11.64-13.69,17.42-19.48l36.34,38.59.12.13c5.55,5.56,10.51,9.05,15.17,10.69,4.37,1.54,8.76,2.32,13.03,2.32,4.59,0,8.93-.92,12.9-2.73,3.83-1.75,7.08-3.94,9.66-6.52l2.68-2.68-8.13-22.13Z"/><path d="m542.22,124.05V4.63h29.81v119.42h-29.81Z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-scooter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M8.5 17h7M15 6h2l2.5 8.5M15 6l-3 7H6.5M3 10h6"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1-4H5L4 9Z"/><path d="M5 9v10h14V9M10 19v-5h4v5"/></symbol>
+  <symbol id="i-chop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m4 20 14-16M8 21 21 6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a6 6 0 0 0 6-6c0-4-3-6-4-10-2 2-2.5 4-2.5 5.5C10 9.5 9 8.5 8.6 7 7 9 6 11.2 6 15a6 6 0 0 0 6 6Z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19 13 11"/></symbol>
+  <symbol id="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.7 5.6 2.9 7.8 8.5 8.5-5.6.7-7.8 2.9-8.5 8.5-.7-5.6-2.9-7.8-8.5-8.5 5.6-.7 7.8-2.9 8.5-8.5Z"/><circle cx="19.5" cy="19.5" r="2.5"/></symbol>
+</svg>
+
+<!-- Cinta de vista previa: deja claro que no es la web oficial -->
+<div class="gu-ribbon" role="note">
+  <svg class="spark"><use href="#spark"/></svg>
+  <span><b>Vista previa GlowUp</b><span class="long"> · Propuesta de rediseño de teikit.es, no es la web oficial</span></span>
+  <a href="../../para/teikit/">Ver propuesta</a>
+</div>
+
+<header class="hdr" id="top">
+  <a class="logo" href="#top" aria-label="Teikit, inicio"><svg viewBox="0 0 735.91 126.75" fill="currentColor"><use href="#logo"/></svg></a>
+  <nav aria-label="Principal">
+    <a href="#carta">Carta</a>
+    <a href="#packs">Packs</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#locales">Locales</a>
+  </nav>
+  <div class="actions">
+    <button class="cart-btn" id="cartBtn" aria-label="Abrir pedido"><svg><use href="#i-bag"/></svg><span class="count" id="cartCount">0</span></button>
+    <a class="btn salmon sm" href="#carta">Pedir ahora</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-card">
+      <img class="poster" src="media/hero-poster.webp" alt="" />
+      <video id="heroVideo" muted playsinline loop preload="none" poster="media/hero-poster.webp" aria-hidden="true">
+        <source src="media/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow rv"><span class="stars"><svg><use href="#i-star"/></svg> Desde 2012</span> 26 locales · Delivery propio</span>
+          <h1 class="rv" style="--d:.08s">Cocina de culturas<span class="thin">con base japonesa</span></h1>
+          <p class="lead rv" style="--d:.16s">Rolls de autor con sabores de Japón, París, Buenos Aires y México. Pídelo a domicilio o recógelo en tu Teikit más cercano.</p>
+          <div class="ctas rv" style="--d:.24s">
+            <a class="btn salmon lg" href="#carta">Ver la carta y pedir <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn ghost lg" href="#packs">Packs para compartir</a>
+          </div>
+        </div>
+        <form class="order-card rv" style="--d:.32s" id="locator" onsubmit="return false">
+          <h2>¿Dónde te lo llevamos?</h2>
+          <p>Te mostramos tu Teikit más cercano en un segundo.</p>
+          <div class="seg">
+            <button type="button" class="on" data-mode="delivery">A domicilio</button>
+            <button type="button" data-mode="pickup">Recoger</button>
+          </div>
+          <label class="loc-input"><span class="sr">Ciudad o barrio</span>
+            <svg><use href="#i-pin"/></svg>
+            <input id="locQuery" type="text" autocomplete="off" placeholder="Escribe tu ciudad o barrio" />
+          </label>
+          <div class="loc-results" id="locResults"></div>
+          <a class="btn salmon" href="#carta">Empezar mi pedido</a>
+          <div class="meta"><span><i class="dot-live"></i> Cocinas en 19 ciudades</span><span>Pago online seguro</span></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="wrap">
+      <ul>
+        <li class="rv"><span class="ico"><svg><use href="#i-store"/></svg></span><div><b>26 locales</b><span>En 19 ciudades</span></div></li>
+        <li class="rv" style="--d:.06s"><span class="ico"><svg><use href="#i-scooter"/></svg></span><div><b>Delivery propio</b><span>Packaging pensado para viajar</span></div></li>
+        <li class="rv" style="--d:.12s"><span class="ico"><svg><use href="#i-flame"/></svg></span><div><b>+25 salsas propias</b><span>Hechas en casa</span></div></li>
+        <li class="rv" style="--d:.18s"><span class="ico"><svg><use href="#i-chop"/></svg></span><div><b>Desde 2012</b><span>Sushi masters</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="sec" id="favoritos">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv">
+          <div class="kicker">Best sellers</div>
+          <h2 class="h2">Los que más<br />se piden</h2>
+        </div>
+        <div class="rail-ctrl rv">
+          <button aria-label="Anterior" data-rail="-1"><svg><use href="#i-left"/></svg></button>
+          <button aria-label="Siguiente" data-rail="1"><svg><use href="#i-right"/></svg></button>
+        </div>
+      </div>
+      <div class="rail" id="rail"></div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="sec" id="carta">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv">
+          <div class="kicker">La carta</div>
+          <h2 class="h2">Desenfunda<br />tus palillos</h2>
+          <p class="sub">79 platos, todos con foto y precio. Añade lo que quieras y finaliza el pedido cuando estés listo.</p>
+        </div>
+      </div>
+      <div class="menu-bar"><div class="tabs" id="tabs" role="tablist"></div></div>
+      <div class="filters" id="filters">
+        <button class="chip on" data-f="all">Todo</button>
+        <button class="chip" data-f="best"><svg width="14" height="14"><use href="#i-star"/></svg> Best sellers</button>
+        <button class="chip" data-f="veggie"><svg width="14" height="14"><use href="#i-leaf"/></svg> Veggie</button>
+        <button class="chip" data-f="spicy"><svg width="14" height="14"><use href="#i-flame"/></svg> Con picante</button>
+        <label class="search"><span class="sr">Buscar en la carta</span><svg><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar: salmón, trufa, foie…" /></label>
+      </div>
+      <div id="menu"></div>
+      <p style="font-size:13px;color:var(--ink-3);margin:0">En la carta solo se indican los alérgenos más comunes. Consulta la <a href="https://teikit.es/home/carta-alergenos-teikit.pdf" style="text-decoration:underline" target="_blank" rel="noopener">carta de alérgenos</a>.</p>
+    </div>
+  </section>
+
+  <!-- PACKS -->
+  <section class="band" id="packs">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv">
+          <div class="kicker">Para compartir</div>
+          <h2 class="h2">Packs para<br />no elegir</h2>
+          <p class="sub">Lo mejor de la casa en una sola caja. Ideales para cenas, oficinas y planes de sofá.</p>
+        </div>
+      </div>
+      <div class="packs" id="packList"></div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="sec" id="nosotros">
+    <div class="wrap">
+      <div class="story">
+        <div class="card intro rv">
+          <div class="txt">
+            <div class="kicker" style="color:var(--salmon-2)">Nuestra historia</div>
+            <h2>Revolucionando la cocina japonesa</h2>
+            <p>En 2012 dejamos nuestros trabajos para crear un nuevo concepto de cocina japonesa. Bajo su técnica fusionamos los sabores de México, Brasil, Argentina o el Mediterráneo: del foie mi-cuit con manzana horneada a las salsas peruanas con ají.</p>
+          </div>
+          <img src="img/g-roll-kioto.webp" alt="Rolls Kioto de Teikit sobre plato de cerámica" loading="lazy" />
+        </div>
+        <div class="values">
+          <div class="value rv"><div class="num">01</div><h3>Sabor</h3><p>Más de 25 salsas propias y toppings. Tenemos más salsas que Celia Cruz, y no exageramos.</p></div>
+          <div class="value rv" style="--d:.06s"><div class="num">02</div><h3>Cantidad</h3><p>Hay sushis con más arroz que pescado. Y luego están los rolls de Teikit, que van llenos.</p></div>
+          <div class="value rv" style="--d:.12s"><div class="num">03</div><h3>Calidad</h3><p>Producto fresco y pescado ultracongelado para mantener sus propiedades y garantizar la máxima calidad.</p></div>
+          <div class="value rv" style="--d:.18s"><div class="num">04</div><h3>Innovación</h3><p>Rolls como el Paris o el Moulin Rouge. Nos tomamos muy en serio seguir sorprendiéndote.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="sec" id="opiniones">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv">
+          <div class="kicker">People first</div>
+          <h2 class="h2">Los clientes más<br />enrollados</h2>
+        </div>
+      </div>
+    </div>
+    <div class="marquee rv"><div class="track" id="reviews"></div></div>
+  </section>
+
+  <!-- LOCALES -->
+  <section class="sec" id="locales">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv">
+          <div class="kicker">Encuentra tu Teikit</div>
+          <h2 class="h2">26 locales,<br />19 ciudades</h2>
+          <p class="sub">Llama, pide online o pásate a recoger. Elige tu ciudad.</p>
+        </div>
+      </div>
+      <div class="stores">
+        <div class="regions" id="regions"></div>
+        <div class="store-list" id="storeList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="services">
+        <div class="svc rv"><div class="ico"><svg><use href="#i-scooter"/></svg></div><h3>Delivery</h3><p>Nuestros riders y un packaging diseñado para que llegue igual que sale de cocina.</p></div>
+        <div class="svc rv" style="--d:.06s"><div class="ico"><svg><use href="#i-bag"/></svg></div><h3>Take away</h3><p>Pide online y recógelo en tu local sin esperas.</p></div>
+        <div class="svc rv" style="--d:.12s"><div class="ico"><svg><use href="#i-chop"/></svg></div><h3>Degustación</h3><p>Descubre la carta con una experiencia guiada por nuestros sushi masters.</p></div>
+        <div class="svc rv" style="--d:.18s"><div class="ico"><svg><use href="#i-cal"/></svg></div><h3>Eventos</h3><p>Packs y bandejas para oficinas, cumpleaños y celebraciones.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final">
+    <img src="img/g-crunchy-tuna.webp" alt="" loading="lazy" />
+    <div class="inner">
+      <h2 class="rv">Empieza el viaje</h2>
+      <p class="rv" style="--d:.08s">Japón, París, Buenos Aires, México… sin salir de casa. Tu pedido, en unos clics.</p>
+      <a class="btn salmon lg rv" style="--d:.16s" href="#carta">Pedir ahora <svg><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="logo"><svg viewBox="0 0 735.91 126.75" fill="currentColor"><use href="#logo"/></svg></div>
+        <p style="max-width:280px;margin:0">Cocina de culturas con base japonesa. Sushi masters desde 2012.</p>
+      </div>
+      <div><h2>Teikit</h2><ul><li><a href="#carta">Carta</a></li><li><a href="#packs">Packs</a></li><li><a href="#locales">Locales</a></li><li><a href="https://teikit.es/home/carta-alergenos-teikit.pdf" target="_blank" rel="noopener">Alérgenos</a></li></ul></div>
+      <div><h2>Síguenos</h2><ul><li><a href="https://www.instagram.com/teikit/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/teikit" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/teikit/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+      <div><h2>Legal</h2><ul><li><a href="https://teikit.es/home/es/3/terminos-y-condiciones-de-uso" target="_blank" rel="noopener">Términos</a></li><li><a href="https://teikit.es/home/es/9/politica-de-cookies-y-privacidad" target="_blank" rel="noopener">Privacidad y cookies</a></li><li><a href="https://teikit.es/home/es/2/aviso-legal" target="_blank" rel="noopener">Aviso legal</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Teikit SL. Contenidos y fotografías propiedad de Teikit.</span><span>Vista previa de rediseño por <a href="../../" style="text-decoration:underline">GlowUp</a></span></div>
+  </div>
+</footer>
+
+<!-- Pedido -->
+<div class="cart-bar" id="cartBar" aria-live="polite">
+  <div class="sum"><b id="barTotal">0,00 €</b><span id="barCount">0 productos</span></div>
+  <button class="btn salmon" id="barOpen">Ver pedido <svg><use href="#i-arrow"/></svg></button>
+</div>
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Tu pedido" aria-hidden="true">
+  <header><h3>Tu pedido</h3><button class="x" id="drawerX" aria-label="Cerrar"><svg><use href="#i-x"/></svg></button></header>
+  <div class="lines" id="lines"></div>
+  <div id="upsell"></div>
+  <footer>
+    <div class="tot"><span>Subtotal</span><span id="sub">0,00 €</span></div>
+    <div class="tot big"><span>Total</span><span id="tot">0,00 €</span></div>
+    <a class="btn salmon lg" id="checkout" href="https://teikit.es/home/?controller=stores" target="_blank" rel="noopener">Elegir dirección y pagar <svg><use href="#i-arrow"/></svg></a>
+  </footer>
+</aside>
+<div class="toast" id="toast"><img alt="" /><span></span></div>
+
+<script src="data/menu.js"></script>
+<script src="teikit.js"></script>
+</body>
+</html>
