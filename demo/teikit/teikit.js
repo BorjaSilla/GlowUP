@@ -168,10 +168,13 @@
     $$('#regions button').forEach((b) => b.classList.toggle('on', b.dataset.r === region));
     $('#storeList').innerHTML = D.stores.filter((s) => s.region === region).map((s, i) => `
       <div class="store" style="animation-delay:${i * 0.04}s">
-        <div class="ph"><img src="img/${STORE_PHOTOS[D.stores.indexOf(s) % STORE_PHOTOS.length]}.webp" alt="Local Teikit" loading="lazy" /><span class="st ${status.open ? 'on' : ''}"><i></i>${status.text}</span></div>
-        <h3>Teikit ${esc(s.name)}</h3>
-        <div class="addr">${esc(s.addr)} · ${esc(s.city)}</div>
-        <div class="row"><a href="tel:${tel(s.phone)}">${icon('i-phone')} ${esc(s.phone.replace('+34 ', ''))}</a><a class="pri" href="${maps(s)}" target="_blank" rel="noopener">${icon('i-pin')} Cómo llegar</a></div>
+        <div class="ph"><img src="img/${STORE_PHOTOS[D.stores.indexOf(s) % STORE_PHOTOS.length]}.webp" alt="" loading="lazy" /><span class="st ${status.open ? 'on' : ''}"><i></i>${status.text}</span></div>
+        <div class="bd">
+          <span class="area">Teikit · ${esc(s.city)}</span>
+          <h3>${esc(s.name)}</h3>
+          <div class="addr">${icon('i-pin')}<span>${esc(s.addr)}</span></div>
+          <div class="row"><a class="pri" href="${maps(s)}" target="_blank" rel="noopener">Cómo llegar ${icon('i-arrow')}</a><a class="call" href="tel:${tel(s.phone)}" aria-label="Llamar a Teikit ${esc(s.name)}">${icon('i-phone')}<span>${esc(s.phone.replace('+34 ', '').replace(/^\+/, ''))}</span></a></div>
+        </div>
       </div>`).join('');
   }
   $('#regions').innerHTML = regions.map((r) => `<button data-r="${r}">${REGION_LABEL[r] || r}<span>${D.stores.filter((s) => s.region === r).length}</span></button>`).join('');

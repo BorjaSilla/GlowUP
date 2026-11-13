@@ -7,8 +7,13 @@
 /marca/*
   X-Robots-Tag: noindex
 
-/*.webp
-  Cache-Control: public, max-age=31536000
+# Capturas antes/después: siempre se comprueba si hay versión nueva
+/assets/shots/*
+  Cache-Control: public, max-age=0, must-revalidate
 
-/*.mp4
-  Cache-Control: public, max-age=31536000
+# Fotos y vídeo de la demo: una hora, luego se revalida
+/demo/teikit/img/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/demo/teikit/media/*
+  Cache-Control: public, max-age=86400

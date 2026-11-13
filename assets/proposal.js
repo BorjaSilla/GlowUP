@@ -168,11 +168,12 @@
     const imgB = $('[data-side="before"] img', race), imgA = $('[data-side="after"] img', race);
     const stB = $('[data-side="before"] .state', race), stA = $('[data-side="after"] .state', race);
     const clock = $('.clock b', race), bar = $('.track i', race);
+    const ver = data.v ? '?v=' + data.v : '';
     const frame = (arr, t) => { let f = null; data.times.forEach((s, i) => { if (s <= t) f = arr[i]; }); return f; };
     // Precarga
-    [...data.before, ...data.after].filter(Boolean).forEach((f) => { const i = new Image(); i.src = data.base + f; });
+    [...data.before, ...data.after].filter(Boolean).forEach((f) => { const i = new Image(); i.src = data.base + f + ver; });
     const END = data.times[data.times.length - 1];
-    const show = (img, f) => { const src = f ? data.base + f : ''; if (img.dataset.src !== src) { img.dataset.src = src; if (f) { img.src = src; img.style.opacity = 1; } else img.style.opacity = 0; } };
+    const show = (img, f) => { const src = f ? data.base + f + ver : ''; if (img.dataset.src !== src) { img.dataset.src = src; if (f) { img.src = src; img.style.opacity = 1; } else img.style.opacity = 0; } };
     let t0 = 0, playing = false;
     const step = (now) => {
       if (!playing) return;
