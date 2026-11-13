@@ -11,68 +11,80 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/glow.css" />
   <style>
-    .bk { padding: 120px 0 80px; }
+    .bk { padding: 110px 0 80px; }
     .bk h1 { font-size: clamp(44px, 6vw, 80px); font-weight: 700; letter-spacing: -.06em; line-height: .95; margin: 18px 0 14px; }
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }
     .tile { border-radius: 28px; padding: 40px; min-height: 280px; display: grid; place-items: center; background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-s); position: relative; }
     .tile.dk { background: radial-gradient(80% 120% at 0% 0%, #26262a, #0b0b0c 60%); color: #fff; }
-    .tile.or { background: linear-gradient(135deg, #ffb066, #ff5a1f 60%, #e03d0a); color: #fff; }
+    .tile.dk .brand .tgl .t-off { fill: #3a3a3f; }
+    .tile.cr { background: #f6f1ea; }
     .tile small { position: absolute; left: 22px; top: 18px; font-size: 12.5px; color: var(--ink-3); font-weight: 600; }
-    .tile.dk small, .tile.or small { color: rgba(255,255,255,.6); }
-    .lock { display: flex; align-items: center; gap: 16px; }
-    .lock img { width: 72px; height: 72px; border-radius: 28%; box-shadow: 0 16px 30px -12px rgba(0,0,0,.5); }
-    .lock .word { font-size: 64px; font-weight: 700; letter-spacing: -.07em; line-height: 1; }
-    .lock .word i { font-style: normal; background: linear-gradient(100deg, #ff5a1f, #ff9a4d); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .tile.or .lock .word i { background: none; -webkit-background-clip: initial; background-clip: initial; color: #1a0a03; }
+    .tile.dk small { color: rgba(255,255,255,.55); }
+    .big .brand { gap: 16px; }
+    .big .brand .tgl { width: 104px; height: 60px; }
+    .big .brand .word { font-size: 66px; }
     .sizes { display: flex; gap: 22px; align-items: flex-end; }
-    .sizes img { border-radius: 28%; }
-    .story { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px; }
-    .story div { border-radius: 24px; padding: 24px; background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-s); }
-    .story b { display: block; font-size: 17px; letter-spacing: -.03em; margin: 12px 0 6px; }
-    .story p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
-    .story .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--bg-2); }
+    .sizes img { border-radius: 22%; }
+    .sizes .tg { border-radius: 0; }
+    .states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .states div { border-radius: 24px; padding: 26px; background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-s); }
+    .states b { display: block; font-size: 17px; letter-spacing: -.03em; margin: 16px 0 6px; }
+    .states p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
     .sw { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 12px; }
     .sw div { border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-s); }
     .sw i { display: block; height: 120px; }
     .sw span { display: block; padding: 12px 14px; font-size: 13px; color: var(--ink-2); }
     .sw span b { display: block; color: var(--ink); font-size: 14px; }
     .type { margin-top: 12px; border-radius: 28px; padding: 40px; background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-s); }
-    .type .big { font-size: clamp(56px, 8vw, 120px); font-weight: 700; letter-spacing: -.065em; line-height: .9; }
+    .type .big2 { font-size: clamp(56px, 8vw, 120px); font-weight: 700; letter-spacing: -.065em; line-height: .9; }
     .type .row { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 20px; color: var(--ink-2); font-size: 15px; }
-    @media (max-width: 860px) { .grid2, .story { grid-template-columns: 1fr; } .sw { grid-template-columns: 1fr 1fr; } .lock .word { font-size: 44px; } .lock img { width: 52px; height: 52px; } }
+    .replay { margin-top: 16px; }
+    @media (max-width: 860px) { .grid2, .states { grid-template-columns: 1fr; } .sw { grid-template-columns: 1fr 1fr; } .big .brand .word { font-size: 46px; } .big .brand .tgl { width: 76px; height: 44px; } }
   </style>
 </head>
 <body>
 <main class="wrap bk">
-  <span class="pill"><span class="in"><img src="../assets/logo.svg" alt="" width="16" height="16" style="border-radius:28%" /> GlowUp</span><span class="out">Guía de marca</span></span>
-  <h1>Un orbe, partido<br />por la mitad.</h1>
-  <p class="lead" style="max-width:640px">A la izquierda, tu web hoy: un contorno. A la derecha, su glow up: luz. En medio, el tirador del comparador antes/después, que es exactamente lo que enseñamos a cada marca.</p>
+  <span class="pill"><span class="in"><img class="lg" src="../assets/logo.svg" alt="" /> GlowUp</span><span class="out">Guía de marca</span></span>
+  <h1>Encendemos<br />tu web.</h1>
+  <p class="lead" style="max-width:640px">El símbolo es un interruptor que pasa de apagado a encendido: tu web, tal y como está hoy, y su glow up. El destello del botón es la chispa de la mejora. En la web se enciende solo al cargar.</p>
+  <button class="btn glass sm replay" id="replay">Ver cómo se enciende otra vez</button>
 
   <div class="grid2">
-    <div class="tile"><small>Principal</small><div class="lock"><img src="../assets/logo.svg" alt="Logo de GlowUp" /><span class="word">glow<i>up</i></span></div></div>
-    <div class="tile dk"><small>Sobre oscuro</small><div class="lock"><img src="../assets/logo.svg" alt="" /><span class="word">glow<i>up</i></span></div></div>
-    <div class="tile or"><small>Sobre naranja</small><div class="lock"><img src="../assets/logo.svg" alt="" /><span class="word">glow<i>up</i></span></div></div>
-    <div class="tile"><small>Símbolo · de 128 a 16 px</small><div class="sizes"><img src="../assets/logo.svg" width="128" height="128" alt="" /><img src="../assets/logo.svg" width="64" height="64" alt="" /><img src="../assets/logo.svg" width="32" height="32" alt="" /><img src="../assets/logo.svg" width="16" height="16" alt="" /></div></div>
+    <div class="tile big"><small>Principal</small><span class="brand"><svg class="tgl" viewBox="-2 -2 58 34" aria-hidden="true"><rect class="t-off" width="54" height="30" rx="15"/><rect class="t-on" width="54" height="30" rx="15" fill="url(#tgG)"/><rect x=".7" y=".7" width="52.6" height="28.6" rx="14.3" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1"/><g class="kn"><circle cx="15" cy="15" r="11" fill="#fff"/><path class="sp" d="M15 8.6c.5 4 2.1 5.6 6.1 6.1-4 .5-5.6 2.1-6.1 6.1-.5-4-2.1-5.6-6.1-6.1 4-.5 5.6-2.1 6.1-6.1Z" fill="#ff5a1f"/></g></svg><span class="word">glow<i>up</i></span></span></div>
+    <div class="tile dk big"><small>Sobre oscuro</small><span class="brand"><svg class="tgl" viewBox="-2 -2 58 34" aria-hidden="true"><rect class="t-off" width="54" height="30" rx="15"/><rect class="t-on" width="54" height="30" rx="15" fill="url(#tgG)"/><rect x=".7" y=".7" width="52.6" height="28.6" rx="14.3" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1"/><g class="kn"><circle cx="15" cy="15" r="11" fill="#fff"/><path class="sp" d="M15 8.6c.5 4 2.1 5.6 6.1 6.1-4 .5-5.6 2.1-6.1 6.1-.5-4-2.1-5.6-6.1-6.1 4-.5 5.6-2.1 6.1-6.1Z" fill="#ff5a1f"/></g></svg><span class="word">glow<i>up</i></span></span></div>
+    <div class="tile cr"><small>Icono · app, avatar y favicon</small><div class="sizes"><img src="../assets/logo.svg" width="128" height="128" alt="Icono de GlowUp" /><img src="../assets/logo.svg" width="64" height="64" alt="" /><img src="../assets/logo.svg" width="32" height="32" alt="" /><img src="../assets/logo.svg" width="16" height="16" alt="" /></div></div>
+    <div class="tile"><small>Símbolo suelto</small><div class="sizes"><img class="tg" src="../assets/logo-toggle.svg" width="150" height="95" alt="Símbolo de GlowUp" /><img class="tg" src="../assets/logo-toggle.svg" width="76" height="48" alt="" /><img class="tg" src="../assets/logo-toggle.svg" width="38" height="24" alt="" /></div></div>
   </div>
 
-  <div class="story">
-    <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a1a1a6" stroke-width="2"><path d="M12 4a8 8 0 0 0 0 16"/></svg></span><b>Antes</b><p>El contorno: la web que la marca ya tiene. No la despreciamos, partimos de ella.</p></div>
-    <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="11" y="3" width="2" height="18" rx="1" fill="#0a0a0b"/><circle cx="12" cy="12" r="3.4" fill="#0a0a0b"/></svg></span><b>El tirador</b><p>El gesto de comparar. Es la primera cosa que toca cada cliente en su propuesta.</p></div>
-    <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 1 0 16Z" fill="#ff6a2a"/></svg></span><b>Después</b><p>La mitad iluminada: la misma marca, más rápida, más clara y vendiendo más.</p></div>
+  <div class="states">
+    <div><span class="brand" data-off><svg class="tgl" viewBox="-2 -2 58 34" width="64" height="37" aria-hidden="true"><rect class="t-off" width="54" height="30" rx="15"/><rect class="t-on" width="54" height="30" rx="15" fill="url(#tgG)"/><rect x=".7" y=".7" width="52.6" height="28.6" rx="14.3" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1"/><g class="kn"><circle cx="15" cy="15" r="11" fill="#fff"/><path class="sp" d="M15 8.6c.5 4 2.1 5.6 6.1 6.1-4 .5-5.6 2.1-6.1 6.1-.5-4-2.1-5.6-6.1-6.1 4-.5 5.6-2.1 6.1-6.1Z" fill="#ff5a1f"/></g></svg></span><b>Apagado</b><p>La web de hoy. No la despreciamos: es nuestro punto de partida.</p></div>
+    <div><span class="brand on"><svg class="tgl" viewBox="-2 -2 58 34" width="64" height="37" aria-hidden="true"><rect class="t-off" width="54" height="30" rx="15"/><rect class="t-on" width="54" height="30" rx="15" fill="url(#tgG)"/><rect x=".7" y=".7" width="52.6" height="28.6" rx="14.3" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1"/><g class="kn"><circle cx="15" cy="15" r="11" fill="#fff"/><path class="sp" d="M15 8.6c.5 4 2.1 5.6 6.1 6.1-4 .5-5.6 2.1-6.1 6.1-.5-4-2.1-5.6-6.1-6.1 4-.5 5.6-2.1 6.1-6.1Z" fill="#ff5a1f"/></g></svg></span><b>Encendido</b><p>El glow up: la misma marca, más rápida, más clara y vendiendo más.</p></div>
+    <div><span style="display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--line),0 6px 14px -6px rgba(0,0,0,.3)"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3c.9 6.2 2.8 8.1 9 9-6.2.9-8.1 2.8-9 9-.9-6.2-2.8-8.1-9-9 6.2-.9 8.1-2.8 9-9Z" fill="#ff5a1f"/></svg></span><b>El destello</b><p>La chispa naranja del botón. Se usa suelta como acento: en etiquetas, viñetas y avisos.</p></div>
   </div>
 
   <div class="sw">
     <div><i style="background:#0a0a0b"></i><span><b>Tinta</b>#0A0A0B</span></div>
     <div><i style="background:#ff5a1f"></i><span><b>Glow</b>#FF5A1F</span></div>
-    <div><i style="background:#ffb066"></i><span><b>Aura</b>#FFB066</span></div>
-    <div><i style="background:#f5f5f7"></i><span><b>Niebla</b>#F5F5F7</span></div>
-    <div><i style="background:linear-gradient(135deg,#ffc27d,#ff6a2a 50%,#e03d0a)"></i><span><b>Degradado glow</b>#FFC27D → #E03D0A</span></div>
+    <div><i style="background:#ff9a4d"></i><span><b>Aura</b>#FF9A4D</span></div>
+    <div><i style="background:#d8d8dd"></i><span><b>Apagado</b>#D8D8DD</span></div>
+    <div><i style="background:linear-gradient(90deg,#ff9a4d,#ff4d12)"></i><span><b>Degradado</b>#FF9A4D → #FF4D12</span></div>
   </div>
 
   <div class="type">
-    <div class="big">Inter Tight</div>
-    <div class="row"><span>Titulares · 700 · tracking −5,5 %</span><span>Texto · 400–500 · tracking −1 %</span><span>Siempre en minúscula: <b style="color:var(--ink)">glowup</b></span></div>
+    <div class="big2">Inter Tight</div>
+    <div class="row"><span>Titulares · 700 · tracking −5,5 %</span><span>Texto · 400–500 · tracking −1 %</span><span>Siempre en minúscula: <b style="color:var(--ink)">glowup</b>, con <b style="color:var(--brand)">up</b> en naranja</span></div>
   </div>
 </main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="tgG" x1="0" x2="1"><stop offset="0" stop-color="#ff9a4d"/><stop offset="1" stop-color="#ff4d12"/></linearGradient></defs>
+  <symbol id="tg" viewBox="-2 -2 58 34"><rect class="t-off" width="54" height="30" rx="15"/><rect class="t-on" width="54" height="30" rx="15" fill="url(#tgG)"/><rect x=".7" y=".7" width="52.6" height="28.6" rx="14.3" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1"/><g class="kn"><circle cx="15" cy="15" r="11" fill="#fff"/><path class="sp" d="M15 8.6c.5 4 2.1 5.6 6.1 6.1-4 .5-5.6 2.1-6.1 6.1-.5-4-2.1-5.6-6.1-6.1 4-.5 5.6-2.1 6.1-6.1Z" fill="#ff5a1f"/></g></symbol>
+</svg>
+<script src="../assets/glow.js"></script>
+<script>
+  document.getElementById('replay').addEventListener('click', function () {
+    document.querySelectorAll('.big .brand').forEach(function (b) { b.classList.remove('on'); setTimeout(function () { b.classList.add('on'); }, 500); });
+  });
+</script>
 </body>
 </html>

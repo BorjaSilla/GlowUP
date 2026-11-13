@@ -498,3 +498,18 @@ input[type=range]::-moz-range-thumb { width: 30px; height: 20px; border-radius: 
 /* Móvil con scroll dentro del comparador de la landing */
 .m-phone { padding: 18px 0 6px; text-align: center; }
 .m-phone .phones-hint { margin-top: 12px; }
+
+/* ---------- Logo: el interruptor que se enciende ---------- */
+.brand .tgl { display: block; overflow: visible; flex: none; }
+.brand .tgl .t-off { fill: #d8d8dd; }
+.brand .tgl .t-on { opacity: 0; transition: opacity .45s var(--ease); }
+.brand .tgl .kn { transition: transform .7s var(--spring); }
+.brand .tgl .sp { opacity: 0; transform-origin: 15px 15px; transform: scale(.4) rotate(-45deg); transition: opacity .4s .25s, transform .6s .25s var(--spring); }
+.brand .tgl { transition: filter .5s var(--ease); }
+.brand.on .tgl { filter: drop-shadow(0 6px 12px rgba(255,90,31,.45)); }
+.brand.on .tgl .t-on { opacity: 1; }
+.brand.on .tgl .kn { transform: translateX(24px); }
+.brand.on .tgl .sp { opacity: 1; transform: none; }
+.brand:hover .tgl .kn { transform: translateX(20px); }
+.nav .brand { padding-left: 8px; }
+:root[data-theme="dark"] .brand .tgl .t-off, body.dark-zone .brand .tgl .t-off { fill: #3a3a3f; }

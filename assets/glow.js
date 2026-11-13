@@ -11,6 +11,9 @@
   const setTheme = (t) => { document.documentElement.setAttribute('data-theme', t); try { localStorage.setItem('glow_theme', t); } catch (e) {} };
   $$('[data-theme-toggle]').forEach((b) => b.addEventListener('click', () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')));
 
+  /* ---------- Logo: el interruptor se enciende al cargar ---------- */
+  $$('.brand:not([data-off]) .tgl').forEach((t) => { const b = t.closest('.brand'); setTimeout(() => b.classList.add('on'), reduce ? 0 : 550); });
+
   /* ---------- Revelado ---------- */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   $$('.rv').forEach((el) => io.observe(el));
