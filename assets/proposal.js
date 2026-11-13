@@ -6,6 +6,24 @@
   const num = (n, d = 0) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: d, minimumFractionDigits: d, useGrouping: 'always' }).format(n);
   const onView = (el, fn, opts = { threshold: 0.35 }) => { const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { o.disconnect(); fn(); } }, opts); o.observe(el); };
 
+  /* ---------- Toque de escritorio: foco que sigue al ratón y platos con paralaje ---------- */
+  if (matchMedia('(hover: hover) and (min-width: 1000px)').matches) {
+    const hero = $('.px-hero'); const fds = $$('.fd');
+    setTimeout(() => hero && hero.classList.add('on'), 500);
+    let mx = innerWidth / 2, my = innerHeight * 0.2, pend = false;
+    addEventListener('pointermove', (e) => {
+      mx = e.clientX; my = e.clientY; if (pend) return; pend = true;
+      requestAnimationFrame(() => {
+        pend = false;
+        document.body.style.setProperty('--mx', mx + 'px'); document.body.style.setProperty('--my', my + 'px');
+        if (!reduce) {
+          const dx = mx / innerWidth - 0.5, dy = my / innerHeight - 0.5;
+          fds.forEach((f) => { const d = +f.dataset.depth; f.style.setProperty('--tx', (-dx * d) + 'px'); f.style.setProperty('--ty', (-dy * d) + 'px'); });
+        }
+      });
+    }, { passive: true });
+  }
+
   /* ---------- Elementos que se activan al entrar (.in) ---------- */
   $$('.px-visual, .docs').forEach((el) => onView(el, () => el.classList.add('in'), { threshold: 0.3 }));
 
@@ -50,6 +68,7 @@
   function tick() {
     const vh = innerHeight;
     tbas.forEach((ba) => {
+      if (ba.closest('[data-ps-scroll]')) return; // dentro del teléfono se calcula con su propio scroll
       const r = ba.getBoundingClientRect();
       const y = Math.min(r.height - 50, Math.max(50, vh * 0.55 - r.top));
       ba.style.setProperty('--ky', y + 'px');
@@ -63,13 +82,36 @@
   let raf = 0; const onScroll = () => { if (!raf) raf = requestAnimationFrame(() => { tick(); raf = 0; }); };
   addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); tick();
 
-  /* ---------- Vista móvil / escritorio de las comparativas ---------- */
+  /* ---------- Simulador de teléfono ---------- */
+  const show = $('[data-phone-show]');
+  let psDemoDone = false;
+  if (show) {
+    const sc = $('[data-ps-scroll]', show), cap = $('[data-ps-cap]', show), hint = $('[data-ps-hint]', show);
+    const active = () => $('.ps-tba:not([hidden])', sc);
+    const place = () => { const ba = active(); if (!ba) return; const y = Math.min(ba.offsetHeight - 40, Math.max(40, sc.scrollTop + sc.clientHeight * 0.5)); ba.style.setProperty('--ky', y + 'px'); };
+    sc.addEventListener('scroll', () => { place(); if (sc.scrollTop > 40) hint.classList.add('gone'); }, { passive: true });
+    $('.ps-tabs', show).addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      $$('.ps-tabs button', show).forEach((x) => x.classList.toggle('on', x === b));
+      $$('.ps-tba', sc).forEach((t) => { t.hidden = t.dataset.screen !== b.dataset.screen; });
+      cap.textContent = b.dataset.cap; sc.scrollTop = 0; requestAnimationFrame(place);
+    });
+    $$('img', sc).forEach((i) => i.addEventListener('load', place));
+    // Al aparecer, el móvil se desplaza un poco solo para que se entienda que tiene scroll
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || psDemoDone || reduce || show.hidden) return; psDemoDone = true;
+      setTimeout(() => { sc.scrollTo({ top: 320, behavior: 'smooth' }); setTimeout(() => sc.scrollTo({ top: 0, behavior: 'smooth' }), 1300); }, 900);
+    }, { threshold: 0.6 }).observe(sc);
+    place();
+  }
+
+  /* ---------- Vista móvil / escritorio ---------- */
   $$('[data-view-switch]').forEach((seg) => {
     const list = $('[data-tba-list]');
     const set = (mode) => {
       $$('button', seg).forEach((b) => b.classList.toggle('on', b.dataset.mode === mode));
-      list.classList.toggle('m-mode', mode === 'm');
-      $$('picture source', list).forEach((src) => { src.media = mode === 'm' ? 'all' : 'not all'; });
+      list.hidden = mode === 'm';
+      if (show) show.hidden = mode !== 'm';
       requestAnimationFrame(onScroll);
     };
     seg.addEventListener('click', (ev) => { const b = ev.target.closest('button'); if (b) set(b.dataset.mode); });

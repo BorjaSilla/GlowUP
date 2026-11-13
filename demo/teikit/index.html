@@ -10,7 +10,9 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Inter+Tight:wght@400;500;600;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   <link rel="preload" as="image" href="media/hero-poster.webp" />
   <link rel="stylesheet" href="teikit.css" />
 </head>
@@ -41,7 +43,7 @@
 
 <!-- Cinta de vista previa: deja claro que no es la web oficial -->
 <div class="gu-ribbon" role="note">
-  <svg class="spark"><use href="#spark"/></svg>
+  <img src="../../assets/logo.svg" alt="" width="18" height="18" style="border-radius:28%" />
   <span><b>Vista previa GlowUp</b><span class="long"> · Propuesta de rediseño de teikit.es, no es la web oficial</span></span>
   <a href="../../para/teikit/">Ver propuesta</a>
 </div>
@@ -207,6 +209,13 @@
           <h2 class="h2">26 locales,<br />19 ciudades</h2>
           <p class="sub">Llama, pide online o pásate a recoger. Elige tu ciudad.</p>
         </div>
+        <div class="open-chip rv" id="openChip"><i class="dot-live"></i><span>Abiertos todos los días · 12:30–15:30 y 19:00–23:00</span></div>
+      </div>
+      <div class="loc-photos">
+        <figure class="lp rv"><img src="img/local-1.webp" alt="Fachada de un local Teikit" loading="lazy" /><figcaption>A pie de calle</figcaption></figure>
+        <figure class="lp rv" style="--d:.06s"><img src="img/local-2.webp" alt="Ventanilla de recogida para riders en un local Teikit" loading="lazy" /><figcaption>Riders pick-up</figcaption></figure>
+        <figure class="lp rv" style="--d:.12s"><img src="img/local-3.webp" alt="Local Teikit con clientes pasando por delante" loading="lazy" /><figcaption>Recoge sin esperas</figcaption></figure>
+        <figure class="lp rv" style="--d:.18s"><img src="img/local-4.webp" alt="Fachada azul de Teikit con el cartel Recoge aquí" loading="lazy" /><figcaption>Delivery sushi fusion</figcaption></figure>
       </div>
       <div class="stores">
         <div class="regions" id="regions"></div>
@@ -260,10 +269,10 @@
 </div>
 <div class="drawer-bg" id="drawerBg"></div>
 <aside class="drawer" id="drawer" aria-label="Tu pedido" aria-hidden="true">
-  <header><h3>Tu pedido</h3><button class="x" id="drawerX" aria-label="Cerrar"><svg><use href="#i-x"/></svg></button></header>
+  <header><div><h3>Tu pedido</h3><span class="dcount" id="drawerCount"></span></div><button class="x" id="drawerX" aria-label="Cerrar"><svg><use href="#i-x"/></svg></button></header>
   <div class="lines" id="lines"></div>
-  <div id="upsell"></div>
   <footer>
+    <div class="dinfo"><svg><use href="#i-scooter"/></svg> Eliges dirección o recogida en el siguiente paso</div>
     <div class="tot"><span>Subtotal</span><span id="sub">0,00 €</span></div>
     <div class="tot big"><span>Total</span><span id="tot">0,00 €</span></div>
     <a class="btn salmon lg" id="checkout" href="https://teikit.es/home/?controller=stores" target="_blank" rel="noopener">Elegir dirección y pagar <svg><use href="#i-arrow"/></svg></a>

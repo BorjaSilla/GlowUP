@@ -130,11 +130,26 @@
   const regions = [...new Set(D.stores.map((s) => s.region))].sort((a, b) => D.stores.filter((s) => s.region === b).length - D.stores.filter((s) => s.region === a).length);
   const tel = (p) => p.replace(/[^\d+]/g, '');
   const maps = (s) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`Teikit ${s.addr} ${s.city}`);
+  // Horario publicado en teikit.es para los 26 locales: todos los días, 12:30–15:30 y 19:00–23:00 (hora de Madrid)
+  const SLOTS = [[12.5, 15.5, '12:30'], [19, 23, '19:00']];
+  function openNow() {
+    const parts = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    const h = +parts.find((p) => p.type === 'hour').value + +parts.find((p) => p.type === 'minute').value / 60;
+    const cur = SLOTS.find(([a, b]) => h >= a && h < b);
+    if (cur) return { open: true, text: 'Abierto ahora' };
+    const next = SLOTS.find(([a]) => h < a);
+    return { open: false, text: next ? `Abre a las ${next[2]}` : 'Abre mañana a las 12:30' };
+  }
+  const status = openNow();
+  const chip = $('#openChip');
+  if (chip) { chip.classList.toggle('closed', !status.open); chip.querySelector('span').textContent = `${status.text} · Todos los días, 12:30–15:30 y 19:00–23:00`; }
+
   function renderStores(region) {
     $$('#regions button').forEach((b) => b.classList.toggle('on', b.dataset.r === region));
     $('#storeList').innerHTML = D.stores.filter((s) => s.region === region).map((s, i) => `
       <div class="store" style="animation-delay:${i * 0.04}s">
-        <h4>Teikit ${esc(s.name)}</h4>
+        <span class="st ${status.open ? 'on' : ''}"><i></i>${status.text}</span>
+        <h3>Teikit ${esc(s.name)}</h3>
         <div class="addr">${esc(s.addr)} · ${esc(s.city)}</div>
         <div class="row"><a href="tel:${tel(s.phone)}">${icon('i-phone')} ${esc(s.phone.replace('+34 ', ''))}</a><a class="pri" href="${maps(s)}" target="_blank" rel="noopener">${icon('i-pin')} Cómo llegar</a></div>
       </div>`).join('');
@@ -177,6 +192,18 @@
     });
   }
 
+  // "Completa tu pedido": un entrante, un postre y una bebida que aún no estén en el pedido
+  const SUGGEST = [['ENTRANTES', ['chicken-gyozas', 'edamame-trufado', 'veggie-gyozas']], ['POSTRES', ['mochi-mango', 'cheesecake-oreo', 'mochi-te-matcha']], ['BEBIDAS', ['kirin', 'coca-cola', 'sapporo']]];
+  function suggestions() {
+    const inCart = Object.keys(cart);
+    const picks = SUGGEST.filter(([cat]) => !inCart.some((id) => byId[id].cat === cat)).map(([, ids]) => ids.find((id) => byId[id] && !cart[id])).filter(Boolean);
+    if (!picks.length) return '';
+    return `<div class="sugg"><div class="sugg-h"><b>Completa tu pedido</b><span>Lo que más se pide junto a tus rolls</span></div><div class="sugg-g">${picks.map((id) => {
+      const it = byId[id];
+      return `<div class="sg"><img src="${it.img}" alt="" /><b>${esc(it.name)}</b><div class="r"><span>${eur(it.price)}</span><button class="add" data-add="${id}" aria-label="Añadir ${esc(it.name)}">${icon('i-plus')}</button></div></div>`;
+    }).join('')}</div></div>`;
+  }
+
   function renderCart() {
     const n = count(), t = total();
     $('#cartCount').textContent = n;
@@ -189,11 +216,8 @@
       const it = byId[id];
       return `<div class="line"><img src="${it.img}" alt="" /><div><b>${esc(it.name)}</b><span>${eur(it.price * q)}</span></div>
         <div class="qty"><button data-dec="${id}" aria-label="Quitar uno">−</button><output>${q}</output><button data-inc="${id}" aria-label="Añadir uno">+</button></div></div>`;
-    }).join('') : `<div class="empty-cart">Tu pedido está vacío.<br />Empieza por un <a href="#favoritos" style="text-decoration:underline">best seller</a>.</div>`;
-    // Upsell sencillo: si no hay entrantes, sugiere gyozas
-    const hasStarter = Object.keys(cart).some((id) => byId[id].cat === 'ENTRANTES');
-    const up = byId['chicken-gyozas'];
-    $('#upsell').innerHTML = n && !hasStarter ? `<div class="upsell"><img src="${up.img}" alt="" /><div><b>¿Unas gyozas para empezar?</b><br />${esc(up.name)} · ${eur(up.price)}</div><button class="add" data-add="chicken-gyozas">${icon('i-plus')} Añadir</button></div>` : '';
+    }).join('') + suggestions() : `<div class="empty-cart">Tu pedido está vacío.<br />Empieza por un <a href="#favoritos" style="text-decoration:underline">best seller</a>.</div>`;
+    $('#drawerCount').textContent = n ? `${n} ${n === 1 ? 'producto' : 'productos'}` : '';
     syncAdded();
   }
 

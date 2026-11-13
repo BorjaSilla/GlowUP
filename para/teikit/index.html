@@ -21,7 +21,7 @@
     window.GLOW = { email: '', whatsapp: '' };
   </script>
 </head>
-<body>
+<body class="px-page">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.7 5.6 2.9 7.8 8.5 8.5-5.6.7-7.8 2.9-8.5 8.5-.7-5.6-2.9-7.8-8.5-8.5 5.6-.7 7.8-2.9 8.5-8.5Z"/><circle cx="19.5" cy="19.5" r="2.5"/></symbol>
@@ -44,7 +44,7 @@
 </svg>
 
 <nav class="nav" aria-label="Principal">
-  <a class="brand" href="../../" aria-label="GlowUp"><img class="mark" src="../../assets/logo.svg" alt="" width="44" height="44" /></a>
+  <a class="brand" href="../../" aria-label="GlowUp"><img class="mark" src="../../assets/logo.svg" alt="" width="44" height="44" /><span class="word">glow<i>up</i></span></a>
   <div class="links">
     <a href="#porque">Por qué</a>
     <a href="#velocidad">Velocidad</a>
@@ -58,7 +58,13 @@
   <!-- HERO -->
   <header class="px-hero" data-hero>
     <div class="wrap">
-      <span class="pill rv"><span class="in"><svg class="spark"><use href="#spark"/></svg> GlowUp</span><span class="out">Propuesta a medida · noviembre 2026</span></span>
+      <div class="px-float" aria-hidden="true">
+        <figure class="fd f1" data-depth="18"><img src="../../demo/teikit/img/menu/salmon-crush.webp" alt="" /><span>Salmon Crush · 10,95 €</span></figure>
+        <figure class="fd f2" data-depth="30"><img src="../../demo/teikit/img/menu/paris.webp" alt="" /><span>Paris · 11,95 €</span></figure>
+        <figure class="fd f3" data-depth="24"><img src="../../demo/teikit/img/menu/kioto.webp" alt="" /><span>Kioto · 9,95 €</span></figure>
+        <figure class="fd f4" data-depth="14"><img src="../../demo/teikit/img/menu/nikkei-poke.webp" alt="" /><span>Nikkei Poke · 11,95 €</span></figure>
+      </div>
+      <span class="pill rv"><span class="in"><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</span><span class="out">Propuesta a medida · noviembre 2026</span></span>
       <h1 class="rv" style="--d:.08s">Teikit<span class="x">×</span>GlowUp</h1>
       <p class="lead rv" style="--d:.16s">Os hemos rediseñado la portada, la carta y el pedido. Nos encanta que un roll pueda llevar foie con manzana horneada o salsa de ají, y que esa idea haya llegado desde 2012 a 26 locales. Con 79 platos en carta, lo bonito es que cada visita encuentre el suyo a la primera.</p>
       <div class="ctas rv" style="--d:.24s">
@@ -74,7 +80,7 @@
   <section class="sec web-first" id="web">
     <div class="wrap">
       <div class="web-head rv">
-        <div><span class="ey"><b><svg><use href="#spark"/></svg> GlowUp</b><span>La web</span></span><h2 class="h2">Así quedaría la web de Teikit.</h2></div>
+        <div><span class="ey"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>La web</span></span><h2 class="h2">Así quedaría la web de Teikit.</h2></div>
         <div class="seg view-seg" data-view-switch role="group" aria-label="Ver comparativas en"><button data-mode="m"><svg><use href="#phone"/></svg> Móvil</button><button data-mode="d"><svg><use href="#desk"/></svg> Escritorio</button></div>
       </div>
 
@@ -82,8 +88,8 @@
         <div class="tba-wrap" data-grow>
           <div class="tba-label"><b>Portada</b><span>De arriba abajo, como la vería alguien que llega desde Instagram</span></div>
           <div class="tba" tabindex="0" role="slider" aria-label="Comparar portada: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-home-after.webp" /><img src="../../assets/shots/teikit/home-after.webp" alt="Portada propuesta" draggable="false" /></picture>
-            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-home-before.webp" /><img src="../../assets/shots/teikit/home-before.webp" alt="Portada hoy" draggable="false" /></picture></div>
+            <img src="../../assets/shots/teikit/home-after.webp" alt="Portada propuesta" draggable="false" />
+            <div class="bf"><img src="../../assets/shots/teikit/home-before.webp" alt="Portada hoy" draggable="false" /></div>
             <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
             <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
           </div>
@@ -91,8 +97,8 @@
         <div class="tba-wrap" data-grow>
           <div class="tba-label"><b>La carta</b><span>Donde se decide el pedido</span></div>
           <div class="tba" tabindex="0" role="slider" aria-label="Comparar la carta: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-carta-after.webp" /><img src="../../assets/shots/teikit/carta-after.webp" alt="La carta propuesta" loading="lazy" draggable="false" /></picture>
-            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-carta-before.webp" /><img src="../../assets/shots/teikit/carta-before.webp" alt="La carta hoy" loading="lazy" draggable="false" /></picture></div>
+            <img src="../../assets/shots/teikit/carta-after.webp" alt="La carta propuesta" loading="lazy" draggable="false" />
+            <div class="bf"><img src="../../assets/shots/teikit/carta-before.webp" alt="La carta hoy" loading="lazy" draggable="false" /></div>
             <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
             <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
           </div>
@@ -101,8 +107,8 @@
         <div class="tba-wrap" data-grow>
           <div class="tba-label"><b>Pedir</b><span>Hoy, la dirección va antes que la comida</span></div>
           <div class="tba" tabindex="0" role="slider" aria-label="Comparar pedir: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-pedido-after.webp" /><img src="../../assets/shots/teikit/pedido-after.webp" alt="Pedir propuesta" loading="lazy" draggable="false" /></picture>
-            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-pedido-before.webp" /><img src="../../assets/shots/teikit/pedido-before.webp" alt="Pedir hoy" loading="lazy" draggable="false" /></picture></div>
+            <img src="../../assets/shots/teikit/pedido-after.webp" alt="Pedir propuesta" loading="lazy" draggable="false" />
+            <div class="bf"><img src="../../assets/shots/teikit/pedido-before.webp" alt="Pedir hoy" loading="lazy" draggable="false" /></div>
             <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
             <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
           </div>
@@ -110,8 +116,8 @@
         <div class="tba-wrap" data-grow>
           <div class="tba-label"><b>Locales</b><span>Llamar o llegar, en un toque</span></div>
           <div class="tba" tabindex="0" role="slider" aria-label="Comparar locales: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-locales-after.webp" /><img src="../../assets/shots/teikit/locales-after.webp" alt="Locales propuesta" loading="lazy" draggable="false" /></picture>
-            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-locales-before.webp" /><img src="../../assets/shots/teikit/locales-before.webp" alt="Locales hoy" loading="lazy" draggable="false" /></picture></div>
+            <img src="../../assets/shots/teikit/locales-after.webp" alt="Locales propuesta" loading="lazy" draggable="false" />
+            <div class="bf"><img src="../../assets/shots/teikit/locales-before.webp" alt="Locales hoy" loading="lazy" draggable="false" /></div>
             <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
             <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
           </div>
@@ -127,6 +133,44 @@
         </div>
       </div>
 
+      <div class="phone-show" data-phone-show hidden>
+        <div class="seg ps-tabs" role="tablist" aria-label="Pantalla">
+          <button class="on" data-screen="home" data-cap="De arriba abajo, como la vería alguien que llega desde Instagram">Portada</button>
+          <button data-screen="carta" data-cap="Donde se decide el pedido">Carta</button>
+          <button data-screen="pedido" data-cap="Hoy, la dirección va antes que la comida">Pedir</button>
+          <button data-screen="locales" data-cap="Llamar o llegar, en un toque">Locales</button>
+        </div>
+        <p class="ps-cap" data-ps-cap>De arriba abajo, como la vería alguien que llega desde Instagram</p>
+        <div class="ps-legend"><span><i></i>Hoy</span><span class="hot">Propuesta<i></i></span></div>
+        <div class="ps-device">
+          <div class="phone-frame ps-frame">
+            <div class="scr ps-scroll" data-ps-scroll>
+                <div class="tba ps-tba" data-screen="home" tabindex="0" role="slider" aria-label="Comparar en el móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                  <img src="../../assets/shots/teikit/m-home-after.webp" alt="Propuesta en el móvil" loading="lazy" draggable="false" />
+                  <div class="bf"><img src="../../assets/shots/teikit/m-home-before.webp" alt="Web actual en el móvil" loading="lazy" draggable="false" /></div>
+                  <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza</span></div>
+                </div>
+                <div class="tba ps-tba" data-screen="carta" hidden tabindex="0" role="slider" aria-label="Comparar en el móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                  <img src="../../assets/shots/teikit/m-carta-after.webp" alt="Propuesta en el móvil" loading="lazy" draggable="false" />
+                  <div class="bf"><img src="../../assets/shots/teikit/m-carta-before.webp" alt="Web actual en el móvil" loading="lazy" draggable="false" /></div>
+                  <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza</span></div>
+                </div>
+                <div class="tba ps-tba" data-screen="pedido" hidden tabindex="0" role="slider" aria-label="Comparar en el móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                  <img src="../../assets/shots/teikit/m-pedido-after.webp" alt="Propuesta en el móvil" loading="lazy" draggable="false" />
+                  <div class="bf"><img src="../../assets/shots/teikit/m-pedido-before.webp" alt="Web actual en el móvil" loading="lazy" draggable="false" /></div>
+                  <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza</span></div>
+                </div>
+                <div class="tba ps-tba" data-screen="locales" hidden tabindex="0" role="slider" aria-label="Comparar en el móvil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                  <img src="../../assets/shots/teikit/m-locales-after.webp" alt="Propuesta en el móvil" loading="lazy" draggable="false" />
+                  <div class="bf"><img src="../../assets/shots/teikit/m-locales-before.webp" alt="Web actual en el móvil" loading="lazy" draggable="false" /></div>
+                  <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza</span></div>
+                </div>
+            </div>
+          </div>
+          <div class="ps-hint" data-ps-hint><span class="sw"><i></i></span> Desplázate dentro del móvil</div>
+        </div>
+      </div>
+
       <p class="prelim rv"><svg width="16" height="16" style="flex:none;color:var(--ink-3)"><use href="#spark"/></svg><span><b>Versión preliminar.</b> Es la dirección que tomaríamos con vosotros. El pago sigue en vuestro sistema actual.</span></p>
       <div class="reply rv">
         <p>¿Qué os parece?<span>Por WhatsApp o en una llamada. Os respondemos nosotros, no un comercial.</span></p>
@@ -139,7 +183,7 @@
   <section class="sec" id="porque">
     <div class="wrap">
       <div class="sec-head">
-        <span class="ey rv"><b><svg><use href="#spark"/></svg> GlowUp</b><span>Antes de nada</span></span>
+        <span class="ey rv"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>Antes de nada</span></span>
         <h2 class="h2 rv">Antes de meter un euro<br />más en anuncios.</h2>
         <p class="lead rv" style="--d:.08s">Cada euro en Instagram o Google trae visitas, no pedidos. Cuántas de esas visitas piden lo decide la web.</p>
       </div>
@@ -162,7 +206,7 @@
   <section class="sec" id="velocidad">
     <div class="wrap">
       <div class="sec-head">
-        <span class="ey rv"><b><svg><use href="#spark"/></svg> GlowUp</b><span>Lo que no sale en una captura</span></span>
+        <span class="ey rv"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>Lo que no sale en una captura</span></span>
         <h2 class="h2 rv">Abrid las dos en un móvil.<br />A la vez.</h2>
         <p class="lead rv" style="--d:.08s">Misma conexión para las dos: 4G lento y un móvil normal, como mide Google.</p>
       </div>
@@ -198,7 +242,7 @@
     <div class="wrap">
       <div class="order-blk">
         <div class="card rv">
-          <span class="ey"><b><svg><use href="#spark"/></svg> GlowUp</b><span>El pedido</span></span>
+          <span class="ey"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>El pedido</span></span>
           <h2 class="h2" style="font-size:clamp(28px,3.2vw,40px)">El pedido, donde se gana el ticket medio.</h2>
           <p class="muted" style="margin:12px 0 0">En la propuesta, el pedido acompaña a quien navega y sugiere lo que falta.</p>
           <div class="nlist">
@@ -207,7 +251,7 @@
             <div><i>3</i><span><b>No se pierde</b>Si cierras la web, el pedido te espera al volver.</span></div>
           </div>
         </div>
-        <div class="shot rv" style="--d:.08s"><img src="../../assets/shots/teikit/drawer.webp" alt="Pedido abierto en la propuesta" loading="lazy" /></div>
+        <div class="shot rv" style="--d:.08s"><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-pedido-after.webp" alt="Pedido abierto en el móvil" loading="lazy" /></div></div></div>
       </div>
     </div>
   </section>
@@ -216,7 +260,7 @@
   <section class="sec" style="padding-top:clamp(64px,8vw,96px)">
     <div class="wrap">
       <div class="sec-head" style="text-align:left;max-width:none;margin-bottom:22px;display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:8px">
-        <div><span class="ey rv"><b><svg><use href="#spark"/></svg> GlowUp</b><span>La propuesta</span></span><h2 class="h2 rv" style="font-size:clamp(28px,3.2vw,40px)">¿Por qué esta web vende más?</h2></div>
+        <div><span class="ey rv"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>La propuesta</span></span><h2 class="h2 rv" style="font-size:clamp(28px,3.2vw,40px)">¿Por qué esta web vende más?</h2></div>
         <span class="muted rv" style="font-size:14px">Lo que cambia para quien entra en Teikit.</span>
       </div>
       <div class="why">
@@ -233,7 +277,7 @@
     <div class="wrap">
       <div class="guar-blk rv">
         <div>
-          <span class="ey" style="background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)"><b style="background:#fff;color:#0a0a0b"><svg><use href="#spark"/></svg> GlowUp</b><span style="color:#c7c7cc">Garantía</span></span>
+          <span class="ey" style="background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)"><b style="background:#fff;color:#0a0a0b"><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span style="color:#c7c7cc">Garantía</span></span>
           <h2>Si los pedidos no suben, seguimos trabajando gratis.</h2>
           <p>Antes de empezar dejamos por escrito qué indicador movemos y cómo se mide. Si no se mueve, seguimos sin cobrar hasta que lo haga.</p>
           <ul>
@@ -283,7 +327,7 @@
   <section class="sec" id="numeros">
     <div class="wrap">
       <div class="sec-head">
-        <span class="ey rv"><b><svg><use href="#spark"/></svg> GlowUp</b><span>Números</span></span>
+        <span class="ey rv"><b><img class="lg" src="../../assets/logo.svg" alt="" /> GlowUp</b><span>Números</span></span>
         <h2 class="h2 rv">Ahora, con vuestros números.</h2>
         <p class="lead rv" style="--d:.08s">Moved las visitas, el ticket y la conversión. Es un ejemplo: en la llamada lo hacemos con vuestros datos.</p>
       </div>
@@ -323,7 +367,7 @@
     <div><h3>La web nueva</h3><ul><li><a href="../../demo/teikit/#carta">Carta</a></li><li><a href="../../demo/teikit/#packs">Packs</a></li><li><a href="../../demo/teikit/#locales">Locales</a></li></ul></div>
     <div><h3>GlowUp</h3><ul><li><a href="../../">Quiénes somos</a></li><li><a href="../../#como">Cómo trabajamos</a></li></ul></div>
   </div>
-  <div class="bottom"><span>© <span data-year></span> GlowUp · Fotografías y contenidos de Teikit, usados solo para esta propuesta.</span><span class="brand" style="font-size:15px;color:#a1a1a6"><img class="mark" src="../../assets/logo.svg" alt="" style="width:24px;height:24px" /> glow<i style="font-style:normal;color:var(--brand)">up</i></span></div>
+  <div class="bottom"><span>© <span data-year></span> GlowUp · Fotografías y contenidos de Teikit, usados solo para esta propuesta.</span><span class="brand" style="color:#a1a1a6"><img class="mark" src="../../assets/logo.svg" alt="" style="width:24px;height:24px" /> <span class="word" style="font-size:16px">glow<i>up</i></span></span></div>
 </footer>
 
 <script src="../../assets/glow.js"></script>
