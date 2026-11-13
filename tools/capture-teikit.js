@@ -61,7 +61,23 @@ const top = (p, sel) => p.locator(sel).first().evaluate((el) => el.getBoundingCl
   p = await page(b, true); await open(p, OLD); await p.screenshot({ path: `${OUT}/m-home-before.png`, fullPage: true }); await p.context().close();
   p = await page(b, true); await open(p, DEMO, { cookie: false });
   await p.addStyleTag({ content: '.cart-bar,.toast{display:none!important}' });
-  await p.screenshot({ path: `${OUT}/m-home-after.png`, fullPage: true }); await p.context().close();
+  await p.screenshot({ path: `${OUT}/m-home-after.png`, fullPage: true });
+  meta.mCartaTop = await top(p, '#carta');
+  await p.context().close();
+
+  // 6) Móvil: carta, pedido y locales
+  p = await page(b, true); await open(p, OLD + '?controller=category&id_category=2'); await p.screenshot({ path: `${OUT}/m-carta-before.png`, fullPage: true }); await p.context().close();
+  p = await page(b, true); await open(p, OLD + '?controller=stores'); await p.screenshot({ path: `${OUT}/m-pedido-before.png` }); await p.context().close();
+  p = await page(b, true); await open(p, DEMO, { cookie: false });
+  await p.evaluate(() => { const el = document.querySelector('#favoritos'); scrollTo(0, el.getBoundingClientRect().top + scrollY - 80); });
+  for (const id of ['salmon-crush', 'kioto', 'paris']) { await p.locator(`[data-add="${id}"]`).first().click(); await p.waitForTimeout(250); }
+  await p.locator('#cartBtn').click(); await p.waitForTimeout(1200);
+  await p.screenshot({ path: `${OUT}/m-pedido-after.png` }); await p.context().close();
+  p = await page(b, true); await open(p, OLD + '?controller=stores&map=true'); await p.screenshot({ path: `${OUT}/m-locales-before.png` }); await p.context().close();
+  p = await page(b, true); await open(p, DEMO, { cookie: false });
+  await p.addStyleTag({ content: '.cart-bar,.toast{display:none!important}' });
+  await p.evaluate(() => { const el = document.querySelector('#locales'); scrollTo(0, el.getBoundingClientRect().top + scrollY - 90); }); await p.waitForTimeout(1600);
+  await p.screenshot({ path: `${OUT}/m-locales-after.png` }); await p.context().close();
 
   fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta));
   console.log(meta);

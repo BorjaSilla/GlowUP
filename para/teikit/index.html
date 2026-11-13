@@ -38,6 +38,8 @@
   <symbol id="star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
   <symbol id="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
   <symbol id="tap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11l3.6.7a2 2 0 0 1 1.6 2.2l-.6 4.6a2 2 0 0 1-2 1.7H11a2 2 0 0 1-1.6-.8L6 14.8a1.5 1.5 0 0 1 2.2-2L9 13.5"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
   <symbol id="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h9"/></symbol>
 </svg>
 
@@ -60,17 +62,78 @@
       <h1 class="rv" style="--d:.08s">Teikit<span class="x">×</span>GlowUp</h1>
       <p class="lead rv" style="--d:.16s">Os hemos rediseñado la portada, la carta y el pedido. Nos encanta que un roll pueda llevar foie con manzana horneada o salsa de ají, y que esa idea haya llegado desde 2012 a 26 locales. Con 79 platos en carta, lo bonito es que cada visita encuentre el suyo a la primera.</p>
       <div class="ctas rv" style="--d:.24s">
-        <a class="btn glow lg" href="#web">Ver la propuesta <svg><use href="#down"/></svg></a>
+        <a class="btn glow lg" href="#web">Ver el antes y después <svg><use href="#down"/></svg></a>
         <a class="btn lg" href="../../demo/teikit/" target="_blank" rel="noopener">Probar la web nueva <svg><use href="#ext"/></svg></a>
       </div>
       <div class="rv" style="--d:.3s"><span class="bubble-note"><img src="../../assets/logo.svg" alt="" /><span>No venimos a traeros más visitas. <b>Venimos a que pidan más las que ya tenéis.</b></span></span></div>
 
-      <div class="px-visual rv" style="--d:.36s">
-        <div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="../../assets/shots/teikit/hero-desktop.webp" alt="Nueva portada de Teikit en escritorio" /></div>
-        <div class="phone"><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/hero-phone.webp" alt="Nueva portada de Teikit en el móvil" /></div></div></div>
-      </div>
     </div>
   </header>
+
+  <!-- LA WEB: lo primero tras el hero -->
+  <section class="sec web-first" id="web">
+    <div class="wrap">
+      <div class="web-head rv">
+        <div><span class="ey"><b><svg><use href="#spark"/></svg> GlowUp</b><span>La web</span></span><h2 class="h2">Así quedaría la web de Teikit.</h2></div>
+        <div class="seg view-seg" data-view-switch role="group" aria-label="Ver comparativas en"><button data-mode="m"><svg><use href="#phone"/></svg> Móvil</button><button data-mode="d"><svg><use href="#desk"/></svg> Escritorio</button></div>
+      </div>
+
+      <div class="tba-list" data-tba-list>
+        <div class="tba-wrap" data-grow>
+          <div class="tba-label"><b>Portada</b><span>De arriba abajo, como la vería alguien que llega desde Instagram</span></div>
+          <div class="tba" tabindex="0" role="slider" aria-label="Comparar portada: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-home-after.webp" /><img src="../../assets/shots/teikit/home-after.webp" alt="Portada propuesta" draggable="false" /></picture>
+            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-home-before.webp" /><img src="../../assets/shots/teikit/home-before.webp" alt="Portada hoy" draggable="false" /></picture></div>
+            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
+            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
+          </div>
+        </div>
+        <div class="tba-wrap" data-grow>
+          <div class="tba-label"><b>La carta</b><span>Donde se decide el pedido</span></div>
+          <div class="tba" tabindex="0" role="slider" aria-label="Comparar la carta: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-carta-after.webp" /><img src="../../assets/shots/teikit/carta-after.webp" alt="La carta propuesta" loading="lazy" draggable="false" /></picture>
+            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-carta-before.webp" /><img src="../../assets/shots/teikit/carta-before.webp" alt="La carta hoy" loading="lazy" draggable="false" /></picture></div>
+            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
+            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
+          </div>
+        </div>
+        <div class="tba-2">
+        <div class="tba-wrap" data-grow>
+          <div class="tba-label"><b>Pedir</b><span>Hoy, la dirección va antes que la comida</span></div>
+          <div class="tba" tabindex="0" role="slider" aria-label="Comparar pedir: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-pedido-after.webp" /><img src="../../assets/shots/teikit/pedido-after.webp" alt="Pedir propuesta" loading="lazy" draggable="false" /></picture>
+            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-pedido-before.webp" /><img src="../../assets/shots/teikit/pedido-before.webp" alt="Pedir hoy" loading="lazy" draggable="false" /></picture></div>
+            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
+            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
+          </div>
+        </div>
+        <div class="tba-wrap" data-grow>
+          <div class="tba-label"><b>Locales</b><span>Llamar o llegar, en un toque</span></div>
+          <div class="tba" tabindex="0" role="slider" aria-label="Comparar locales: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-locales-after.webp" /><img src="../../assets/shots/teikit/locales-after.webp" alt="Locales propuesta" loading="lazy" draggable="false" /></picture>
+            <div class="bf"><picture><source media="(max-width: 700px)" srcset="../../assets/shots/teikit/m-locales-before.webp" /><img src="../../assets/shots/teikit/locales-before.webp" alt="Locales hoy" loading="lazy" draggable="false" /></picture></div>
+            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
+            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint"><svg><use href="#drag"/></svg> Desliza para comparar</span></div>
+          </div>
+        </div>
+        </div>
+
+        <div class="phones-blk">
+          <div class="tba-label" style="max-width:900px;margin:0 auto 18px"><b>En el móvil</b><span>Así se recorre la portada con el pulgar</span></div>
+          <div class="phones">
+            <div class="one"><span class="lbl">Hoy</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-before.webp" alt="Portada actual en móvil" loading="lazy" /></div></div></div>
+            <div class="one"><span class="lbl hot">Propuesta</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-after.webp" alt="Portada propuesta en móvil" loading="lazy" /></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="prelim rv"><svg width="16" height="16" style="flex:none;color:var(--ink-3)"><use href="#spark"/></svg><span><b>Versión preliminar.</b> Es la dirección que tomaríamos con vosotros. El pago sigue en vuestro sistema actual.</span></p>
+      <div class="reply rv">
+        <p>¿Qué os parece?<span>Por WhatsApp o en una llamada. Os respondemos nosotros, no un comercial.</span></p>
+        <div><a class="btn wa sm" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> WhatsApp</a><a class="btn glow sm" href="#hablemos" data-contact="Teikit: agendar una llamada">Agendar una llamada</a></div>
+      </div>
+    </div>
+  </section>
 
   <!-- POR QUÉ -->
   <section class="sec" id="porque">
@@ -108,16 +171,6 @@
         <div class="clock"><b>0,0 s</b><span>tiempo de carga</span><div class="track"><i></i></div></div>
         <div class="side" data-side="after"><span class="lbl hot">Con GlowUp</span><div class="phone-frame"><div class="scr"><img alt="Carga de la web nueva" style="opacity:0" /></div></div><div class="state">Cargando…</div></div>
       </div>
-      <div class="strips rv">
-        <div class="strip"><span class="who">Hoy</span>
-          <figure><div class="blank"></div><figcaption>0,5 s</figcaption></figure><figure><div class="blank"></div><figcaption>1 s</figcaption></figure><figure><div class="blank"></div><figcaption>1,5 s</figcaption></figure><figure><div class="blank"></div><figcaption>2 s</figcaption></figure>
-          <figure><img src="../../assets/shots/teikit/film/before-4.webp" alt="" loading="lazy" /><figcaption>3 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/before-5.webp" alt="" loading="lazy" /><figcaption>4 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/before-6.webp" alt="" loading="lazy" /><figcaption>6 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/before-7.webp" alt="" loading="lazy" /><figcaption>8 s</figcaption></figure>
-        </div>
-        <div class="strip"><span class="who" style="color:var(--brand)">GlowUp</span>
-          <figure><div class="blank"></div><figcaption>0,5 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-1.webp" alt="" loading="lazy" /><figcaption>1 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-2.webp" alt="" loading="lazy" /><figcaption>1,5 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-3.webp" alt="" loading="lazy" /><figcaption>2 s</figcaption></figure>
-          <figure><img src="../../assets/shots/teikit/film/after-4.webp" alt="" loading="lazy" /><figcaption>3 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-5.webp" alt="" loading="lazy" /><figcaption>4 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-6.webp" alt="" loading="lazy" /><figcaption>6 s</figcaption></figure><figure><img src="../../assets/shots/teikit/film/after-7.webp" alt="" loading="lazy" /><figcaption>8 s</figcaption></figure>
-        </div>
-      </div>
       <div class="chips-kpi rv">
         <span>Rendimiento <s>67</s> <b>99</b></span>
         <span>Portada visible <s>6,7 s</s> <b>1,7 s</b></span>
@@ -125,76 +178,6 @@
         <span>Accesibilidad <s>85</s> <b>99</b></span>
       </div>
       <p class="src rv">Puntuaciones de Google Lighthouse (móvil) del 13/11/2026.</p>
-    </div>
-  </section>
-
-  <!-- LA WEB -->
-  <section class="sec" id="web">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="ey rv"><b><svg><use href="#spark"/></svg> GlowUp</b><span>La web</span></span>
-        <h2 class="h2 rv">Así quedaría la web de Teikit.</h2>
-        <p class="lead rv" style="--d:.08s">Arriba, un buscador de local y los platos que más se piden, con precio. Abajo, la carta entera con filtros. Y el pedido siempre a la vista.</p>
-      </div>
-      <div class="mk rv">
-        <span class="th"><img src="../../assets/shots/teikit/hero-desktop.webp" alt="" /><img src="../../assets/shots/teikit/carta-after.webp" alt="" /></span>
-        <span><b>Hecho a medida por el equipo de GlowUp</b><span>Con vuestras fotos, vuestra carta y vuestros 26 locales. Nada de plantillas.</span></span>
-      </div>
-
-      <div class="tba-list">
-        <div class="tba-wrap" data-grow>
-          <div class="tba-label"><b>Portada</b><span>De arriba abajo, como la vería alguien que llega desde Instagram</span></div>
-          <div class="tba" tabindex="0" role="slider" aria-label="Comparar la portada: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <img src="../../assets/shots/teikit/home-after.webp" alt="Portada propuesta" loading="lazy" />
-            <div class="bf"><img src="../../assets/shots/teikit/home-before.webp" alt="Portada actual" loading="lazy" /></div>
-            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
-            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint">Desliza para comparar</span></div>
-          </div>
-        </div>
-        <div class="tba-wrap" data-grow>
-          <div class="tba-label"><b>La carta</b><span>Donde se decide el pedido</span></div>
-          <div class="tba" tabindex="0" role="slider" aria-label="Comparar la carta: hoy y propuesta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <img src="../../assets/shots/teikit/carta-after.webp" alt="Carta propuesta" loading="lazy" />
-            <div class="bf"><img src="../../assets/shots/teikit/carta-before.webp" alt="Carta actual" loading="lazy" /></div>
-            <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta a medida</span>
-            <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span><span class="hint">Desliza para comparar</span></div>
-          </div>
-        </div>
-        <div class="tba-2">
-          <div class="tba-wrap" data-grow>
-            <div class="tba-label"><b>Pedir</b><span>Hoy, la dirección va antes que la comida</span></div>
-            <div class="tba" tabindex="0" role="slider" aria-label="Comparar el pedido" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-              <img src="../../assets/shots/teikit/pedido-after.webp" alt="Pedido propuesto" loading="lazy" />
-              <div class="bf"><img src="../../assets/shots/teikit/pedido-before.webp" alt="Pedido actual" loading="lazy" /></div>
-              <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
-              <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span></div>
-            </div>
-          </div>
-          <div class="tba-wrap" data-grow>
-            <div class="tba-label"><b>Locales</b><span>Llamar o llegar, en un toque</span></div>
-            <div class="tba" tabindex="0" role="slider" aria-label="Comparar los locales" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-              <img src="../../assets/shots/teikit/locales-after.webp" alt="Locales propuestos" loading="lazy" />
-              <div class="bf"><img src="../../assets/shots/teikit/locales-before.webp" alt="Locales actuales" loading="lazy" /></div>
-              <span class="tag-l">Hoy</span><span class="tag-r"><i></i>Propuesta</span>
-              <div class="line"><span class="knob"><svg><use href="#drag"/></svg></span></div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="tba-label" style="max-width:900px;margin:0 auto 18px"><b>En el móvil</b><span>Así se recorre la portada con el pulgar</span></div>
-          <div class="phones">
-            <div class="one"><span class="lbl">Hoy</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-before.webp" alt="Portada actual en móvil" loading="lazy" /></div></div></div>
-            <div class="one"><span class="lbl hot">Propuesta</span><div class="phone-frame"><div class="scr"><img src="../../assets/shots/teikit/m-home-after.webp" alt="Portada propuesta en móvil" loading="lazy" /></div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <p class="prelim rv"><svg width="16" height="16" style="flex:none;color:var(--ink-3)"><use href="#spark"/></svg><span><b>Versión preliminar.</b> Es la dirección que tomaríamos con vosotros. El pago sigue en vuestro sistema actual.</span></p>
-      <div class="reply rv">
-        <p>¿Qué os parece?<span>Por WhatsApp o en una llamada. Os respondemos nosotros, no un comercial.</span></p>
-        <div><a class="btn wa sm" href="#hablemos" data-contact="Hola, he visto la propuesta de GlowUp para Teikit."><svg><use href="#wa"/></svg> WhatsApp</a><a class="btn glow sm" href="#hablemos" data-contact="Teikit: agendar una llamada">Agendar una llamada</a></div>
-      </div>
     </div>
   </section>
 

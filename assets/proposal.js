@@ -31,12 +31,19 @@
       const cur = parseFloat(ba.style.getPropertyValue('--pos')) || 50;
       ba.classList.add('touched'); ba.style.setProperty('--pos', Math.min(100, Math.max(0, cur + (e.key === 'ArrowLeft' ? -5 : 5))) + '%'); e.preventDefault();
     });
-    // Teaser: el corte se balancea solo al entrar, hasta que la persona lo toca
-    if (!reduce) onView(ba, () => {
-      const t0 = performance.now();
-      const anim = (t) => { if (ba.classList.contains('touched')) return; const k = Math.min(1, (t - t0) / 2600); ba.style.setProperty('--pos', (50 + Math.sin(k * Math.PI * 2) * 24 * (1 - k)) + '%'); if (k < 1) requestAnimationFrame(anim); };
-      setTimeout(() => requestAnimationFrame(anim), 300);
-    }, { threshold: 0.2 });
+    // Teaser: el corte se balancea cada pocos segundos mientras se ve, hasta que la persona lo toca
+    if (!reduce) {
+      let vis = false;
+      new IntersectionObserver(([en]) => { vis = en.isIntersecting; }, { threshold: 0.15 }).observe(ba);
+      const wiggle = () => {
+        if (!vis || ba.classList.contains('touched')) return;
+        const t0 = performance.now();
+        const anim = (t) => { if (ba.classList.contains('touched')) return; const k = Math.min(1, (t - t0) / 1800); ba.style.setProperty('--pos', (50 + Math.sin(k * Math.PI * 2) * 20 * (1 - k)) + '%'); if (k < 1) requestAnimationFrame(anim); };
+        requestAnimationFrame(anim);
+      };
+      setTimeout(wiggle, 900);
+      const iv = setInterval(() => { if (ba.classList.contains('touched')) clearInterval(iv); else wiggle(); }, 4500);
+    }
   });
   // El tirador acompaña al scroll y la tarjeta "crece" al entrar
   const grows = $$('[data-grow]');
@@ -55,6 +62,19 @@
   }
   let raf = 0; const onScroll = () => { if (!raf) raf = requestAnimationFrame(() => { tick(); raf = 0; }); };
   addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); tick();
+
+  /* ---------- Vista móvil / escritorio de las comparativas ---------- */
+  $$('[data-view-switch]').forEach((seg) => {
+    const list = $('[data-tba-list]');
+    const set = (mode) => {
+      $$('button', seg).forEach((b) => b.classList.toggle('on', b.dataset.mode === mode));
+      list.classList.toggle('m-mode', mode === 'm');
+      $$('picture source', list).forEach((src) => { src.media = mode === 'm' ? 'all' : 'not all'; });
+      requestAnimationFrame(onScroll);
+    };
+    seg.addEventListener('click', (ev) => { const b = ev.target.closest('button'); if (b) set(b.dataset.mode); });
+    set(innerWidth <= 700 ? 'm' : 'd');
+  });
 
   /* ---------- Móviles que se desplazan solos ---------- */
   $$('.phones').forEach((ph) => {

@@ -25,3 +25,12 @@ for n in ['pedido', 'locales']:
 MH = 3200 * 2  # móvil: 3200 px CSS a DSF 2
 for s in ['before', 'after']:
     save(Image.open(f'{src}/m-home-{s}.png').crop((0, 0, 780, MH)), f'm-home-{s}', 480, 74)
+
+# Móvil: carta (2400 px CSS), pedido y locales (pantalla)
+MC = 2400 * 2
+save(Image.open(f'{src}/m-carta-before.png').crop((0, 0, 780, MC)), 'm-carta-before', 480, 74)
+my = int(meta['mCartaTop'] - 16) * 2
+save(Image.open(f'{src}/m-home-after.png').crop((0, my, 780, my + MC)), 'm-carta-after', 480, 74)
+for n in ['pedido', 'locales']:
+    for s in ['before', 'after']:
+        save(Image.open(f'{src}/m-{n}-{s}.png'), f'm-{n}-{s}', 480, 76)
