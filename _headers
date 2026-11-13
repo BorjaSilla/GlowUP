@@ -1,0 +1,14 @@
+/para/*
+  X-Robots-Tag: noindex, nofollow
+
+/demo/*
+  X-Robots-Tag: noindex, nofollow
+
+/marca/*
+  X-Robots-Tag: noindex
+
+/*.webp
+  Cache-Control: public, max-age=31536000
+
+/*.mp4
+  Cache-Control: public, max-age=31536000
