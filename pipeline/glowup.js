@@ -55,7 +55,8 @@ async function one(url, opts = {}) {
   log(`   ${name}: ${store.stats.products} productos, ${store.stats.collections} colecciones, botón ${store.brand.ctaBg || '¿?'}, fuente ${String(store.brand.headingFont).split(',')[0]}`);
 
   log('2/5 Generando la demo…');
-  const demo = buildDemo(store, slug, (prev.copy && prev.copy.demo) || {});
+  const demo = buildDemo(store, slug, (prev.copy && prev.copy.demo) || {}, { style: prev.styleOverride });
+  log(`   Estilo: ${demo.style}${prev.styleOverride ? ' (forzado)' : ''}`);
   const pdpHandle = demo.selection.hero[0] || store.products[0].handle;
   const variant = store.products.find((p) => p.handle === pdpHandle).variants.find((v) => v.available);
 
@@ -75,6 +76,7 @@ async function one(url, opts = {}) {
     version: String(Date.now()).slice(-6),
     instagram: store.brand.instagram, email: store.brand.email, contactPage: store.brand.contactPage,
     stats: store.stats, collections: store.collections.slice(0, 6).map(({ handle, title }) => ({ handle, title })),
+    style: demo.style, styleOverride: prev.styleOverride || null,
     tokens: demo.tokens, pdpHandle, floating, lh: res.lh, film: res.film,
     // Solo conservamos el pitch si lo editaste a mano (si es el automático, se regenera con datos frescos)
     copy: { pitch: (prev.copy && prev.copy.pitch && prev.copy.pitch !== prev.copy.pitchAuto) ? prev.copy.pitch : null, demo: (prev.copy && prev.copy.demo) || {} },

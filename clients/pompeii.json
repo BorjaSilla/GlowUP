@@ -3,18 +3,18 @@
   "name": "Pompeii",
   "domain": "pompeiibrand.com",
   "origin": "https://pompeiibrand.com",
-  "date": "2026-11-16T13:41:22.558Z",
-  "version": "482558",
+  "date": "2026-11-16T14:04:46.492Z",
+  "version": "886492",
   "instagram": "https://www.instagram.com/pompeiibrand/",
   "email": null,
   "contactPage": "https://pompeiibrand.com/pages/contacto-1",
   "stats": {
-    "products": 171,
+    "products": 170,
     "collections": 234,
     "priceMin": 12.9,
     "priceMax": 259,
     "priceMedian": 79,
-    "onSale": 29,
+    "onSale": 28,
     "types": [
       "SNEAKERS",
       "OUTERWEAR",
@@ -56,6 +56,8 @@
       "title": "CAMISETAS"
     }
   ],
+  "style": "editorial",
+  "styleOverride": null,
   "tokens": {
     "brand": "#333333",
     "brandFg": "#ffffff",
@@ -89,22 +91,22 @@
   ],
   "lh": {
     "before": {
-      "performance": 67,
+      "performance": 63,
       "accessibility": 93,
       "bestPractices": 93,
       "seo": 100,
-      "lcp": 11.6,
-      "fcp": 1.3,
-      "weightMB": 17.1
+      "lcp": 11.4,
+      "fcp": 1.2,
+      "weightMB": 17
     },
     "after": {
-      "performance": 77,
-      "accessibility": 90,
+      "performance": 84,
+      "accessibility": 94,
       "bestPractices": 100,
       "seo": 54,
-      "lcp": 4.2,
-      "fcp": 1.4,
-      "weightMB": 1.4
+      "lcp": 4,
+      "fcp": 1.1,
+      "weightMB": 16.9
     }
   },
   "film": {
@@ -130,9 +132,9 @@
     ]
   },
   "copy": {
-    "pitch": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
+    "pitch": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 170 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
     "demo": {},
-    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces."
+    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 170 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces."
   },
   "review": {
     "status": "pendiente",

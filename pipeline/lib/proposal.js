@@ -200,10 +200,17 @@ ${kpis.map(([l, f, t, n], i) => `        <div class="kpi-t rv" style="--d:${(i *
         <span class="muted rv" style="font-size:14px">Lo que cambia para quien entra en ${esc(c.name)}.</span>
       </div>
       <div class="why">
-        <div class="rv"><i><svg><use href="#star"/></svg></i><span><b>Lo mejor, arriba</b>Los productos que más se venden, con precio, en la primera pantalla.</span></div>
-        <div class="rv" style="--d:.05s"><i><svg><use href="#tap"/></svg></i><span><b>Elegir sin dudar</b>Variantes claras, fotos grandes y barra de compra fija en el móvil.</span></div>
-        <div class="rv"><i><svg><use href="#bolt"/></svg></i><span><b>Más rápida</b>Imágenes al tamaño justo y nada que bloquee la primera pantalla.</span></div>
-        <div class="rv" style="--d:.05s"><i><svg><use href="#check"/></svg></i><span><b>Carrito sin fricción</b>Se abre al lado, sin salir de la página, y va directo a vuestro checkout.</span></div>
+        ${(c.style === 'editorial' ? [
+          ['star', 'La campaña, primero', 'Vuestras fotos y vídeo a pantalla completa: la marca entra por los ojos antes que por el catálogo.'],
+          ['tap', 'Talla en un toque', 'Al pasar por la foto aparecen las tallas disponibles: se añade a la cesta sin entrar en la ficha.'],
+          ['bolt', 'Más rápida', 'Imágenes al tamaño justo y el vídeo carga después de la foto: la primera pantalla aparece antes.'],
+          ['check', 'Ficha que vende', 'Fotos grandes, tallas claras, “Completa el look” y compra fija en el móvil, directa a vuestro checkout.'],
+        ] : [
+          ['star', 'Lo mejor, arriba', 'Los productos que más se venden, con precio, en la primera pantalla.'],
+          ['tap', 'Elegir sin dudar', 'Variantes claras, fotos grandes y barra de compra fija en el móvil.'],
+          ['bolt', 'Más rápida', 'Imágenes al tamaño justo y nada que bloquee la primera pantalla.'],
+          ['check', 'Carrito sin fricción', 'Se abre al lado, sin salir de la página, y va directo a vuestro checkout.'],
+        ]).map(([ic, t, d], i) => `<div class="rv"${i % 2 ? ' style="--d:.05s"' : ''}><i><svg><use href="#${ic}"/></svg></i><span><b>${t}</b>${d}</span></div>`).join('\n        ')}
       </div>
     </div>
   </section>

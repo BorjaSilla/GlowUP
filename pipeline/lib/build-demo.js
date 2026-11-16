@@ -34,7 +34,8 @@ function fonts(brand) {
   // Intentamos cargarlas de Google Fonts (la mayoría de temas Shopify usan fuentes de Google);
   // si no existen, el navegador cae a Inter Tight.
   const q = ['Inter Tight:wght@400;500;600;700', ...fams.map((f) => `${f}:wght@400;500;600;700`)].map((f) => 'family=' + encodeURIComponent(f).replace(/%20/g, '+').replace(/%3A/g, ':').replace(/%40/g, '@').replace(/%3B/g, ';')).join('&');
-  const link = `<link href="https://fonts.googleapis.com/css2?${q}&display=swap" rel="stylesheet" />`;
+  // Sin bloquear la primera pantalla: la fuente llega después (display=swap)
+  const link = `<link href="https://fonts.googleapis.com/css2?${q}&display=swap" rel="stylesheet" media="print" onload="this.media='all'" /><noscript><link href="https://fonts.googleapis.com/css2?${q}&display=swap" rel="stylesheet" /></noscript>`;
   const stack = (f) => (f && !GENERIC.test(f) ? `"${f}", ` : '') + '"Inter Tight", system-ui, sans-serif';
   return { link, head: stack(head), body: stack(body) };
 }
@@ -50,6 +51,14 @@ function pick(store) {
   const hero = [...new Set([...multi, ...best])].slice(0, 3);
   const storyImages = P.filter((p) => !hero.includes(p.handle) && p.images.length >= 2).slice(0, 2).map((p) => p.handle);
   return { best, newest, hero, storyImages, bestFromCollection: bestCol ? bestCol.title : null };
+}
+
+/* ---------- Estilo: editorial (moda, calzado, accesorios) o producto (nicho) ---------- */
+const FASHION = /sneaker|zapatill|shoe|calzado|\bbotas?\b|boot|sandal|\btees?\b|t-shirt|camiset|shirt|camisa|sweat|sudadera|hoodie|knit|punto|jersey|outerwear|chaquet|jacket|abrigo|coat|parka|pantal|trouser|pants|jean|denim|\bshorts?\b|vestido|dress|falda|skirt|blusa|\bpolos?\b|ba[ñn]ador|swim|bikini|bolso|\bbag|gorra|\bcap\b|headwear|calcet|sock|joya|jewel|anillo|\bring|collar|necklace|pendiente|earring|pulsera|bracelet|gafas|sunglass|lencer|lingerie|\bropa|apparel|clothing|\bmoda|fashion|bufanda|scarf|cintur|belt|reloj|watch|\btops?\b|cardigan|chaleco|\bvest\b|overshirt|knitwear|underwear/i;
+function styleOf(store) {
+  const P = store.products; if (!P.length) return 'producto';
+  const hits = P.filter((p) => FASHION.test(`${p.type} ${p.title} ${(p.tags || []).join(' ')}`)).length;
+  return hits / P.length >= 0.4 ? 'editorial' : 'producto';
 }
 
 /* ---------- Textos por defecto (se pueden sobrescribir en clients/<slug>.json → copy) ---------- */
@@ -75,13 +84,15 @@ function defaultCopy(store) {
   };
 }
 
-function buildDemo(store, slug, copyOverrides = {}) {
+function buildDemo(store, slug, copyOverrides = {}, opts = {}) {
   const t = tokens(store.brand), f = fonts(store.brand), sel = pick(store);
+  const style = opts.style || styleOf(store);
   const copy = { ...defaultCopy(store), ...copyOverrides };
   const dir = path.join(ROOT, 'demo', slug);
   fs.mkdirSync(dir, { recursive: true });
   const data = {
     slug, name: store.brand.name || store.domain, domain: store.domain, origin: store.origin, currency: 'EUR',
+    style, heroVideo: store.brand.heroVideo || null,
     logoLight: store.brand.logoLum != null && store.brand.logoLum > 0.8,
     logo: store.brand.logo, logoSvg: store.brand.logoSvg && !store.brand.logo ? store.brand.logoSvg : null,
     announcement: store.brand.announcement, description: store.brand.description,
@@ -100,12 +111,14 @@ function buildDemo(store, slug, copyOverrides = {}) {
   const css = `--brand:${t.brand};--brand-fg:${t.brandFg};--bg:${t.bg};--ink:${t.ink};--soft:${t.soft};--line:${t.line};--head:${f.head};--body:${f.body};`;
   // Precarga de la imagen principal (lo primero que se ve) para que la portada aparezca antes
   const heroSrc = data.heroImage || (store.products.find((p) => p.handle === sel.hero[0]) || {}).images[0];
-  const sized = (u, w) => { try { const x = new URL(u); if (/shopify/.test(x.hostname)) x.searchParams.set('width', w); return x.href; } catch (e) { return u; } };
-  const preload = heroSrc ? `<link rel="preload" as="image" href="${esc(sized(heroSrc, 1400))}" fetchpriority="high" />` : '';
-  const html = tpl.replace('{{PRELOAD}}', preload).replace(/{{NAME}}/g, esc(data.name)).replace(/{{DOMAIN}}/g, esc(store.domain)).replace(/{{SLUG}}/g, slug).replace('{{FONTS}}', f.link).replace('{{TOKENS}}', css);
+  const sized = (u, w) => { try { const x = new URL(u); if (/shopify/.test(x.hostname) || /\/cdn\/shop\//.test(x.pathname)) x.searchParams.set('width', w); return x.href; } catch (e) { return u; } };
+  const preload = data.heroImage
+    ? `<link rel="preload" as="image" href="${esc(sized(heroSrc, 1200))}" imagesrcset="${esc([750, 1200, 1800].map((w) => sized(heroSrc, w) + ' ' + w + 'w').join(', '))}" imagesizes="100vw" fetchpriority="high" />`
+    : heroSrc ? `<link rel="preload" as="image" href="${esc(sized(heroSrc, 1100))}" fetchpriority="high" />` : '';
+  const html = tpl.replace('{{PRELOAD}}', preload).replace(/{{NAME}}/g, esc(data.name)).replace(/{{DOMAIN}}/g, esc(store.domain)).replace(/{{SLUG}}/g, slug).replace('{{FONTS}}', f.link).replace('{{TOKENS}}', css).replace('{{HTMLCLASS}}', style === 'editorial' ? 'ed' : '').replace('{{EXTRA_CSS}}', style === 'editorial' ? '<link rel="stylesheet" href="../../assets/shop-ed.css" />' : '');
   fs.writeFileSync(path.join(dir, 'index.html'), html);
-  return { dir, tokens: t, fonts: f, selection: sel, copy };
+  return { dir, tokens: t, fonts: f, selection: sel, copy, style };
 }
 const esc = (s) => String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-module.exports = { buildDemo, tokens, fonts, pick, defaultCopy };
+module.exports = { styleOf, buildDemo, tokens, fonts, pick, defaultCopy };

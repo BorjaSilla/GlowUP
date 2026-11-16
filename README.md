@@ -47,6 +47,13 @@ node pipeline/glowup.js render pompeii                         # regenerar tras 
 
 `--no-lighthouse` lo hace más rápido (sin medir velocidad). `GLOWUP_BASE_URL` cambia el dominio de los enlaces.
 
+### Dos estilos de tienda (se elige solo)
+
+- **Editorial** (moda, calzado, joyería, accesorios): campaña a pantalla completa (foto o el vídeo de la marca), cabecera transparente sobre la imagen, rejilla donde manda la foto, tallas al pasar el ratón para añadir sin entrar en la ficha, índice de colecciones tipográfico, ficha con fotos grandes y "Completa el look".
+- **Producto** (nicho: café, cosmética, gourmet, gadgets…): productos y precio en la primera pantalla, señales de confianza, carriles de más vendidos, ficha con variantes y barra de compra fija.
+
+Se decide por el catálogo (≥ 40 % de productos de moda → editorial). Para forzarlo: `"styleOverride": "editorial"` o `"producto"` en `clients/<slug>.json` y volver a lanzar `new`.
+
 ### Qué genera
 
 | Ruta | Qué es |

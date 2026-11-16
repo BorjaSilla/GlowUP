@@ -108,6 +108,13 @@ async function extract(inputUrl, { maxProducts = 250 } = {}) {
       lang: document.documentElement.lang || 'es',
     };
   }).catch((e) => ({ error: e.message }));
+  // Vídeo de campaña: Shopify sirve los vídeos también en mp4 (el <video> suele usar HLS)
+  if (brand && !brand.error) {
+    const html = (await page.content().catch(() => '')).replace(/\\\//g, '/');
+    const vids = [...new Set(html.match(/(?:https?:)?\/\/[^"'\s()<>]+?\/videos\/c\/[^"'\s()<>]+?\.mp4/g) || [])].map((u) => (u.startsWith('//') ? 'https:' + u : u));
+    const rank = (u) => (/720p/.test(u) ? 0 : /1080p/.test(u) ? 1 : /480p/.test(u) ? 2 : 3);
+    brand.heroVideo = vids.sort((a, b) => rank(a) - rank(b))[0] || null;
+  }
   // ¿El logo es claro (pensado para ir sobre una foto)? Lo medimos pintándolo en un canvas
   if (brand && brand.logo) {
     brand.logoLum = await page.evaluate(async (src) => {

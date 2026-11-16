@@ -5,7 +5,7 @@
 - Instagram: https://www.instagram.com/pompeiibrand/
 - Email: —
 - Contacto: https://pompeiibrand.com/pages/contacto-1
-- Velocidad (Lighthouse móvil): 67 → 77
+- Velocidad (Lighthouse móvil): 63 → 84
 
 ## Mensaje directo (Instagram)
 
@@ -17,7 +17,7 @@ Si os encaja, hablamos por WhatsApp.
 
 Hola, equipo de Pompeii:
 
-Somos GlowUp. Hemos rediseñado la portada, la ficha de producto y el carrito de pompeiibrand.com con vuestro catálogo real, y lo hemos medido: la portada pasa de 11,6 s a 4,2 s en cargar en un móvil, y todo está pensado para que más visitas acaben comprando.
+Somos GlowUp. Hemos rediseñado la portada, la ficha de producto y el carrito de pompeiibrand.com con vuestro catálogo real, y lo hemos medido: la portada pasa de 11,4 s a 4 s en cargar en un móvil, y todo está pensado para que más visitas acaben comprando.
 
 Podéis verlo y probarlo aquí: https://glowup-studio-qryf.netlify.app/para/pompeii/
 
