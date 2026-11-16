@@ -111,7 +111,7 @@ async function one(url, opts = {}) {
     return;
   }
   if (cmd === 'batch' && target) {
-    const urls = fs.readFileSync(target, 'utf8').split('\n').map((s) => s.trim()).filter((s) => s && !s.startsWith('#'));
+    const urls = fs.readFileSync(target, 'utf8').split('\n').map((s) => s.split(' #')[0].trim()).filter((s) => s && !s.startsWith('#'));
     const ok = [], ko = [];
     for (const u of urls) { try { ok.push((await one(u, { noLighthouse: opts.noLighthouse })).slug); } catch (e) { ko.push(`${u}: ${e.message}`); log(`✖ ${u}: ${e.message}`); } }
     log(`\nHecho: ${ok.length} propuestas, ${ko.length} fallos.`); ko.forEach((k) => log('  ✖ ' + k));

@@ -47,6 +47,30 @@ node pipeline/glowup.js render pompeii                         # regenerar tras 
 
 `--no-lighthouse` lo hace más rápido (sin medir velocidad). `GLOWUP_BASE_URL` cambia el dominio de los enlaces.
 
+### Buscador de tiendas (marcas que pagan anuncios en Meta)
+
+```bash
+node pipeline/prospect.js meta --nicho moda            # moda, joyeria, cosmetica, cafe, gourmet, hogar, mascotas, deporte
+node pipeline/prospect.js meta "café de especialidad" "tostadores"   # o tus propias palabras
+node pipeline/prospect.js check dominios.txt           # sin token: una lista de webs hecha a mano
+```
+
+Opciones: `--speed` mide la velocidad de cada web (~30 s por tienda, puntúa más las lentas), `--top 50`, `--min 45`, `--max 300` (anuncios por búsqueda).
+
+1. **Meta**: busca anuncios activos que se ven en España en la Biblioteca de Anuncios (API oficial) y agrupa por marca: dominio de destino, nº de anuncios, desde cuándo anuncia y alcance en la UE.
+2. **Comprobación**: ¿es Shopify?, catálogo abierto, nº de productos, ticket mediano, estilo (editorial/producto), tema de Shopify (los antiguos suman), idioma, Instagram, email y velocidad.
+3. **Puntuación 0–100**: más anuncios y más tiempo anunciando, ticket alto, catálogo mediano, tema antiguo y web lenta suben; idioma extranjero o catálogo parado bajan. Las ya contactadas (`prospects.csv`) se saltan.
+
+Salida: `pipeline/out/leads.csv` (todas, con el porqué y el enlace a sus anuncios) y `pipeline/out/leads-top.txt`, que va directo a `node pipeline/glowup.js batch pipeline/out/leads-top.txt`.
+
+**Token de Meta (una vez):** cuenta en developers.facebook.com → confirma tu identidad en facebook.com/ID (lo pide la Biblioteca de Anuncios) → crea una app → en el Explorador de la API Graph genera un token de usuario. Úsalo como variable de entorno, nunca en el repositorio:
+
+```bash
+export META_TOKEN="tu-token"
+```
+
+Los tokens de usuario caducan en horas; para no renovarlo cada día, cámbialo por uno de larga duración (60 días) con el depurador de tokens de Meta.
+
 ### Dos estilos de tienda (se elige solo)
 
 - **Editorial** (moda, calzado, joyería, accesorios): campaña a pantalla completa (foto o el vídeo de la marca), cabecera transparente sobre la imagen, rejilla donde manda la foto, tallas al pasar el ratón para añadir sin entrar en la ficha, índice de colecciones tipográfico, ficha con fotos grandes y "Completa el look".
