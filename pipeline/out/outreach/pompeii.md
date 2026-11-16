@@ -9,9 +9,15 @@
 
 ## Mensaje directo (Instagram)
 
-Hola, equipo de Pompeii. Os hemos preparado una propuesta de rediseño de pompeiibrand.com: vuestra tienda, con vuestros productos, funcionando, y el antes y el después. Os la dejo aquí, sin compromiso: https://glowup-studio-qryf.netlify.app/para/pompeii/
+Hola, equipo de Pompeii 👋
 
-Si os encaja, hablamos por WhatsApp.
+Somos GlowUp. Nos encanta lo que estáis haciendo con la cápsula de los Atlanta Falcons y la campaña de AW26, así que nos hemos tomado la libertad de rediseñar vuestra tienda con vuestro catálogo real: la campaña a pantalla completa nada más entrar, las tallas en un toque desde la foto y una ficha de producto más limpia.
+
+En un móvil con 4G lento, vuestra portada tarda unos 11 s en cargar; la nueva, menos de 4 (medido con la herramienta de Google).
+
+Os lo dejo aquí para que lo probéis, sin compromiso: https://glowup-studio-qryf.netlify.app/para/pompeii/
+
+Si os encaja, lo hablamos por WhatsApp.
 
 ## Formulario de contacto
 

@@ -134,7 +134,8 @@
   "copy": {
     "pitch": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
     "demo": {},
-    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces."
+    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
+    "dm": "Hola, equipo de Pompeii 👋\n\nSomos GlowUp. Nos encanta lo que estáis haciendo con la cápsula de los Atlanta Falcons y la campaña de AW26, así que nos hemos tomado la libertad de rediseñar vuestra tienda con vuestro catálogo real: la campaña a pantalla completa nada más entrar, las tallas en un toque desde la foto y una ficha de producto más limpia.\n\nEn un móvil con 4G lento, vuestra portada tarda unos 11 s en cargar; la nueva, menos de 4 (medido con la herramienta de Google).\n\nOs lo dejo aquí para que lo probéis, sin compromiso: https://glowup-studio-qryf.netlify.app/para/pompeii/\n\nSi os encaja, lo hablamos por WhatsApp."
   },
   "review": {
     "status": "pendiente",
