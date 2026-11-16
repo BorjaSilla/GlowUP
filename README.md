@@ -27,16 +27,50 @@ Todo es HTML/CSS/JS estático, sin build. Se despliega tal cual en Vercel (`verc
 
 La carta (79 platos), los locales (26) y las fotos se extraen de la web actual con `tools/extract-menu.py`.
 
-## Pipeline (hacia la automatización)
+## Pipeline automático (tiendas Shopify)
 
-1. **Encontrar** tiendas candidatas (pendiente: scraper de directorios / Shopify stores).
-2. **Capturar** la web actual: `node tools/capture-site.js <url> <salida>` (captura + texto + DOM).
-3. **Medir**: `node tools/perf.js <url>` y Lighthouse para la línea base.
-4. **Extraer catálogo** (productos, precios, fotos) → `demo/<cliente>/data/*.js`.
-5. **Rediseñar** con el design system (`assets/glow.css`) y una plantilla por vertical.
-6. **Comparar**: `node tools/capture-teikit.js <out> <demoUrl>` + `python3 tools/crop-shots.py <out> assets/shots/<cliente>` (portada y carta de página completa, pedido, locales, móvil) y `node tools/filmstrip.js <url> <out>` para la carrera de carga.
-7. **QA**: `node tools/qa.js <url> <out> desktop|mobile` (errores de consola, overflow, capturas).
-8. **Publicar** `/para/<cliente>` + `/demo/<cliente>` y **enviar** el enlace (email / Instagram).
+Una orden por tienda: extrae catálogo y marca, genera la demo (portada + ficha + carrito), mide y captura el antes/después, escribe la propuesta y deja el mensaje listo para enviar. Unos **4–5 minutos por tienda**, sin intervención.
+
+### Requisitos (una vez)
+
+- Node 20+ y Python 3 (opcional, solo para tools/).
+- `cd pipeline && npm install && npx playwright install chromium`
+- Red abierta: el pipeline visita cada tienda. Se ejecuta en tu ordenador, en un servidor o en GitHub Actions.
+
+### Uso
+
+```bash
+node pipeline/glowup.js new pompeiibrand.com --slug pompeii   # una tienda
+node pipeline/glowup.js batch tiendas.txt                      # una URL por línea (# = comentario)
+node pipeline/glowup.js render pompeii                         # regenerar tras editar clients/pompeii.json
+```
+
+`--no-lighthouse` lo hace más rápido (sin medir velocidad). `GLOWUP_BASE_URL` cambia el dominio de los enlaces.
+
+### Qué genera
+
+| Ruta | Qué es |
+|---|---|
+| `demo/<slug>/` | La tienda rediseñada con su catálogo real (checkout real de Shopify vía permalink del carrito) |
+| `para/<slug>/` | La propuesta: antes/después, móvil, velocidad, garantía, WhatsApp |
+| `assets/shots/<slug>/` | Capturas y fotogramas de la carrera de carga |
+| `clients/<slug>.json` | Datos de la propuesta + textos editables (`copy.pitch`, `copy.demo.*`) y estado de revisión |
+| `pipeline/out/outreach/<slug>.md` | DM de Instagram y texto para formulario, listos para copiar |
+| `pipeline/out/prospects.csv` | Registro de todas las tiendas y su estado |
+
+### Flujo diario (20–50 propuestas)
+
+1. **Lista**: apunta tiendas Shopify españolas en `tiendas.txt`.
+2. **Generar**: `batch tiendas.txt` (deja el ordenador trabajando; ~50 tiendas ≈ 4 h, o en paralelo en varias máquinas).
+3. **Revisar (2–5 min cada una)**: abre `para/<slug>/` y `demo/<slug>/`. Si un texto no encaja, edítalo en `clients/<slug>.json` y `render <slug>`. Descarta las que no salgan bien.
+4. **Publicar**: commit + deploy.
+5. **Enviar a mano** desde Instagram o el formulario de la web con el texto de `pipeline/out/outreach/<slug>.md` (no se envían emails automáticos: la LSSI lo prohíbe sin consentimiento).
+
+### Límites conocidos
+
+- Solo Shopify con `products.json` público (algunas tiendas lo bloquean → se saltan con error).
+- Precios: se fuerza el mercado España (`localization=ES`) para que coincidan con los de la web.
+- Los textos automáticos son genéricos si la tienda no tiene descripción en español; conviene revisarlos.
 
 ## Pendiente
 

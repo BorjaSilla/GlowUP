@@ -85,8 +85,8 @@ button { border: 0; background: none; cursor: pointer; }
 .brand:hover .mark { transform: translateY(-1px) scale(1.06); }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -.05em; }
 .brand .word b { font-weight: 700; }
-.brand .word { font-size: 21px; letter-spacing: -.065em; line-height: 1; }
-.brand .word i { font-style: normal; background: linear-gradient(100deg, #ff5a1f, #ff9a4d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brand .word { font-size: 21px; letter-spacing: -.065em; line-height: 1.2; white-space: nowrap; }
+.brand .word i { display: inline-block; padding: 0 .06em .16em 0; margin: 0 -.06em -.16em 0; line-height: 1.2; font-style: normal; background: linear-gradient(100deg, #ff5a1f, #ff9a4d); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .nav .brand { padding-right: 6px; }
 
 /* ---------- Nav flotante ---------- */

@@ -1,0 +1,14 @@
+{
+  "name": "glowup-pipeline",
+  "private": true,
+  "description": "Genera propuestas de rediseño para tiendas Shopify: demo, capturas antes/después, métricas y mensaje.",
+  "scripts": {
+    "new": "node glowup.js new",
+    "batch": "node glowup.js batch"
+  },
+  "dependencies": {
+    "lighthouse": "^12.8.2",
+    "playwright": "^1.48.0"
+  },
+  "engines": { "node": ">=20" }
+}

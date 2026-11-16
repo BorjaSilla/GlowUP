@@ -4,3 +4,4 @@ node_modules/
 *.log
 .netlify/
 dist/
+pipeline/node_modules/
