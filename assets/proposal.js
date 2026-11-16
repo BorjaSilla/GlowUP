@@ -83,13 +83,15 @@
     tbas.forEach((ba) => {
       if (ba.closest('[data-ps-scroll]')) return; // dentro del teléfono se calcula con su propio scroll
       const r = ba.getBoundingClientRect();
-      const y = Math.min(r.height - 50, Math.max(50, vh * 0.55 - r.top));
-      ba.style.setProperty('--ky', y + 'px');
+      if (r.bottom < 0 || r.top > vh) return;
+      const y = Math.round(Math.min(r.height - 50, Math.max(50, vh * 0.55 - r.top)));
+      if (ba._ky !== y) { ba._ky = y; ba.style.setProperty('--ky', y + 'px'); }
     });
     if (!reduce) grows.forEach((g) => {
       const r = g.getBoundingClientRect();
-      const k = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.7)));
-      g.style.transform = `scale(${0.93 + 0.07 * k})`;
+      if (r.bottom < 0 || r.top > vh * 1.2) return;
+      const k = Math.round(Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.7))) * 100) / 100;
+      if (g._k !== k) { g._k = k; g.style.transform = `scale(${0.93 + 0.07 * k})`; }
     });
   }
   let raf = 0; const onScroll = () => { if (!raf) raf = requestAnimationFrame(() => { tick(); raf = 0; }); };

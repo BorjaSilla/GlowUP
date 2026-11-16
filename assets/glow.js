@@ -37,13 +37,16 @@
     });
     el.innerHTML = out.join('');
   });
-  const words = $$('[data-words]');
+  const words = $$('[data-words]').map((el) => ({ el, ws: [...el.querySelectorAll('.w')], n: -1 }));
   function wordsTick() {
-    words.forEach((el) => {
-      const r = el.getBoundingClientRect();
+    words.forEach((o) => {
+      const r = o.el.getBoundingClientRect();
+      if (o.n >= 0 && (r.bottom < -innerHeight || r.top > innerHeight * 2)) return; // lejos de la pantalla: nada que hacer
       const p = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35)));
-      const ws = el.querySelectorAll('.w'); const n = Math.round(p * ws.length);
-      ws.forEach((w, i) => w.classList.toggle('on', reduce || i < n));
+      const n = reduce ? o.ws.length : Math.round(p * o.ws.length);
+      if (n === o.n) return; // solo se tocan las palabras que cambian
+      o.ws.forEach((w, i) => { if ((i < n) !== (i < o.n)) w.classList.toggle('on', i < n); });
+      o.n = n;
     });
   }
 
@@ -57,13 +60,18 @@
 
   /* ---------- Tarjetas apiladas ---------- */
   const stack = $$('.stack-card');
+  const small = matchMedia('(max-width: 820px)');
   function stackTick() {
     stack.forEach((c, i) => {
       const next = stack[i + 1]; if (!next) return;
-      const r = c.getBoundingClientRect(), nr = next.getBoundingClientRect();
-      const overlap = Math.min(1, Math.max(0, (r.bottom - nr.top) / r.height));
+      const r = c.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > innerHeight + 100) return;
+      const nr = next.getBoundingClientRect();
+      const overlap = Math.round(Math.min(1, Math.max(0, (r.bottom - nr.top) / r.height)) * 100) / 100;
+      if (c._ov === overlap) return; c._ov = overlap;
       c.style.transform = `scale(${1 - overlap * 0.06})`;
-      c.style.filter = `brightness(${1 - overlap * 0.25})`;
+      // En móvil el filtro de brillo cuesta mucho al hacer scroll: solo en pantallas grandes
+      if (!small.matches) c.style.filter = `brightness(${1 - overlap * 0.25})`;
     });
   }
 
