@@ -3,18 +3,18 @@
   "name": "Pompeii",
   "domain": "pompeiibrand.com",
   "origin": "https://pompeiibrand.com",
-  "date": "2026-11-16T14:04:46.492Z",
-  "version": "886492",
+  "date": "2026-11-16T15:56:42.525Z",
+  "version": "602525",
   "instagram": "https://www.instagram.com/pompeiibrand/",
   "email": null,
   "contactPage": "https://pompeiibrand.com/pages/contacto-1",
   "stats": {
-    "products": 170,
+    "products": 171,
     "collections": 234,
     "priceMin": 12.9,
     "priceMax": 259,
     "priceMedian": 79,
-    "onSale": 28,
+    "onSale": 29,
     "types": [
       "SNEAKERS",
       "OUTERWEAR",
@@ -100,11 +100,11 @@
       "weightMB": 17
     },
     "after": {
-      "performance": 84,
+      "performance": 78,
       "accessibility": 94,
       "bestPractices": 100,
       "seo": 54,
-      "lcp": 4,
+      "lcp": 3.6,
       "fcp": 1.1,
       "weightMB": 16.9
     }
@@ -132,12 +132,16 @@
     ]
   },
   "copy": {
-    "pitch": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 170 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
+    "pitch": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces.",
     "demo": {},
-    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 170 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces."
+    "pitchAuto": "Os hemos rediseñado la portada, la ficha de producto y el carrito de Pompeii. Con 171 productos, lo importante es que cada visita encuentre el suyo a la primera y lo compre sin pensárselo dos veces."
   },
   "review": {
     "status": "pendiente",
     "notes": ""
+  },
+  "quality": {
+    "ok": true,
+    "reasons": []
   }
 }

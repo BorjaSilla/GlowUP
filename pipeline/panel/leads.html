@@ -1,0 +1,261 @@
+<title>GlowUp Leads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Cola de trabajo de móvil: resumen arriba, pestañas por lo que toca hacer hoy, una tarjeta por tienda */
+:root {
+  --bg: #f6f5f3; --card: #ffffff; --ink: #141416; --ink-2: #5c5c63; --ink-3: #8d8d95; --line: rgba(20,20,22,.09);
+  --glow: #ff5a1f; --glow-ink: #d9430d; --glow-soft: rgba(255,90,31,.10);
+  --ok: #1f9d55; --ok-soft: rgba(31,157,85,.12); --warn: #b7791f; --warn-soft: rgba(214,158,46,.16); --bad: #c53030; --bad-soft: rgba(197,48,48,.10);
+  --ig: #c13584;
+  --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --r: 16px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111113; --card: #1b1b1e; --ink: #f2f2f4; --ink-2: #a9a9b2; --ink-3: #7b7b84; --line: rgba(255,255,255,.09);
+  --glow: #ff6a33; --glow-ink: #ff8a5c; --glow-soft: rgba(255,106,51,.14);
+  --ok: #48bb78; --ok-soft: rgba(72,187,120,.14); --warn: #ecc94b; --warn-soft: rgba(236,201,75,.14); --bad: #fc8181; --bad-soft: rgba(252,129,129,.12); --ig: #e1559f;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111113; --card: #1b1b1e; --ink: #f2f2f4; --ink-2: #a9a9b2; --ink-3: #7b7b84; --line: rgba(255,255,255,.09);
+  --glow: #ff6a33; --glow-ink: #ff8a5c; --glow-soft: rgba(255,106,51,.14);
+  --ok: #48bb78; --ok-soft: rgba(72,187,120,.14); --warn: #ecc94b; --warn-soft: rgba(236,201,75,.14); --bad: #fc8181; --bad-soft: rgba(252,129,129,.12); --ig: #e1559f;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 18px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; border-radius: 10px; }
+
+/* Cabecera */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -.04em; }
+.tg { width: 38px; height: 22px; border-radius: 99px; background: linear-gradient(100deg, var(--glow), #ff9a4d); position: relative; box-shadow: 0 6px 14px -6px var(--glow); flex: none; }
+.tg::after { content: ""; position: absolute; right: 3px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+.brand i { font-style: normal; color: var(--glow); }
+.run { font-size: 12.5px; color: var(--ink-3); text-align: right; }
+.run b { color: var(--ink-2); font-weight: 600; }
+
+/* Resumen */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.kpi { background: var(--card); border-radius: 14px; padding: 12px 12px 10px; box-shadow: 0 0 0 1px var(--line); min-width: 0; }
+.kpi b { display: block; font-size: 24px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.kpi span { font-size: 12px; color: var(--ink-3); }
+.kpi.hot b { color: var(--glow); }
+@media (max-width: 480px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+.note { font-size: 13px; color: var(--ink-2); background: var(--card); border-radius: 12px; padding: 10px 12px; box-shadow: 0 0 0 1px var(--line); margin-bottom: 14px; }
+.note:empty { display: none; }
+
+/* Pestañas */
+.tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 14px; padding: 2px max(16px, env(safe-area-inset-left, 0px)); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 8px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: none; height: 38px; padding: 0 14px; border-radius: 99px; font-size: 14px; font-weight: 600; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line); display: inline-flex; align-items: center; gap: 7px; }
+.tab .n { font-family: var(--mono); font-size: 11.5px; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; display: grid; place-items: center; background: var(--line); color: var(--ink-2); }
+.tab.on { background: var(--ink); color: var(--bg); box-shadow: none; }
+.tab.on .n { background: var(--glow); color: #fff; }
+
+/* Tarjeta de tienda */
+.list { display: grid; gap: 10px; }
+.card { background: var(--card); border-radius: var(--r); box-shadow: 0 0 0 1px var(--line); padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.card.done { opacity: .55; }
+.hd { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.hd h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.hd .dom { font-size: 13px; color: var(--ink-3); text-decoration: none; }
+.score { flex: none; font-family: var(--mono); font-size: 13px; font-weight: 500; height: 28px; min-width: 44px; padding: 0 8px; border-radius: 9px; display: grid; place-items: center; background: var(--glow-soft); color: var(--glow-ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 99px; background: var(--line); color: var(--ink-2); white-space: nowrap; }
+.chip.due { background: var(--warn-soft); color: var(--warn); }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.bad { background: var(--bad-soft); color: var(--bad); }
+.why { font-size: 13.5px; color: var(--ink-2); margin: 0; }
+.metrics { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.metrics b { color: var(--ink); font-weight: 600; }
+.metrics .up { color: var(--ok); }
+.msg { position: relative; font-size: 14px; line-height: 1.5; background: var(--bg); border-radius: 12px; padding: 11px 12px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 7.5em; overflow: hidden; cursor: pointer; }
+.msg.open { max-height: none; }
+.msg:not(.open)::after { content: ""; position: absolute; inset: auto 0 0; height: 2.2em; background: linear-gradient(transparent, var(--bg)); border-radius: 0 0 12px 12px; }
+.msg-l { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.b { height: 42px; padding: 0 14px; border-radius: 12px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 7px; text-decoration: none; box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
+.b svg { width: 17px; height: 17px; }
+.b.main { background: var(--glow); color: #fff; box-shadow: 0 8px 18px -10px var(--glow); flex: 1 1 200px; }
+.b.ig { color: var(--ig); }
+.b.ok { background: var(--ink); color: var(--bg); box-shadow: none; flex: 1 1 140px; }
+.b.small { height: 34px; padding: 0 11px; font-size: 13px; border-radius: 10px; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+.links a { color: var(--ink-2); text-underline-offset: 3px; }
+.more { display: flex; flex-wrap: wrap; gap: 6px; border-top: 1px solid var(--line); padding-top: 10px; }
+textarea.notes { width: 100%; min-height: 40px; resize: vertical; font: inherit; font-size: 13.5px; color: var(--ink); background: var(--bg); border: 0; border-radius: 10px; padding: 9px 11px; }
+.empty { text-align: center; color: var(--ink-3); padding: 48px 16px; background: var(--card); border-radius: var(--r); box-shadow: 0 0 0 1px var(--line); }
+.empty b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 4px; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-size: 14px; font-weight: 600; transition: .25s; pointer-events: none; z-index: 20; max-width: calc(100% - 32px); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="tg" aria-hidden="true"></span><span>glow<i>up</i> leads</span></div>
+    <div class="run" id="run">Cargando…</div>
+  </header>
+  <section class="kpis" aria-label="Resumen">
+    <div class="kpi hot"><b id="kToday">–</b><span>para enviar hoy</span></div>
+    <div class="kpi"><b id="kFollow">–</b><span>seguimientos hoy</span></div>
+    <div class="kpi"><b id="kSent">–</b><span>enviadas (7 días)</span></div>
+    <div class="kpi"><b id="kReply">–</b><span>tasa de respuesta</span></div>
+  </section>
+  <div class="note" id="runNote"></div>
+  <nav class="tabs" id="tabs" aria-label="Vistas"></nav>
+  <main class="list" id="list"><div class="empty"><b>Cargando tus leads…</b>Un momento.</div></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const DAY = 864e5;
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const ICON = {
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg>',
+    copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+    form: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>',
+  };
+  // Estados de una tienda a lo largo del contacto
+  const STATE = { revisar: 'Revisar', lista: 'Lista', enviada: 'Enviada', seguimiento1: '1.er seguimiento', seguimiento2: '2.º seguimiento', respondio: 'Respondió', cerrada: 'Cliente', perdida: 'No interesa', descartada: 'Descartada' };
+  const TABS = [
+    { id: 'hoy', label: 'Para enviar', test: (l) => l.estado === 'lista' },
+    { id: 'seguir', label: 'Seguimientos', test: (l) => !!followDue(l) },
+    { id: 'esperando', label: 'Esperando', test: (l) => ['enviada', 'seguimiento1', 'seguimiento2'].includes(l.estado) && !followDue(l) },
+    { id: 'respondieron', label: 'Respondieron', test: (l) => l.estado === 'respondio' },
+    { id: 'cerradas', label: 'Clientes', test: (l) => l.estado === 'cerrada' },
+    { id: 'archivo', label: 'Revisar y archivo', test: (l) => ['revisar', 'descartada', 'perdida'].includes(l.estado) },
+  ];
+  // Seguimientos: el 1.º a los 3 días del envío, el 2.º a los 4 días del 1.º
+  function followDue(l) {
+    const now = Date.now();
+    if (l.estado === 'enviada' && l.sentAt && now - Date.parse(l.sentAt) >= 3 * DAY) return 1;
+    if (l.estado === 'seguimiento1' && l.f1At && now - Date.parse(l.f1At) >= 4 * DAY) return 2;
+    return 0;
+  }
+  const fallbackFollow = (l, n) => n === 1
+    ? `Hola de nuevo, equipo de ${l.name}. Os dejo otra vez la propuesta por si se os pasó: ${l.proposal || ''}\nEn un móvil, vuestra portada tarda ${l.lcpBefore || '?'} s en cargar; la nueva, ${l.lcpAfter || '?'} s. ¿Lo vemos en 10 minutos?`
+    : `Último mensaje, lo prometo. Si ahora no es el momento, ningún problema. La propuesta seguirá aquí unas semanas: ${l.proposal || ''}\nSi la conversión no sube, seguimos trabajando gratis; lo dejamos por escrito.`;
+
+  let leads = [], run = null, tab = 'hoy';
+  try { tab = localStorage.getItem('gu_tab') || 'hoy'; } catch (e) {}
+  let db = null;
+
+  const toast = (t) => { const el = $('#toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 1800); };
+  async function copy(text) {
+    try { await navigator.clipboard.writeText(text); return true; } catch (e) { return false; }
+  }
+  const ago = (iso) => { if (!iso) return ''; const d = Math.floor((Date.now() - Date.parse(iso)) / DAY); return d <= 0 ? 'hoy' : d === 1 ? 'ayer' : `hace ${d} días`; };
+
+  function card(l) {
+    const due = followDue(l);
+    const text = due ? (l[`followup${due}`] || fallbackFollow(l, due)) : (l.dm || '');
+    const igHref = l.instagram || (l.name ? `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(l.name)}` : 'https://www.instagram.com/');
+    const sendable = l.estado === 'lista' || due;
+    const metrics = [
+      l.perfBefore != null && l.perfAfter != null ? `Velocidad <b>${l.perfBefore}</b> → <b class="up">${l.perfAfter}</b>` : '',
+      l.lcpBefore && l.lcpAfter ? `Carga <b>${String(l.lcpBefore).replace('.', ',')} s</b> → <b class="up">${String(l.lcpAfter).replace('.', ',')} s</b>` : '',
+      l.products ? `<span>${esc(l.products)} productos</span>` : '',
+      l.ticket ? `<span>ticket ~${esc(l.ticket)} €</span>` : '',
+    ].filter(Boolean).join('');
+    const chips = [
+      `<span class="chip ${l.estado === 'cerrada' || l.estado === 'respondio' ? 'ok' : l.estado === 'descartada' || l.estado === 'perdida' ? 'bad' : ''}">${esc(STATE[l.estado] || l.estado)}</span>`,
+      due ? `<span class="chip due">Toca ${due === 1 ? '1.er' : '2.º'} seguimiento</span>` : '',
+      l.style ? `<span class="chip">${l.style === 'editorial' ? 'Moda · editorial' : 'Producto'}</span>` : '',
+      l.sentAt ? `<span class="chip">Enviada ${ago(l.sentAt)}</span>` : l.created ? `<span class="chip">Creada ${ago(l.created)}</span>` : '',
+    ].join('');
+    return `<article class="card ${['descartada', 'perdida'].includes(l.estado) ? 'done' : ''}" data-id="${esc(l.id)}">
+      <div class="hd"><div><h3>${esc(l.name || l.domain)}</h3><a class="dom" href="https://${esc(l.domain)}" target="_blank" rel="noopener">${esc(l.domain)}</a></div>${l.score != null ? `<span class="score" title="Puntuación del buscador">${esc(l.score)}</span>` : ''}</div>
+      <div class="chips">${chips}</div>
+      ${l.why ? `<p class="why">${esc(l.why)}</p>` : ''}
+      ${l.review ? `<p class="why"><b>Revisión:</b> ${esc(l.review)}</p>` : ''}
+      ${metrics ? `<div class="metrics">${metrics}</div>` : ''}
+      ${sendable && text ? `<div><div class="msg-l"><span>${due ? `Seguimiento ${due}` : 'Mensaje para Instagram'}</span><span>toca para ver entero</span></div><div class="msg" data-act="expand">${esc(text)}</div></div>
+        <div class="acts">
+          <a class="b main" href="${esc(igHref)}" target="_blank" rel="noopener" data-act="copy-ig">${ICON.copy} Copiar y abrir Instagram</a>
+          <button class="b ok" data-act="${due ? 'follow' : 'sent'}">${ICON.check} ${due ? 'Seguimiento hecho' : 'Enviado'}</button>
+        </div>
+        ${!due && l.form && l.contactPage ? `<div class="acts"><a class="b small" href="${esc(l.contactPage)}" target="_blank" rel="noopener" data-act="copy-form">${ICON.form} Copiar texto y abrir su formulario</a></div>` : ''}` : ''}
+      <div class="links">${l.proposal ? `<a href="${esc(l.proposal)}" target="_blank" rel="noopener">Propuesta</a>` : ''}${l.demo ? `<a href="${esc(l.demo)}" target="_blank" rel="noopener">Demo</a>` : ''}${l.instagram ? `<a href="${esc(l.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ''}${l.ads ? `<a href="${esc(l.ads)}" target="_blank" rel="noopener">Sus anuncios</a>` : ''}${l.email ? `<span style="color:var(--ink-3);user-select:all">${esc(l.email)}</span>` : ''}</div>
+      <div class="more">
+        ${['enviada', 'seguimiento1', 'seguimiento2'].includes(l.estado) ? `<button class="b small" data-act="state" data-to="respondio">Respondió</button>` : ''}
+        ${l.estado === 'respondio' ? `<button class="b small" data-act="state" data-to="cerrada">Cerrada: es cliente</button><button class="b small" data-act="state" data-to="perdida">No le interesa</button>` : ''}
+        ${l.estado === 'revisar' ? `<button class="b small" data-act="state" data-to="lista">Aprobar para enviar</button>` : ''}
+        ${['descartada', 'perdida'].includes(l.estado) ? `<button class="b small" data-act="state" data-to="lista">Recuperar</button>` : `<button class="b small" data-act="state" data-to="descartada">Descartar</button>`}
+        <textarea class="notes" id="n-${esc(l.id)}" placeholder="Notas (se guardan solas)" data-act="notes">${esc(l.notes || '')}</textarea>
+      </div>
+    </article>`;
+  }
+
+  function render() {
+    const counts = Object.fromEntries(TABS.map((t) => [t.id, leads.filter(t.test).length]));
+    $('#tabs').innerHTML = TABS.map((t) => `<button class="tab ${t.id === tab ? 'on' : ''}" data-tab="${t.id}">${t.label}<span class="n">${counts[t.id]}</span></button>`).join('');
+    const cur = TABS.find((t) => t.id === tab) || TABS[0];
+    const rows = leads.filter(cur.test).sort((a, b) => (b.score || 0) - (a.score || 0));
+    $('#list').innerHTML = rows.length ? rows.map(card).join('') : `<div class="empty"><b>${tab === 'hoy' ? 'Nada pendiente de enviar' : 'Aquí no hay nada'}</b>${tab === 'hoy' ? 'La rutina de cada mañana deja aquí las propuestas nuevas, revisadas y con el mensaje listo.' : 'Cuando haya tiendas en este punto, aparecerán aquí.'}</div>`;
+    const week = Date.now() - 7 * DAY;
+    const contacted = leads.filter((l) => l.sentAt);
+    const replied = contacted.filter((l) => ['respondio', 'cerrada', 'perdida'].includes(l.estado));
+    $('#kToday').textContent = counts.hoy;
+    $('#kFollow').textContent = counts.seguir;
+    $('#kSent').textContent = contacted.filter((l) => Date.parse(l.sentAt) >= week).length;
+    $('#kReply').textContent = contacted.length ? Math.round(replied.length / contacted.length * 100) + ' %' : '–';
+    $('#run').innerHTML = run && run.at ? `Última rutina<br><b>${new Date(run.at).toLocaleString('es-ES', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</b>` : 'Sin rutinas todavía';
+    $('#runNote').textContent = run && run.summary ? run.summary : '';
+  }
+
+  async function save(id, patch) {
+    const l = leads.find((x) => x.id === id); if (!l || !db) return;
+    Object.assign(l, patch); render();
+    try { await db.doc('leads/' + id).update(patch); } catch (e) { toast(e && e.code === 'invalid_argument' ? 'Solo el propietario puede cambiar esto' : 'No se pudo guardar; inténtalo otra vez'); }
+  }
+
+  document.addEventListener('click', async (e) => {
+    const t = e.target.closest('[data-tab]');
+    if (t) { tab = t.dataset.tab; try { localStorage.setItem('gu_tab', tab); } catch (x) {} render(); window.scrollTo({ top: 0 }); return; }
+    const a = e.target.closest('[data-act]'); if (!a) return;
+    const c = a.closest('.card'); const id = c && c.dataset.id; const l = leads.find((x) => x.id === id);
+    const act = a.dataset.act;
+    if (act === 'expand') { a.classList.toggle('open'); return; }
+    if (!l) return;
+    if (act === 'copy-ig' || act === 'copy-form') {
+      const due = followDue(l);
+      const text = act === 'copy-form' ? l.form : due ? (l[`followup${due}`] || fallbackFollow(l, due)) : l.dm;
+      const ok = await copy(text || '');
+      toast(ok ? 'Mensaje copiado: pégalo en el chat' : 'No se pudo copiar: mantén pulsado el mensaje para seleccionarlo');
+      return; // el enlace abre Instagram o el formulario en otra pestaña
+    }
+    if (act === 'sent') { await save(id, { estado: 'enviada', sentAt: new Date().toISOString() }); toast(`${l.name}: enviada. Te aviso del seguimiento en 3 días`); }
+    if (act === 'follow') { const n = followDue(l); await save(id, n === 1 ? { estado: 'seguimiento1', f1At: new Date().toISOString() } : { estado: 'seguimiento2', f2At: new Date().toISOString() }); toast('Seguimiento anotado'); }
+    if (act === 'state') { await save(id, { estado: a.dataset.to, [a.dataset.to + 'At']: new Date().toISOString() }); toast(`${l.name}: ${STATE[a.dataset.to]}`); }
+  });
+  let nt;
+  document.addEventListener('input', (e) => {
+    const ta = e.target.closest('textarea[data-act="notes"]'); if (!ta) return;
+    const id = ta.closest('.card').dataset.id; clearTimeout(nt);
+    nt = setTimeout(async () => { const l = leads.find((x) => x.id === id); if (!l || !db) return; l.notes = ta.value; try { await db.doc('leads/' + id).update({ notes: ta.value }); } catch (x) { toast('No se pudo guardar la nota'); } }, 800);
+  });
+
+  (async () => {
+    db = await (window.claude && window.claude.use ? window.claude.use('db') : null);
+    if (!db) { $('#list').innerHTML = '<div class="empty"><b>No se pueden cargar los leads aquí</b>Abre el panel en claude.ai con tu cuenta.</div>'; $('#run').textContent = ''; return; }
+    const slow = setTimeout(() => { if (!leads.length) $('#list').innerHTML = '<div class="empty"><b>Los datos tardan en llegar</b>Revisa la conexión; se cargarán solos en cuanto respondan.</div>'; }, 10000);
+    db.collection('leads').onSnapshot((snap) => {
+      if (!snap.metadata.fromCache) clearTimeout(slow);
+      // No repintar mientras se escribe una nota
+      leads = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      if (!(document.activeElement && document.activeElement.matches('textarea'))) render();
+    }, () => { clearTimeout(slow); $('#list').innerHTML = '<div class="empty"><b>No se pudieron leer los leads</b>Vuelve a abrir el panel en un rato.</div>'; });
+    db.doc('meta/run').onSnapshot((s) => { run = s.exists ? s.data() : null; if (!(document.activeElement && document.activeElement.matches('textarea'))) render(); }, () => {});
+  })();
+  render();
+})();
+</script>

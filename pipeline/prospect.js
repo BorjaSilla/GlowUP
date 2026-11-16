@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // GlowUp · Buscador de tiendas: marcas que pagan anuncios en Meta y venden con Shopify.
 //
-//   node pipeline/prospect.js meta --nicho moda [--max 400] [--speed]
+//   node pipeline/prospect.js meta --nicho moda[,joyeria] [--max 400] [--speed]
 //   node pipeline/prospect.js meta "zapatillas" "bolsos de piel" [--max 400] [--speed]
 //   node pipeline/prospect.js check dominios.txt [--speed]        (sin token: lista hecha a mano)
 //
@@ -52,10 +52,10 @@ async function metaSearch(terms, max) {
   const fields = ['id', 'page_id', 'page_name', 'ad_creative_link_captions', 'ad_creative_link_titles', 'ad_creative_bodies', 'ad_delivery_start_time', 'publisher_platforms', 'eu_total_reach', 'ad_snapshot_url'].join(',');
   const pages = new Map();
   for (const term of terms) {
-    let url = `${API}?${new URLSearchParams({ search_terms: term, ad_reached_countries: "['ES']", ad_active_status: 'ACTIVE', ad_type: 'ALL', search_type: 'KEYWORD_UNORDERED', fields, limit: '100', access_token: token })}`;
+    let url = `${API}?${new URLSearchParams({ search_terms: term, ad_reached_countries: "['ES']", ad_active_status: 'ACTIVE', ad_type: 'ALL', search_type: 'KEYWORD_UNORDERED', fields, limit: '100' })}`;
     let n = 0;
     while (url && n < max) {
-      const r = await fetch(url);
+      const r = await fetch(url, { headers: { authorization: `Bearer ${token}` } });
       const j = await r.json().catch(() => ({}));
       if (j.error) { log(`   ✖ "${term}": ${j.error.message}`); if (j.error.code === 613 || j.error.code === 4) { await sleep(60000); continue; } break; }
       for (const ad of j.data || []) {
@@ -169,7 +169,8 @@ function write(rows, top) {
   let cands = [];
   if (cmd === 'meta') {
     const nicho = flag('--nicho');
-    const terms = nicho ? (NICHOS[nicho] || (() => { throw new Error(`Nicho desconocido. Opciones: ${Object.keys(NICHOS).join(', ')}`); })()) : rest;
+    // Uno o varios nichos separados por comas: --nicho moda,joyeria
+    const terms = nicho ? String(nicho).split(',').flatMap((n) => NICHOS[n.trim()] || (() => { throw new Error(`Nicho desconocido: ${n}. Opciones: ${Object.keys(NICHOS).join(', ')}`); })()) : rest;
     if (!terms.length) throw new Error('Dime qué buscar: --nicho moda, o palabras entre comillas.');
     log(`1/3 Buscando anuncios activos en España (${terms.length} búsquedas)…`);
     const pages = await metaSearch(terms, max);

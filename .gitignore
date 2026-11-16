@@ -5,3 +5,4 @@ node_modules/
 .netlify/
 dist/
 pipeline/node_modules/
+pipeline/cache/

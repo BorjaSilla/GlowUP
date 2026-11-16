@@ -105,7 +105,7 @@ function lighthouse(url, chromePath) {
   });
 }
 
-async function captureAll({ origin, demoUrl, outDir, pdpHandle, variantId, withLighthouse = true, log = console.log }) {
+async function captureAll({ origin, demoUrl, outDir, pdpHandle, variantId, withLighthouse = true, afterOnly = false, log = console.log }) {
   fs.mkdirSync(path.join(outDir, 'film'), { recursive: true });
   const b = await chromium.launch();
   const before = { home: origin, pdp: `${origin}/products/${pdpHandle}`, cart: `${origin}/cart/add?id=${variantId}&quantity=1` };
@@ -121,13 +121,13 @@ async function captureAll({ origin, demoUrl, outDir, pdpHandle, variantId, withL
     // Carrito en móvil: antes, su /cart tras añadir el producto; después, el carrito de la demo
     [MOB, before.cart, 'm-cart-before.jpg', {}], [MOB, after.pdp, 'm-cart-after.jpg', { before: false, prep: openCart }],
   ];
-  for (const [ctx, url, name, opt] of jobs) { log(`  · ${name}`); await shot(b, ctx, url, path.join(outDir, name), opt).catch((e) => log(`    ! ${name}: ${e.message}`)); }
+  for (const [ctx, url, name, opt] of jobs.filter((j) => !afterOnly || /after/.test(j[2]))) { log(`  · ${name}`); await shot(b, ctx, url, path.join(outDir, name), opt).catch((e) => log(`    ! ${name}: ${e.message}`)); }
   log('  · carrera de carga');
-  const film = { before: await filmstrip(b, origin, path.join(outDir, 'film/before')), after: await filmstrip(b, after.home, path.join(outDir, 'film/after')) };
+  const film = { before: afterOnly ? null : await filmstrip(b, origin, path.join(outDir, 'film/before')), after: await filmstrip(b, after.home, path.join(outDir, 'film/after')) };
   const chromePath = chromium.executablePath();
   await b.close();
   let lh = { before: null, after: null };
-  if (withLighthouse) { log('  · Lighthouse antes'); lh.before = await lighthouse(origin, chromePath); log('  · Lighthouse después'); lh.after = await lighthouse(demoUrl, chromePath); }
+  if (withLighthouse) { if (!afterOnly) { log('  · Lighthouse antes'); lh.before = await lighthouse(origin, chromePath); } log('  · Lighthouse después'); lh.after = await lighthouse(demoUrl, chromePath); }
   return { film, lh };
 }
 

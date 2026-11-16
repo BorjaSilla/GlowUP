@@ -47,6 +47,14 @@ node pipeline/glowup.js render pompeii                         # regenerar tras 
 
 `--no-lighthouse` lo hace más rápido (sin medir velocidad). `GLOWUP_BASE_URL` cambia el dominio de los enlaces.
 
+### Piloto automático (cada mañana)
+
+Claude ejecuta `pipeline/RUTINA.md` de lunes a viernes a las 6:41 (Madrid): busca anunciantes del nicho del día, genera hasta 20 propuestas, las revisa como director de arte (textos en la voz de cada marca, mensaje personalizado, descarta las flojas), publica y las deja en el panel privado **GlowUp Leads** (https://claude.ai/artifact/DZVLeyhT5qAAVUzd8VD3gL) con el mensaje listo y los seguimientos a los 3 y 7 días. Tú solo copias, envías y marcas.
+
+Necesita el entorno de nube **GlowUP** con red completa y dos secretos de red: el token de Netlify (`api.netlify.com`) y el de Meta (`graph.facebook.com`).
+
+Piezas: `pipeline/deploy.js` (publica en Netlify), `pipeline/panel-rows.js` (filas del panel), `pipeline/panel/leads.html` (el panel), `glowup.js refresh <slug>` (rehace demo y capturas tras cambiar textos) y el filtro de calidad automático (`quality` en `clients/<slug>.json`).
+
 ### Buscador de tiendas (marcas que pagan anuncios en Meta)
 
 ```bash

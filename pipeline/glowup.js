@@ -3,7 +3,8 @@
 //
 //   node pipeline/glowup.js new <url-tienda> [--slug nombre] [--no-lighthouse]
 //   node pipeline/glowup.js batch <archivo.txt>        (una URL por línea)
-//   node pipeline/glowup.js render <slug>              (tras editar clients/<slug>.json)
+//   node pipeline/glowup.js render <slug>              (tras editar clients/<slug>.json: solo propuesta y mensaje)
+//   node pipeline/glowup.js refresh <slug>             (tras editar textos/estilo: rehace demo + capturas "después", ~1–2 min)
 //
 // Para cada tienda: extrae catálogo y marca → genera la demo (demo/<slug>) → la sirve en local →
 // mide y captura antes/después (assets/shots/<slug>) → escribe la propuesta (para/<slug>) →
@@ -38,14 +39,41 @@ function serve() {
   return new Promise((r) => srv.listen(0, '127.0.0.1', () => r(srv)));
 }
 
+// Filtro de calidad automático: si falla, la propuesta no se envía sin revisarla
+function gate(store, demo, res) {
+  const reasons = [];
+  const withImg = store.products.filter((p) => p.images.length && p.price > 0);
+  if (withImg.length < 8) reasons.push(`solo ${withImg.length} productos con foto y precio`);
+  if (!store.brand.logo && !store.brand.logoSvg) reasons.push('sin logo detectado');
+  if (!store.brand.heroImage && demo.selection.hero.length < 2) reasons.push('sin imagen principal');
+  const { before, after } = res.lh || {};
+  if (before && after && after.performance < before.performance) reasons.push(`la demo mide peor (${after.performance} < ${before.performance})`);
+  if (before && before.performance >= 90) reasons.push(`su web ya es rápida (${before.performance})`);
+  const shots = path.join(ROOT, 'assets/shots', demo.dir.split(path.sep).pop());
+  for (const f of ['home-before.jpg', 'home-after.jpg', 'm-home-after.jpg']) { const p = path.join(shots, f); if (!fs.existsSync(p) || fs.statSync(p).size < 30000) reasons.push(`captura ${f} vacía o fallida`); }
+  return { ok: !reasons.length, reasons };
+}
+
 async function one(url, opts = {}) {
   const t0 = Date.now();
   log(`\n▶ ${url}`);
-  log('1/5 Extrayendo catálogo y marca…');
-  let store = await extract(url);
-  // La lectura de marca a veces falla (popups de país/cookies que tardan): un reintento
-  if (!store.brand.logo && !store.brand.logoSvg && !store.brand.heroImage) { log('   (marca sin leer, reintentando…)'); const s2 = await extract(url); if (s2.brand.logo || s2.brand.heroImage) store = s2; }
+  let store;
+  const cacheDir = path.join(ROOT, 'pipeline/cache');
+  if (opts.refresh) {
+    // refresh <slug>: misma tienda, sin volver a extraer ni medir la web original
+    const f = path.join(cacheDir, `${url}.json`);
+    if (!fs.existsSync(f)) throw new Error(`No hay caché de ${url}: lánzala primero con "new".`);
+    log('1/5 Usando el catálogo guardado…');
+    store = JSON.parse(fs.readFileSync(f, 'utf8')); opts.slug = url;
+  } else {
+    log('1/5 Extrayendo catálogo y marca…');
+    store = await extract(url);
+    // La lectura de marca a veces falla (popups de país/cookies que tardan): un reintento
+    if (!store.brand.logo && !store.brand.logoSvg && !store.brand.heroImage) { log('   (marca sin leer, reintentando…)'); const s2 = await extract(url); if (s2.brand.logo || s2.brand.heroImage) store = s2; }
+  }
   const slug = opts.slug || slugify(store.domain);
+  fs.mkdirSync(cacheDir, { recursive: true });
+  fs.writeFileSync(path.join(cacheDir, `${slug}.json`), JSON.stringify(store));
   const cdir = path.join(ROOT, 'clients');
   fs.mkdirSync(cdir, { recursive: true });
   const cfile = path.join(cdir, `${slug}.json`);
@@ -58,13 +86,15 @@ async function one(url, opts = {}) {
   const demo = buildDemo(store, slug, (prev.copy && prev.copy.demo) || {}, { style: prev.styleOverride });
   log(`   Estilo: ${demo.style}${prev.styleOverride ? ' (forzado)' : ''}`);
   const pdpHandle = demo.selection.hero[0] || store.products[0].handle;
-  const variant = store.products.find((p) => p.handle === pdpHandle).variants.find((v) => v.available);
+  const pv = store.products.find((p) => p.handle === pdpHandle).variants;
+  const variant = pv.find((v) => v.available) || pv[0];
 
   log('3/5 Midiendo y capturando antes/después…');
   const srv = await serve();
   const local = `http://127.0.0.1:${srv.address().port}`;
   const shotsDir = path.join(ROOT, 'assets/shots', slug);
-  const res = await captureAll({ origin: store.origin, demoUrl: `${local}/demo/${slug}/`, outDir: shotsDir, pdpHandle, variantId: variant.id, withLighthouse: !opts.noLighthouse, log });
+  const res = await captureAll({ origin: store.origin, demoUrl: `${local}/demo/${slug}/`, outDir: shotsDir, pdpHandle, variantId: variant.id, withLighthouse: !opts.noLighthouse, afterOnly: !!opts.refresh, log });
+  if (opts.refresh) { res.lh.before = (prev.lh || {}).before || null; if (!res.lh.after) res.lh.after = (prev.lh || {}).after || null; res.film.before = (prev.film || {}).before || null; }
   srv.close();
 
   log('4/5 Escribiendo la propuesta…');
@@ -81,7 +111,9 @@ async function one(url, opts = {}) {
     // Solo conservamos el pitch si lo editaste a mano (si es el automático, se regenera con datos frescos)
     copy: { pitch: (prev.copy && prev.copy.pitch && prev.copy.pitch !== prev.copy.pitchAuto) ? prev.copy.pitch : null, demo: (prev.copy && prev.copy.demo) || {} },
     review: prev.review || { status: 'pendiente', notes: '' },
+    quality: gate(store, demo, res),
   };
+  if (!client.quality.ok) log(`   ⚠ Filtro de calidad: ${client.quality.reasons.join(' · ')}`);
   client.copy.pitchAuto = defaultPitch(client);
   client.copy.pitch = client.copy.pitch || client.copy.pitchAuto;
   fs.writeFileSync(cfile, JSON.stringify(client, null, 2));
@@ -99,6 +131,7 @@ async function one(url, opts = {}) {
   const [cmd, target] = args;
   const opts = { slug: flag('--slug'), noLighthouse: !!flag('--no-lighthouse') };
   if (cmd === 'new' && target) { await one(target, opts); return; }
+  if (cmd === 'refresh' && target) { await one(target, { ...opts, refresh: true }); return; }
   if (cmd === 'render' && target) {
     // Tras revisar/editar clients/<slug>.json: regenera propuesta y mensaje sin volver a capturar
     const cfile = path.join(ROOT, 'clients', target + '.json');
@@ -117,5 +150,5 @@ async function one(url, opts = {}) {
     log(`\nHecho: ${ok.length} propuestas, ${ko.length} fallos.`); ko.forEach((k) => log('  ✖ ' + k));
     return;
   }
-  log('Uso:\n  node pipeline/glowup.js new <url-tienda> [--slug nombre] [--no-lighthouse]\n  node pipeline/glowup.js batch <archivo.txt>\n  node pipeline/glowup.js render <slug>');
+  log('Uso:\n  node pipeline/glowup.js new <url-tienda> [--slug nombre] [--no-lighthouse]\n  node pipeline/glowup.js batch <archivo.txt>\n  node pipeline/glowup.js render <slug>\n  node pipeline/glowup.js refresh <slug>   (tras cambiar textos/estilo: rehace demo, capturas "después" y propuesta)');
 })().catch((e) => { console.error('✖', e.message); process.exit(1); });

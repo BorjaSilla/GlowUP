@@ -7,7 +7,12 @@ const ROOT = path.resolve(__dirname, '../..');
 function messages(c, url) {
   const dm = `Hola, equipo de ${c.name}. Os hemos preparado una propuesta de rediseño de ${c.domain}: vuestra tienda, con vuestros productos, funcionando, y el antes y el después. Os la dejo aquí, sin compromiso: ${url}\n\nSi os encaja, hablamos por WhatsApp.`;
   const form = `Hola, equipo de ${c.name}:\n\nSomos GlowUp. Hemos rediseñado la portada, la ficha de producto y el carrito de ${c.domain} con vuestro catálogo real, y lo hemos medido: ${c.lh.before && c.lh.after ? `la portada pasa de ${c.lh.before.lcp.toString().replace('.', ',')} s a ${c.lh.after.lcp.toString().replace('.', ',')} s en cargar en un móvil, ` : ''}y todo está pensado para que más visitas acaben comprando.\n\nPodéis verlo y probarlo aquí: ${url}\n\nSi la conversión no sube, seguimos trabajando gratis; lo dejamos por escrito. Si os interesa, respondednos o escribidnos por WhatsApp y lo vemos en un rato.\n\nUn saludo,\nGlowUp`;
-  return { dm, form };
+  const lcp = c.lh.before && c.lh.after ? ` En un móvil, vuestra portada tarda ${String(c.lh.before.lcp).replace('.', ',')} s en cargar; la nueva, ${String(c.lh.after.lcp).replace('.', ',')} s.` : '';
+  const followup1 = `Hola de nuevo, equipo de ${c.name}. Os dejo otra vez la propuesta por si se os pasó: ${url}${lcp} ¿Lo vemos en 10 minutos?`;
+  const followup2 = `Último mensaje, prometido. Si ahora no es el momento, ningún problema: la propuesta seguirá aquí unas semanas (${url}). Y si la conversión no sube, seguimos trabajando gratis; lo dejamos por escrito.`;
+  // Los textos que Claude personaliza en la revisión (clients/<slug>.json → copy.dm, copy.form…) mandan
+  const o = c.copy || {};
+  return { dm: o.dm || dm, form: o.form || form, followup1: o.followup1 || followup1, followup2: o.followup2 || followup2 };
 }
 
 function writeOutreach(c, baseUrl) {
